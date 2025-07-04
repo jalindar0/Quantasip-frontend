@@ -1,0 +1,25 @@
+{
+  "short_name": "Quantasip GIS",
+  "name": "Quantasip GIS - Clear, Cleansed, Corrected Maps",
+  "icons": [
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#232a3d",
+  "background_color": "#ffffff"
+}

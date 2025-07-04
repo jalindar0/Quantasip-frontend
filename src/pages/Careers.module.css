@@ -1,0 +1,358 @@
+.careersPage {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #fff;
+  color: #222;
+}
+
+.heroSection {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  filter: brightness(0.7);
+}
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 60px 20px 40px 20px;
+}
+.heroContent h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+.scrollDown {
+  display: inline-block;
+  margin-top: 2rem;
+  animation: none;
+}
+
+.headerDesktop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px 0 48px;
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+.logo {
+  height: 60px;
+  width: auto;
+}
+.navMenu ul {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navMenu li {
+  position: relative;
+}
+.navMenu a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.navMenu a:hover, .navMenu .active a {
+  color: #0077b5;
+}
+.hasSubmenu:hover .submenu {
+  display: block;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 6px;
+  min-width: 180px;
+  z-index: 100;
+}
+.submenu li {
+  padding: 0;
+}
+.submenu a {
+  color: #222;
+  padding: 10px 20px;
+  display: block;
+  font-size: 1rem;
+}
+.active > a {
+  color: #0077b5 !important;
+}
+
+.jobsSection {
+  max-width: 900px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.jobsSection h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.jobsList {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.jobCard {
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 32px 24px;
+  text-align: left;
+  position: relative;
+}
+.jobHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.jobHeader h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+.companyName {
+  font-size: 1rem;
+  color: #0077b5;
+  font-weight: 600;
+}
+.applyBtns {
+  display: flex;
+  gap: 10px;
+}
+.btnPrimary {
+  background: #0077b5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btnPrimary:hover {
+  background: #005983;
+}
+.jobMeta {
+  margin-top: 10px;
+  color: #888;
+  font-size: 0.98rem;
+}
+.jobDesc {
+  margin-top: 18px;
+  font-size: 1.05rem;
+}
+.jobDesc ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+
+.journeySection {
+  max-width: 900px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.journeySection h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.journeySection p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 18px;
+}
+
+.teamSection {
+  max-width: 1100px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.teamSection h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+.teamCard {
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 28px 18px;
+  text-align: center;
+  position: relative;
+}
+.teamCard h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.teamRole {
+  font-size: 1rem;
+  color: #0077b5;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.linkedinIcon {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.contactSection {
+  max-width: 1100px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px 40px 20px;
+  text-align: center;
+}
+.contactSection h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.contactSection h5 {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+.contactGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.contactInfo {
+  flex: 1 1 300px;
+  min-width: 260px;
+  text-align: left;
+}
+.contactInfo h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 18px 0 8px 0;
+}
+.contactInfo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+}
+.contactInfo li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+.contactFormWrap {
+  flex: 1 1 350px;
+  min-width: 300px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 32px 24px;
+  text-align: left;
+}
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contactForm input,
+.contactForm textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+}
+.contactForm textarea {
+  min-height: 60px;
+}
+.contactForm button {
+  background: #0077b5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.contactForm button:hover {
+  background: #005983;
+}
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .headerDesktop {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px 0 20px;
+  }
+  .jobsSection, .journeySection, .teamSection, .contactSection {
+    padding: 0 10px;
+  }
+  .contactGrid {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+  .jobsSection h2, .journeySection h2, .teamSection h2 {
+    font-size: 1.1rem;
+  }
+  .jobCard, .teamCard, .contactFormWrap {
+    padding: 18px 8px;
+  }
+}
+
+.animatedArrow {
+  animation: bounceDown 1.5s infinite;
+  display: block;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(18px); }
+} 

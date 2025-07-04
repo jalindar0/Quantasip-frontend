@@ -1,0 +1,201 @@
+.contactPage {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #fff;
+  color: #222;
+}
+
+.heroSection {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  filter: brightness(0.6);
+  height: 100vh;
+}
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.heroContent h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+.scrollDown {
+  display: inline-block;
+  margin-top: 2rem;
+  animation: none;
+}
+.animatedArrow {
+  animation: bounceDown 1.5s infinite;
+  display: block;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(18px); }
+}
+
+.infoSection {
+  max-width: 900px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.infoSection h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+.infoGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.infoCard {
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 32px 24px;
+  text-align: left;
+  min-width: 260px;
+  max-width: 320px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+.infoCard h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+.infoCard p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.formSection {
+  max-width: 1100px;
+  margin: 60px auto 0 auto;
+  padding: 0 20px 40px 20px;
+  text-align: center;
+}
+.formGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.formWrap {
+  flex: 1 1 350px;
+  min-width: 300px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 32px 24px;
+  text-align: left;
+}
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contactForm input,
+.contactForm textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+}
+.contactForm textarea {
+  min-height: 60px;
+}
+.contactForm button {
+  background: #0077b5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.contactForm button:hover {
+  background: #005983;
+}
+.mapWrap {
+  flex: 1 1 350px;
+  min-width: 300px;
+  background: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 32px 24px;
+  text-align: left;
+}
+.mapWrap h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.mapEmbed {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .infoGrid, .formGrid {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .infoSection, .formSection {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 600px) {
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+  .infoSection h2, .formWrap h3, .mapWrap h3 {
+    font-size: 1.1rem;
+  }
+  .infoCard, .formWrap, .mapWrap {
+    padding: 18px 8px;
+  }
+} 
