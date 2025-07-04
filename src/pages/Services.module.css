@@ -1,6 +1,6 @@
 .servicesPage {
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
-    background: #fff;
+    background: linear-gradient(135deg, #f5fafd 0%, #e8f6ef 100%);
     color: #232a3d;
     margin: 0;
     padding: 0;
@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: center;
     transition: height 0.6s cubic-bezier(0.4,0,0.2,1), min-height 0.6s cubic-bezier(0.4,0,0.2,1), overflow 0.3s;
+    background: transparent;
   }
   
   .heroBgImg {
@@ -53,6 +54,10 @@
     min-height: 60vh;
   }
   
+  .heroContent h1, .heroContent h2 {
+    color: #ffffff;
+  }
+  
   .heroFull {
     height: 100vh !important;
     min-height: 100vh !important;
@@ -80,12 +85,49 @@
     opacity: 0.85;
     transition: opacity 0.2s, transform 0.2s;
     z-index: 4;
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    padding: 10px 28px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
   .scrollDownIcon:hover, .scrollDownIcon:focus {
     opacity: 1;
-    transform: scale(1.15) translateX(-50%);
     outline: none;
   }
   .scrollDownIcon:focus {
     outline: 2px solid #fff;
+  }
+
+  .mainContent > section {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(44, 62, 80, 0.04);
+    margin-bottom: 32px;
+  }
+
+  h2, h3, h4 {
+    color: #232a3d;
+  }
+
+  button {
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    padding: 10px 28px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  button:hover {
+    background: #1565c0;
   }

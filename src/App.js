@@ -14,6 +14,7 @@ import Awards from './components/Awards';
 import Solutions from './components/Solutions';
 import Industries from './components/Industries';
 import Sponsors from './components/Sponsors';
+import FAQChatWidget from './components/FAQChatWidget';
 
 function HomeWithSections() {
   return <Home />;
@@ -68,6 +69,7 @@ function AppContent() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
       </Routes>
       <Footer />
+      <FAQChatWidget />
     </>
   );
 }

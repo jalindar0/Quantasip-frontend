@@ -305,6 +305,33 @@ function Home() {
             </div>
           </section>
 
+          {/* Why Choose Us */}
+          <section className={styles.whyChooseUsSection}>
+            <h2>Why Choose QuantaSIP GIS?</h2>
+            <div className={styles.whyChooseUsGrid}>
+              <div className={styles.whyCard}>
+                <svg width="48" height="48" fill="none" stroke="#2e7d32" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="20"/><path d="M16 24l6 6 10-10"/></svg>
+                <h3>Proven GIS Expertise</h3>
+                <p>Our team brings years of experience in cadastral mapping, land records, and geospatial solutions for diverse industries.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <svg width="48" height="48" fill="none" stroke="#1565c0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="8" width="32" height="32" rx="8"/><path d="M16 24h16M24 16v16"/></svg>
+                <h3>Cutting-Edge Technology</h3>
+                <p>We leverage the latest GIS software, satellite imagery, and data analytics to deliver accurate, actionable insights.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <svg width="48" height="48" fill="none" stroke="#ef6c00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="24" cy="24" rx="20" ry="12"/><path d="M4 24c0 11 9 20 20 20s20-9 20-20"/></svg>
+                <h3>Trusted by Industry Leaders</h3>
+                <p>Our solutions are trusted by top organizations in infrastructure, agriculture, banking, and government sectors.</p>
+              </div>
+              <div className={styles.whyCard}>
+                <svg width="48" height="48" fill="none" stroke="#00897b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 4v40M4 24h40"/></svg>
+                <h3>Comprehensive Support</h3>
+                <p>From data collection to analysis and visualization, we provide end-to-end GIS support for your projects.</p>
+              </div>
+            </div>
+          </section>
+
           {/* Get in Touch (Contact Section) */}
           <section className={styles.contactSection}>
             <h3>Get in Touch</h3>

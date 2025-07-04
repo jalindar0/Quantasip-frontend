@@ -75,7 +75,7 @@ function TermsOfService() {
           <h3>Get in Touch</h3>
           <h5>Connect with us today for tailored GIS solutions and expert support for your infrastructure projects.</h5>
           {/* Lottie animation placeholder */}
-          <div className={styles.lottiePlaceholder}></div>
+          <img src="https://www.gravatar.com/avatar/?d=mp&s=120" alt="Default profile" style={{borderRadius: '50%', width: 120, height: 120, margin: '0 auto 32px auto', display: 'block', background: '#e0e7ef'}} />
           {/* Contact Form */}
           <form className={styles.contactForm} onSubmit={handleFormSubmit}>
             <div className={styles.formGroup}>

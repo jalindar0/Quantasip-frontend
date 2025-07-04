@@ -27,8 +27,9 @@ function Header({ active }) {
     <header className={styles.headerDesktop}>
       <div className={styles.headerInner}>
         <Link to="/">
-          <img src="https://quantasip.com/wp-content/uploads/2024/08/logoo.png" alt="QuantaSIP Logo" className={styles.logo} />
+          <img src="https://quantasip.com/wp-content/uploads/2024/08/logoo.png" alt="QuantaSIP GIS Logo" className={styles.logo} />
         </Link>
+        {!isHome && <div className={styles.flexSpacer}></div>}
         <nav
           className={styles.navMenu}
           style={{ marginRight: isHome ? 32 : 0 }}
@@ -57,16 +58,16 @@ function Header({ active }) {
             <li className={active === 'contact' ? styles.active : ''}><Link to="/contact-us">Contact Us</Link></li>
           </ul>
         </nav>
-        <div className={styles.flexSpacer}></div>
+        {isHome && <div className={styles.flexSpacer}></div>}
         {isHome && (
           <a
             href="http://bhuquanta.quantasip.com/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.freeTrialBtn}
-            style={{ marginLeft: 32 }}
+            style={{ marginLeft: 32, background: '#2e7d32' }}
           >
-            Free Trial
+            BhuQuanta
           </a>
         )}
       </div>

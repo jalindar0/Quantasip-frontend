@@ -1,31 +1,37 @@
 .homePage {
   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
-  background: #fff;
+  background: linear-gradient(135deg, #f5fafd 0%, #e8f6ef 100%);
   color: #232a3d;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .heroSection {
   position: relative;
   width: 100vw;
+  max-width: 100vw;
   height: 100vh;
   min-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
+  overflow-x: hidden;
 }
 .heroSlideImg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
+  max-width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+  overflow-x: hidden;
 }
 
 .heroOverlay {
@@ -64,6 +70,7 @@
   font-size: 1.5rem;
   font-weight: 400;
   margin: 0;
+  color: #ffffff;
 }
 .freeTrialBtn {
   margin-top: 18px;
@@ -102,9 +109,11 @@
 
 .partnersSection {
   padding: 48px 0 24px 0;
-  background: #f7f8fa;
+  background: rgba(255,255,255,0.85);
   text-align: center;
   margin-bottom: 32px;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .partnersSection h4 {
   font-size: 1.3rem;
@@ -132,6 +141,9 @@
   padding: 36px 0 12px 0;
   text-align: center;
   margin-bottom: 32px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .animatedHeadlineSection h3 {
   font-size: 2.1rem;
@@ -149,9 +161,11 @@
 
 .servicesSection {
   padding: 48px 0 24px 0;
-  background: #fff;
+  background: rgba(255,255,255,0.85);
   text-align: center;
   margin-bottom: 32px;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .servicesSection h3 {
   font-size: 2rem;
@@ -231,9 +245,11 @@
 
 .awardsSection {
   padding: 48px 0 24px 0;
-  background: #f7f8fa;
+  background: rgba(255,255,255,0.85);
   text-align: center;
   margin-bottom: 32px;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .awardsSection h2 {
   font-size: 1.5rem;
@@ -260,9 +276,11 @@
 
 .testimonialsSection {
   padding: 48px 0 24px 0;
-  background: #fff;
+  background: rgba(255,255,255,0.85);
   text-align: center;
   margin-bottom: 40px;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .testimonialsSection h2 {
   font-size: 2rem;
@@ -315,6 +333,10 @@
   background: #bbb;
   cursor: pointer;
   transition: background 0.2s;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
 }
 .testimonialNav button.active {
   background: #1e90ff;
@@ -322,12 +344,14 @@
 
 .contactSection {
   padding: 48px 0 32px 0;
-  background: #f0f6ff;
+  background: rgba(255,255,255,0.85);
   border-radius: 18px;
   box-shadow: 0 4px 32px rgba(30,144,255,0.08);
   margin: 0 auto 32px auto;
   max-width: 900px;
   text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .contactSection h3 {
   font-size: 2rem;
@@ -673,15 +697,15 @@
   align-items: center;
 }
 .pillCard {
-  min-width: 340px;
-  min-height: 160px;
-  border-radius: 80px;
+  min-width: 250px;
+  min-height: 120px;
+  border-radius: 48px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  padding: 24px 32px;
   margin: 0 8px;
   transition: box-shadow 0.2s;
   perspective: 1200px;
@@ -705,19 +729,36 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 80px;
+  border-radius: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  padding: 0 8px;
 }
 .pillCardFront {
-  z-index: 2;
+  background: #f7f8fa;
+  color: #232a3d;
 }
 .pillCardBack {
+  background: #232a3d;
+  color: #fff;
   transform: rotateY(180deg);
-  z-index: 3;
+}
+.pillCardFront h3,
+.pillCardBack .flipBoxDesc {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.flipBoxIcon {
+  margin-bottom: 18px;
+  color: #fff;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+.flipBoxDesc {
+  font-size: 1rem;
+  text-align: center;
 }
 .pillBackDesc {
   font-size: 1.05rem;
@@ -760,7 +801,7 @@
   outline: 3px dotted #b6d4fa;
 }
 .pillCardInner, .pillCardFront, .pillCardBack {
-  border-radius: 80px;
+  border-radius: 48px;
 }
 @media (max-width: 900px) {
   .serviceCardsGrid {
@@ -771,10 +812,10 @@
     gap: 20px;
   }
   .pillCard {
-    min-width: 220px;
-    min-height: 120px;
-    border-radius: 60px;
-    padding: 16px 12px;
+    min-width: 160px;
+    min-height: 80px;
+    border-radius: 36px;
+    padding: 10px 6px;
   }
   .pillTitle {
     font-size: 1.1rem;
@@ -782,6 +823,59 @@
   .pillDesc {
     font-size: 0.95rem;
   }
+}
+
+.whyChooseUsSection {
+  background: linear-gradient(90deg, #e0f2f1 0%, #e3fcec 100%);
+  padding: 64px 0 48px 0;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.whyChooseUsSection h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #232a3d;
+  margin-bottom: 32px;
+}
+.whyChooseUsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.whyCard {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.08);
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.whyCard:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+}
+.whyCard svg {
+  margin-bottom: 18px;
+}
+.whyCard h3 {
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: #1565c0;
+  margin-bottom: 10px;
+}
+.whyCard p {
+  color: #444;
+  font-size: 1.02rem;
+  margin: 0;
 }
 
  

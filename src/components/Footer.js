@@ -7,8 +7,8 @@ const Footer = () => (
       <div className={styles.footerCol}>
         <h2>Company</h2>
         <ul className={styles.footerLinks}>
-          <li><a href="/about-us">About Us</a></li>
-          <li><a href="/contact-us">Contact Us</a></li>
+          <li><a href="/about-us">About</a></li>
+          <li><a href="/contact-us">Contact</a></li>
           <li><a href="/terms-of-service">Terms of Service</a></li>
           <li><a href="/privacy-policy">Privacy Policy</a></li>
           <li><a href="/careers">Careers</a></li>
@@ -20,6 +20,7 @@ const Footer = () => (
           <li><span className={styles.footerIcon}>✉️</span> info@quantasip.com</li>
           <li><span className={styles.footerIcon}>📞</span> +91 7517860524</li>
           <li><span className={styles.footerIcon}>📍</span>404, Wall Street 24, near McDonald's, Motiram Nagar, Warje, Pune, Maharashtra 411058</li>
+          <li><span className={styles.footerIcon}>🌐</span> Experts in GIS, Mapping & Geospatial Solutions</li>
         </ul>
       </div>
       <div className={styles.footerCol}>
@@ -34,7 +35,7 @@ const Footer = () => (
       </div>
     </div>
     <div className={styles.footerCopyright}>
-      © QuantaSip Pvt. Ltd. 2023
+      © QuantaSIP GIS Pvt. Ltd. 2023 | GIS & Geospatial Solutions
     </div>
   </footer>
 );

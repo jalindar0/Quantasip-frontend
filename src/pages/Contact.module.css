@@ -1,7 +1,7 @@
 .contactPage {
   font-family: 'Montserrat', Arial, sans-serif;
-  background: #fff;
-  color: #222;
+  background: linear-gradient(135deg, #f5fafd 0%, #e8f6ef 100%);
+  color: #232a3d;
 }
 
 .heroSection {
