@@ -231,24 +231,36 @@ function Home() {
                 <div className={styles.industryGroup}>
                   <h5>BFSI Solutions</h5>
                   <div className={styles.industryLogos}>
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/NPCI_logo.svg.png" alt="NPCI Logo" />
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/download.png" alt="Reliance General Insurance Logo" />
+                    <a href="https://www.npci.org.in/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/NPCI_logo.svg.png" alt="NPCI Logo" />
+                    </a>
+                    <a href="https://www.reliancegeneral.co.in/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/images-1.png" alt="Reliance General Insurance Logo" />
+                    </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
                 <div className={styles.industryGroup}>
                   <h5>Agri-Innovator Solutions</h5>
                   <div className={styles.industryLogos}>
-                    <img src="https://quantasip.com/wp-content/uploads/2024/09/DeHaat.png" alt="DeHaat Logo" />
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/Farmonaut_Logo_Black.png" alt="Farmonaut Logo" />
+                    <a href="https://agrevolution.in/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/09/DeHaat.png" alt="DeHaat Logo" />
+                    </a>
+                    <a href="https://farmonaut.com/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/Farmonaut_Logo_Black.png" alt="Farmonaut Logo" />
+                    </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
                 <div className={styles.industryGroup}>
                   <h5>Geospatial and GIS Services</h5>
                   <div className={styles.industryLogos}>
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/images.png" alt="MahaTransco Logo" />
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/images-2.png" alt="Genesys Logo" />
+                    <a href="https://www.mahatransco.in/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/images.png" alt="MahaTransco Logo" />
+                    </a>
+                    <a href="https://www.igenesys.com/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/images-2.png" alt="Genesys Logo" />
+                    </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
@@ -258,16 +270,24 @@ function Home() {
                 <div className={styles.industryGroup}>
                   <h5>Agri-Tech Innovations</h5>
                   <div className={styles.industryLogos}>
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/Satsure_Logo-scaled-e1725512096298.jpg" alt="Satsure Logo" />
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/afaqs_2023-04_892fde07-f530-4653-a60e-acf92fd98e7c_Skymet_New_Logo__Beyond_Weather.webp" alt="Skymet Logo" />
+                    <a href="https://www.satsure.co/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/Satsure_Logo-scaled-e1725512096298.jpg" alt="Satsure Logo" />
+                    </a>
+                    <a href="https://www.skymetweather.com/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/afaqs_2023-04_892fde07-f530-4653-a60e-acf92fd98e7c_Skymet_New_Logo__Beyond_Weather.webp" alt="Skymet Logo" />
+                    </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
                 <div className={styles.industryGroup}>
                   <h5>Surveying Services</h5>
                   <div className={styles.industryLogos}>
-                    <img src="https://quantasip.com/wp-content/uploads/2024/09/logo-2-e1725512065302.png" alt="Maha Metro Logo" />
-                    <img src="https://quantasip.com/wp-content/uploads/2024/08/images-1.png" alt="NPCI Logo" />
+                    <a href="https://www.mahametro.org/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/09/logo-2-e1725512065302.png" alt="Maha Metro Logo" />
+                    </a>
+                    <a href="https://www.npci.org.in/" target="_blank" rel="noopener noreferrer">
+                      <img src="https://quantasip.com/wp-content/uploads/2024/08/NPCI_logo.svg.png" alt="NPCI Logo" />
+                    </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
@@ -342,7 +362,7 @@ function Home() {
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>Cadastral Data Sets</h3>
-                  <a className={styles.servicesElementorButton} href="https://quantasip.com/services#service1">Know More</a>
+                  <a className={styles.servicesElementorButton} href="/services#service1">Know More</a>
                 </div>
               </div>
               {/* Card 2 */}
@@ -351,7 +371,7 @@ function Home() {
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>Land Record Verification</h3>
-                  <a className={styles.servicesElementorButton} href="https://quantasip.com/services#service2">Know More</a>
+                  <a className={styles.servicesElementorButton} href="/services#service2">Know More</a>
                 </div>
               </div>
               {/* Card 3 */}
@@ -360,7 +380,7 @@ function Home() {
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>API Services</h3>
-                  <a className={styles.servicesElementorButton} href="https://quantasip.com/services#service2">Know More</a>
+                  <a className={styles.servicesElementorButton} href="/services#service2">Know More</a>
                 </div>
               </div>
               {/* Card 4 */}
@@ -369,7 +389,7 @@ function Home() {
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>Data Cleaning, Correction</h3>
-                  <a className={styles.servicesElementorButton} href="https://quantasip.com/services#service3">Know More</a>
+                  <a className={styles.servicesElementorButton} href="/services#service3">Know More</a>
                 </div>
               </div>
             </div>
