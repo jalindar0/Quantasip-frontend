@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Services.module.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // Placeholder images (replace with real images as needed)
 const heroImg = 'https://quantasip.com/wp-content/uploads/2023/05/20230512205803_fpdl.in_gis-product-made-after-processing-aerial-pictures-taken-from-drone-ai_175356-13379_large.webp';
@@ -25,6 +27,32 @@ const dataPoints = [
   { title: 'Schools', stat: '1 Million+', desc: 'Marked Schools', icon: '🏫' },
   { title: 'Other PoI', stat: '120 Million+', desc: 'Total Data Point', icon: '📊' },
 ];
+
+// Define a consistent image style for service section images
+const serviceImageStyle = {
+  width: '100%',
+  maxWidth: 260,
+  borderRadius: 8,
+  margin: '0 auto 18px auto',
+  display: 'block',
+};
+// Define a special style for the Service 1 main image (zoomed out)
+const service1MainImageStyle = {
+  width: '70%',
+  maxWidth: '700px',
+  borderRadius: 8,
+  margin: '0 auto 18px auto',
+  display: 'block',
+};
+
+// Define a larger image style for Service 3 images
+const service3LargeImageStyle = {
+  width: '100%',
+  maxWidth: 600,
+  borderRadius: 8,
+  margin: '18px auto',
+  display: 'block',
+};
 
 const Services = () => {
   const [heroFull, setHeroFull] = useState(true);
@@ -52,11 +80,14 @@ const Services = () => {
 
   return (
     <div className={styles.servicesPage}>
+      {/* Header Navigation */}
+      <Header active="services" />
       {/* Hero Section */}
       <section
         className={styles.heroSection + ' ' + (heroFull ? styles.heroFull : '')}
         ref={heroRef}
         style={heroFull ? { height: '100vh', minHeight: '100vh', overflow: 'hidden' } : {}}
+        
       >
         <img
           src={heroImg}
@@ -91,7 +122,6 @@ const Services = () => {
           </a>
         </div>
       </section>
-
       {/* Rest of the page, hidden until scrolled or arrow clicked */}
       <div ref={belowRef} style={heroFull ? { display: 'none' } : {}}>
         <div className={styles.mainContent}>
@@ -104,43 +134,20 @@ const Services = () => {
             </p>
           </section>
 
-          {/* Service Highlights */}
-          <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
-              <div style={{ flex: '1 1 260px', minWidth: 260, maxWidth: 320, background: '#f8f9fa', borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.07)', padding: '2rem 1.5rem', textAlign: 'center' }}>
-                <h3 style={{ fontWeight: 600, fontSize: '1.2rem', marginBottom: 8 }}>Service I: Ready Cadastral Datasets for 10 States, In-Progress for 7 More</h3>
-                <img src={cadastralImg} alt="Cadastral Datasets" style={{ width: '100%', borderRadius: 8, marginBottom: 12 }} />
-                <ul style={{ textAlign: 'left', color: '#444', fontSize: '1rem', margin: 0, paddingLeft: 20 }}>
-                  <li>Procured Govt Cadastral Data under RoR for Multiple States (100% Available)</li>
-                  <li>Data Collection in Progress for Multiple States (UP, Rajasthan, Gujarat, Bihar, Assam, Chhattisgarh, West Bengal)</li>
-                  <li>Local Govt Directory Code Mapped to Census Villages (Pan-India)</li>
-                  <li>Physical Maps Digitized</li>
-                  <li>Boundaries Available at Multiple Levels (District, Tehsil, Pincode, and Village)</li>
-                </ul>
-              </div>
-              <div style={{ flex: '1 1 260px', minWidth: 260, maxWidth: 320, background: '#f8f9fa', borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.07)', padding: '2rem 1.5rem', textAlign: 'center' }}>
-                <h3 style={{ fontWeight: 600, fontSize: '1.2rem', marginBottom: 8 }}>Service 2: Land Record Verification</h3>
-                <img src={landRecordImg} alt="Land Record Verification" style={{ width: '100%', borderRadius: 8, marginBottom: 12 }} />
-                <ul style={{ textAlign: 'left', color: '#444', fontSize: '1rem', margin: 0, paddingLeft: 20 }}>
-                  <li>Downloaded and periodically maintained complete Land Owner Information for Maharashtra, Karnataka, and Madhya Pradesh</li>
-                  <li>In addition to 7/12 abstracts, we can provide 8-A mutation entry</li>
-                  <li>Key fields: owner name (Unicode), acreage, recorded charges</li>
-                  <li>Data can be refreshed as per requirement</li>
-                  <li>PoC provided for State Bank of India and HDFC Bank</li>
-                </ul>
-              </div>
-              <div style={{ flex: '1 1 260px', minWidth: 260, maxWidth: 320, background: '#f8f9fa', borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.07)', padding: '2rem 1.5rem', textAlign: 'center' }}>
-                <h3 style={{ fontWeight: 600, fontSize: '1.2rem', marginBottom: 8 }}>Service 3: Data Cleaning, Correction</h3>
-                <img src={cleaning1Img} alt="Data Cleaning, Correction" style={{ width: '100%', borderRadius: 8, marginBottom: 12 }} />
-                <ul style={{ textAlign: 'left', color: '#444', fontSize: '1rem', margin: 0, paddingLeft: 20 }}>
-                  <li>In-Depth Study, Analysis, and Correction of Existing Data</li>
-                  <li>Logical and Reasonable Analysis to Improve Land Owner Information Data</li>
-                  <li>Missing Survey number in existing data</li>
-                </ul>
-              </div>
+          {/* Service 1 Section */}
+          <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
+            <h3 id="service1" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+              Service I: Ready Cadastral Datasets for 10 States, In-Progress for 7 More
+            </h3>
+            <img src={cadastralImg} alt="Cadastral Datasets" style={service1MainImageStyle} />
+            <div className={styles.servicePointersRow}>
+              <div className={styles.serviceCardPointer}>Procured Govt Cadastral Data under RoR for Multiple States (100% Available)</div>
+              <div className={styles.serviceCardPointer}>Data Collection in Progress for Multiple States (UP, Rajasthan, Gujarat, Bihar, Assam, Chhattisgarh, West Bengal)</div>
+              <div className={styles.serviceCardPointer}>“Local Govt Directory Code Mapped to Census Villages (Pan-India)”</div>
+              <div className={styles.serviceCardPointer}>Physical Maps Digitized</div>
+              <div className={styles.serviceCardPointer}>Boundaries Available at Multiple Levels (District, Tehsil, Pincode, and Village)</div>
             </div>
           </section>
-
           {/* Data Points Section */}
           <section style={{ maxWidth: 1100, margin: '0 auto', padding: '2rem 1rem' }}>
             <h3 style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>Available Datapoints</h3>
@@ -175,7 +182,64 @@ const Services = () => {
             <img src={attributesImg} alt="Attributes" style={{ width: '100%', maxWidth: 600, borderRadius: 8, margin: '12px 0' }} />
             <p style={{ color: '#333', fontSize: '1.05rem' }}>Acreage as per Polygon Area of Satellite Image Provided, 7/12 Acreage Available on Request</p>
           </section>
+
+          {/* Service 2 Section */}
+          <section style={{ maxWidth: 1100, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
+            <h3 id="service2" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+              Service 2: Land Record Verification
+            </h3>
+            <div className={styles.serviceDarkPointersRow}>
+              <div className={styles.serviceDarkCardPointer}>
+                Downloaded and periodically maintained complete Land Owner Information for Maharashtra, Karnataka, and Madhya Pradesh
+              </div>
+              <div className={styles.serviceDarkCardPointer}>
+                In addition to 7/12 abstracts, we can provide 8-A mutation entry
+              </div>
+              <div className={styles.serviceDarkCardPointer}>
+                Key fields in the database include owner name (transliterated in Unicode), acreage, and recorded charges (to be extracted).
+              </div>
+            </div>
+            <div className={styles.serviceDarkPointersRow} style={{ justifyContent: 'center', marginTop: 18 }}>
+              <div className={styles.serviceDarkCardPointer}>
+                Data can be refreshed as per requirement
+              </div>
+              <div className={styles.serviceDarkCardPointer}>
+                PoC provided for State Bank of India and HDFC Bank
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center', marginTop: 24 }}>
+              <img src={landRecordImg2} alt="Land Record Example 1" style={serviceImageStyle} />
+              <img src={landRecordImg3} alt="Land Record Example 2" style={serviceImageStyle} />
+            </div>
+          </section>
+
+          {/* Service 3 Section */}
+          <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
+            <h3 id="service3" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+              Service 3: Data Cleaning, Correction - Case 1
+            </h3>
+            <div className={styles.serviceDarkPointersRow}>
+              <div className={styles.serviceDarkCardPointer}>
+                In-Depth Study, Analysis, and Correction of Existing Data
+              </div>
+              <div className={styles.serviceDarkCardPointer}>
+                Logical and Reasonable Analysis to Improve Land Owner Information Data
+              </div>
+            </div>
+            <img src={cleaning1Img} alt="Data Cleaning, Correction - Case 1" style={service3LargeImageStyle} />
+            <h3 style={{ fontWeight: 700, fontSize: '1.1rem', margin: '32px 0 8px 0' }}>
+              Service 3: Data Cleaning, Correction - Case 2
+            </h3>
+            <div className={styles.serviceDarkPointersRow}>
+              <div className={styles.serviceDarkCardPointer}>
+                Missing Survey number in existing data
+              </div>
+            </div>
+            <img src={cleaning2Img} alt="Data Cleaning, Correction - Case 2" style={service3LargeImageStyle} />
+          </section>
         </div>
+        {/* Footer Section */}
+        <Footer />
       </div>
     </div>
   );
