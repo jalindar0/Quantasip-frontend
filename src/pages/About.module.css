@@ -9,19 +9,22 @@
   background: #222;
   overflow: hidden;
   height: 100vh;
+  padding: 0;
 }
-.heroBg {
+.heroBg,
+.heroBgBlur {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
+  filter: brightness(0.5) blur(1.5px);
 }
 .heroOverlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(26,35,126,0.45);
+  background: rgba(26,35,126,0.55);
   z-index: 2;
 }
 .heroContent {
@@ -37,54 +40,112 @@
   height: 100vh;
 }
 .heroTitle {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 0;
+  font-size: 3.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
   color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
+.scrollDownIcon {
+  display: inline-block;
+  margin-top: 2rem;
+  cursor: pointer;
+  opacity: 0.95;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 4;
+  position: static;
+}
+.animatedArrow {
+  animation: bounceDown 1.5s infinite;
+  display: block;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(18px); }
+}
+.scrollDownIcon:hover, .scrollDownIcon:focus {
+  opacity: 1;
+  transform: scale(1.15);
+  outline: none;
+}
+.scrollDownIcon:focus {
+  outline: 2px solid #fff;
+}
+
 .section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem 2rem 1rem;
 }
 .sectionTitle {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 700;
   color: #1a237e;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.sectionSubtitle {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.storyText {
-  font-size: 1.1rem;
-  color: #333;
   margin-bottom: 1.2rem;
   text-align: center;
+  letter-spacing: 0.5px;
 }
+.sectionSubtitle {
+  font-size: 1.15rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+.storyText {
+  font-size: 1.13rem;
+  color: #333;
+  margin-bottom: 1.7rem;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.journeySection {
+  background: #0d2b36;
+  color: #fff;
+  padding: 2.5rem 0 2.5rem 0;
+  text-align: center;
+}
+.journeyTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #fff;
+}
+.journeySubtitle {
+  font-size: 1.1rem;
+  color: #b2ebf2;
+  margin-bottom: 1.2rem;
+}
+.journeyText {
+  font-size: 1.08rem;
+  color: #e0f7fa;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
 .teamGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 20px;
   justify-content: center;
   margin-bottom: 2rem;
 }
 .teamCard {
-  flex: 1 1 220px;
-  min-width: 220px;
-  max-width: 260px;
-  background: #f8f9fa;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  padding: 1.5rem 1rem;
+  flex: 1 1 21%;
+  min-width: 200px;
+  max-width: 240px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  padding: 1.3rem 0.7rem 1.1rem 0.7rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1.5px solid #e0e0e0;
 }
 .teamImg {
   width: 90px;
@@ -93,37 +154,54 @@
   object-fit: cover;
   margin-bottom: 12px;
   background: #fff;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .teamName {
   font-weight: 600;
   color: #1a237e;
-  font-size: 1.1rem;
+  font-size: 1.13rem;
+  margin-bottom: 2px;
 }
 .teamTitle {
   color: #555;
-  font-size: 1rem;
+  font-size: 1.01rem;
   margin-bottom: 4px;
 }
 .teamExp {
   color: #888;
-  font-size: 0.95rem;
+  font-size: 0.97rem;
   margin-bottom: 8px;
 }
 .teamLinkedIn {
   color: #0a66c2;
-  font-size: 1.2rem;
+  font-size: 1.13rem;
   text-decoration: none;
   margin-top: 4px;
+  font-weight: 500;
+  border: 1px solid #0a66c2;
+  border-radius: 6px;
+  padding: 2px 10px;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
 }
+.teamLinkedIn:hover {
+  background: #0a66c2;
+  color: #fff;
+}
+
 .testimonials {
   background: linear-gradient(90deg, #e3f2fd 0%, #fff 100%);
-  padding: 2rem 0;
+  padding: 2.5rem 0 2.5rem 0;
 }
 .testimonialsTitle {
   text-align: center;
   font-weight: 700;
   font-size: 1.5rem;
   margin-bottom: 24px;
+  color: #1a237e;
 }
 .testimonialList {
   max-width: 1100px;
@@ -138,14 +216,15 @@
   min-width: 280px;
   max-width: 380px;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  padding: 1.5rem 1rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  padding: 1.7rem 1.1rem 1.3rem 1.1rem;
   text-align: left;
+  border: 1.5px solid #e0e0e0;
 }
 .testimonialName {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.13rem;
   color: #1a237e;
   margin-bottom: 4px;
 }
@@ -156,18 +235,21 @@
 }
 .testimonialText {
   color: #333;
-  font-size: 1rem;
+  font-size: 1.01rem;
+  line-height: 1.6;
 }
+
 .contactSection {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem 2rem 1rem;
   text-align: center;
 }
 .contactTitle {
   font-weight: 700;
   font-size: 1.3rem;
   margin-bottom: 16px;
+  color: #1a237e;
 }
 .contactSubtitle {
   color: #333;
@@ -190,18 +272,26 @@
 .contactForm {
   max-width: 500px;
   margin: 0 auto;
-  background: #f8f9fa;
+  background: #fff;
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border: 1.5px solid #e0e0e0;
 }
 .contactInput, .contactTextarea {
   width: 100%;
   margin-bottom: 12px;
-  padding: 8px;
+  padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #bdbdbd;
   font-size: 1rem;
+  background: #f8f9fa;
+  color: #222;
+  transition: border 0.2s;
+}
+.contactInput:focus, .contactTextarea:focus {
+  border: 1.5px solid #1a237e;
+  outline: none;
 }
 .contactButton {
   background: #1a237e;
@@ -212,73 +302,122 @@
   font-size: 1.1rem;
   border: none;
   transition: background 0.2s;
+  margin-top: 4px;
 }
 .contactButton:hover {
   background: #ff9800;
+  color: #fff;
 }
+
 .footer {
-  text-align: center;
-  color: #888;
-  padding: 1.5rem 0;
+  background: #181818;
+  color: #fff;
+  padding: 2.5rem 0 1.2rem 0;
   font-size: 1rem;
-  background: #f8f9fa;
   margin-top: 32px;
+  text-align: left;
 }
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.footerCol {
+  flex: 1 1 260px;
+  min-width: 220px;
+  margin-bottom: 1.5rem;
+}
+.footerCol h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.footerCol ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footerCol ul li {
+  margin-bottom: 0.5rem;
+}
+.footerCol ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.footerCol ul li a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+.footerContactInfo {
+  font-size: 0.98rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.footerForm input, .footerForm textarea {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #222;
+  color: #fff;
+  font-size: 0.98rem;
+}
+.footerForm button {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 2px;
+}
+.footerCopyright {
+  text-align: center;
+  color: #bdbdbd;
+  font-size: 0.98rem;
+  margin-top: 1.5rem;
+}
+
 @media (max-width: 900px) {
-  .teamGrid, .testimonialList {
+  .teamGrid, .testimonialList, .footerContainer {
     flex-direction: column;
     gap: 20px;
   }
   .heroContent {
     padding-top: 2rem;
   }
+  .footer {
+    text-align: center;
+  }
+  .footerCol {
+    min-width: 0;
+    margin-bottom: 2rem;
+  }
 }
-.heroBgBlur {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 1;
-  filter: brightness(0.7);
-  transition: filter 0.4s;
+@media (max-width: 1100px) {
+  .teamCard {
+    flex: 1 1 45%;
+    max-width: 320px;
+  }
 }
-.heroFull {
-  height: 100vh !important;
-  min-height: 100vh !important;
-  overflow: hidden !important;
-}
-.animatedArrow {
-  animation: bounceDown 1.5s infinite;
-  display: block;
-}
-@keyframes bounceDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(18px); }
-}
-.scrollDownIcon {
-  position: absolute;
-  left: 50%;
-  bottom: 32px;
-  transform: translateX(-50%);
-  margin: 0;
-  margin-top: 2rem;
-  display: inline-block;
-  cursor: pointer;
-  opacity: 0.85;
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 4;
-}
-.scrollDownIcon:hover, .scrollDownIcon:focus {
-  opacity: 1;
-  transform: scale(1.15) translateX(-50%);
-  outline: none;
-}
-.scrollDownIcon:focus {
-  outline: 2px solid #fff;
-}
-.aboutPage {
-  background: linear-gradient(135deg, #f5fafd 0%, #e8f6ef 100%);
-  color: #232a3d;
+@media (max-width: 700px) {
+  .teamGrid {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .teamCard {
+    max-width: 100%;
+    min-width: 0;
+  }
 } 

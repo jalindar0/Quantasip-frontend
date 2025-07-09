@@ -50,6 +50,7 @@ const About = () => {
   const [heroFull, setHeroFull] = useState(true);
   const heroRef = useRef(null);
   const belowRef = useRef(null);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   // Handle scroll or arrow click to show rest of page
   useEffect(() => {
@@ -88,7 +89,6 @@ const About = () => {
             onClick={handleArrowClick}
             tabIndex={0}
             aria-label="Scroll down"
-            style={{ position: 'absolute', left: '50%', top: 'calc(50% + 1.5rem)', transform: 'translate(-50%, 0)' }}
           >
             <svg
               aria-hidden="true"
@@ -108,24 +108,85 @@ const About = () => {
 
       {/* Rest of the page, hidden until scrolled or arrow clicked */}
       <div ref={belowRef} style={heroFull ? { display: 'none' } : {}}>
-        {/* Company Story & Journey */}
+        {/* Company Story */}
         <div className={styles.section}>
-          {companyStory.map((s, i) => (
-            <div key={i}>
-              <h2 className={styles.sectionTitle}>{s.title}</h2>
-              <p className={styles.storyText}>{s.text}</p>
+          <h2 className={styles.sectionTitle}>{companyStory[0].title}</h2>
+          <p className={styles.storyText}>{companyStory[0].text}</p>
+        </div>
+
+        {/* Testimonials */}
+        <div className={styles.testimonials}>
+          <h2 className={styles.testimonialsTitle}>Hear from Our Satisfied Clients on Their Experience with QuantaSip</h2>
+          <div className={styles.testimonialList} style={{ justifyContent: 'center' }}>
+            <div className={styles.testimonialCard}>
+              <div className={styles.testimonialName}>{testimonials[testimonialIndex].name}</div>
+              <div className={styles.testimonialTitle}>{testimonials[testimonialIndex].title}</div>
+              <div className={styles.testimonialText}>{testimonials[testimonialIndex].text}</div>
             </div>
-          ))}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
+            <button
+              onClick={() => setTestimonialIndex((testimonialIndex - 1 + testimonials.length) % testimonials.length)}
+              style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', marginRight: 16 }}
+              aria-label="Previous testimonial"
+            >
+              &#8592;
+            </button>
+            {testimonials.map((_, idx) => (
+              <span
+                key={idx}
+                onClick={() => setTestimonialIndex(idx)}
+                style={{
+                  display: 'inline-block',
+                  width: 10,
+                  height: 10,
+                  borderRadius: '50%',
+                  background: idx === testimonialIndex ? '#1a237e' : '#bdbdbd',
+                  margin: '0 6px',
+                  cursor: 'pointer',
+                  border: 'none',
+                  transition: 'background 0.2s',
+                }}
+                aria-label={`Go to testimonial ${idx + 1}`}
+              />
+            ))}
+            <button
+              onClick={() => setTestimonialIndex((testimonialIndex + 1) % testimonials.length)}
+              style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', marginLeft: 16 }}
+              aria-label="Next testimonial"
+            >
+              &#8594;
+            </button>
+          </div>
+        </div>
+
+        {/* Our Journey Section */}
+        <div className={styles.journeySection}>
+          <h2 className={styles.journeyTitle}>{companyStory[1].title}</h2>
+          <div className={styles.journeySubtitle}>Building a Strong Foundation for Innovative GIS Solutions</div>
+          <div className={styles.journeyText}>{companyStory[1].text}</div>
         </div>
 
         {/* Team Section */}
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Our Core Team & IT Experts – Leaders in Cadastral Mappings, Geospatial Services & Tech Innovations</h2>
           <h3 className={styles.sectionSubtitle}>Meet the Experts Driving Innovation and Excellence at QuantaSIP</h3>
-          <div className={styles.teamGrid}>
-            {team.map((member, i) => (
+          {/* Custom team grid layout */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
+            <div className={styles.teamCard}>
+              <div className={styles.teamImg}>
+                <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+              </div>
+              <div className={styles.teamName}>{team[0].name}</div>
+              <div className={styles.teamTitle}>{team[0].title}</div>
+              {team[0].exp && <div className={styles.teamExp}>{team[0].exp}</div>}
+              {team[0].linkedin && <a href={team[0].linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginBottom: 32 }}>
+            {[team[1], team[2]].map((member, i) => (
               <div key={i} className={styles.teamCard}>
-                <div className={styles.teamImg} style={{ background: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className={styles.teamImg}>
                   <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
@@ -135,17 +196,29 @@ const About = () => {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Testimonials */}
-        <div className={styles.testimonials}>
-          <h2 className={styles.testimonialsTitle}>Hear from Our Satisfied Clients on Their Experience with QuantaSip</h2>
-          <div className={styles.testimonialList}>
-            {testimonials.map((t, i) => (
-              <div key={i} className={styles.testimonialCard}>
-                <div className={styles.testimonialName}>{t.name}</div>
-                <div className={styles.testimonialTitle}>{t.title}</div>
-                <div className={styles.testimonialText}>{t.text}</div>
+          <div className={styles.teamGrid} style={{ marginBottom: 32 }}>
+            {team.slice(3, 7).map((member, i) => (
+              <div key={i} className={styles.teamCard}>
+                <div className={styles.teamImg}>
+                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                </div>
+                <div className={styles.teamName}>{member.name}</div>
+                <div className={styles.teamTitle}>{member.title}</div>
+                {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
+                {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+              </div>
+            ))}
+          </div>
+          <div className={styles.teamGrid}>
+            {team.slice(7, 11).map((member, i) => (
+              <div key={i} className={styles.teamCard}>
+                <div className={styles.teamImg}>
+                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                </div>
+                <div className={styles.teamName}>{member.name}</div>
+                <div className={styles.teamTitle}>{member.title}</div>
+                {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
+                {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
               </div>
             ))}
           </div>
@@ -160,7 +233,7 @@ const About = () => {
           <div className={styles.contactInfo}>
             <a href="mailto:info@quantasip.com" className={styles.contactLink}>info@quantasip.com</a>
             <a href="tel:7517860524" className={styles.contactLink}>+91 7517860524</a>
-            <span className={styles.contactAddress}>404, Wall Street 24, near McDonald's, Motiram Nagar, Warje, Pune, Maharashtra 411058​</span>
+            <span className={styles.contactAddress}>404, Wall Street 24, near McDonald's, Motiram Nagar, Warje, Pune, Maharashtra 411058</span>
           </div>
           {/* Placeholder for contact form */}
           <form className={styles.contactForm}>
@@ -171,11 +244,6 @@ const About = () => {
             <button type="submit" className={styles.contactButton}>Send</button>
           </form>
         </div>
-
-        {/* Footer */}
-        <footer className={styles.footer}>
-          © QuantaSip Pvt. Ltd. 2023
-        </footer>
       </div>
     </div>
   );
