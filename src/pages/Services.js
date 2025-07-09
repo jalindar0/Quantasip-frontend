@@ -136,7 +136,7 @@ const Services = () => {
 
           {/* Service 1 Section */}
           <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
-            <h3 id="service1" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+            <h3 id="service1" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16, textAlign: 'center' }}>
               Service I: Ready Cadastral Datasets for 10 States, In-Progress for 7 More
             </h3>
             <img src={cadastralImg} alt="Cadastral Datasets" style={service1MainImageStyle} />
@@ -185,7 +185,7 @@ const Services = () => {
 
           {/* Service 2 Section */}
           <section style={{ maxWidth: 1100, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
-            <h3 id="service2" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+            <h3 id="service2" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16, textAlign: 'center' }}>
               Service 2: Land Record Verification
             </h3>
             <div className={styles.serviceDarkPointersRow}>
@@ -215,7 +215,7 @@ const Services = () => {
 
           {/* Service 3 Section */}
           <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
-            <h3 id="service3" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16 }}>
+            <h3 id="service3" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16, textAlign: 'center' }}>
               Service 3: Data Cleaning, Correction - Case 1
             </h3>
             <div className={styles.serviceDarkPointersRow}>
@@ -227,7 +227,7 @@ const Services = () => {
               </div>
             </div>
             <img src={cleaning1Img} alt="Data Cleaning, Correction - Case 1" style={service3LargeImageStyle} />
-            <h3 style={{ fontWeight: 700, fontSize: '1.1rem', margin: '32px 0 8px 0' }}>
+            <h3 style={{ fontWeight: 700, fontSize: '1.1rem', margin: '32px 0 8px 0', textAlign: 'center' }}>
               Service 3: Data Cleaning, Correction - Case 2
             </h3>
             <div className={styles.serviceDarkPointersRow}>

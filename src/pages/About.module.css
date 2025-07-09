@@ -48,13 +48,16 @@
   text-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
 .scrollDownIcon {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 2.5rem);
+  transform: translate(-50%, 0);
+  margin: 0;
   display: inline-block;
-  margin-top: 2rem;
   cursor: pointer;
   opacity: 0.95;
   transition: opacity 0.2s, transform 0.2s;
   z-index: 4;
-  position: static;
 }
 .animatedArrow {
   animation: bounceDown 1.5s infinite;
@@ -66,7 +69,7 @@
 }
 .scrollDownIcon:hover, .scrollDownIcon:focus {
   opacity: 1;
-  transform: scale(1.15);
+  transform: scale(1.15) translate(-50%, 0);
   outline: none;
 }
 .scrollDownIcon:focus {
@@ -227,16 +230,19 @@
   font-size: 1.13rem;
   color: #1a237e;
   margin-bottom: 4px;
+  text-align: center;
 }
 .testimonialTitle {
   font-weight: 500;
   color: #555;
   margin-bottom: 8px;
+  text-align: center;
 }
 .testimonialText {
   color: #333;
   font-size: 1.01rem;
   line-height: 1.6;
+  text-align: justify;
 }
 
 .contactSection {
