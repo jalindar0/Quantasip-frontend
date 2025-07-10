@@ -201,7 +201,7 @@ function Careers() {
                 <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
               </div>
               <div className={styles.teamName}>{team[0].name}</div>
-              <div className={styles.teamTitle}>{team[0].title}</div>
+              <div className={styles.teamTitle}>{team[0].role}</div>
               {team[0].exp && <div className={styles.teamExp}>{team[0].exp}</div>}
               {team[0].linkedin && <a href={team[0].linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
             </div>
@@ -213,7 +213,7 @@ function Careers() {
                   <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
-                <div className={styles.teamTitle}>{member.title}</div>
+                <div className={styles.teamTitle}>{member.role}</div>
                 {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
                 {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
               </div>
@@ -226,7 +226,7 @@ function Careers() {
                   <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
-                <div className={styles.teamTitle}>{member.title}</div>
+                <div className={styles.teamTitle}>{member.role}</div>
                 {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
                 {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
               </div>
@@ -239,7 +239,7 @@ function Careers() {
                   <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
-                <div className={styles.teamTitle}>{member.title}</div>
+                <div className={styles.teamTitle}>{member.role}</div>
                 {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
                 {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
               </div>
