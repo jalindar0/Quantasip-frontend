@@ -7,6 +7,7 @@ import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import JobApplication from './pages/JobApplication';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import Testimonials from './components/Testimonials';
@@ -63,6 +64,7 @@ function AppContent() {
         <Route path="/home" element={<HomeWithSections />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/jobs/:slug/" element={<JobApplication />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />

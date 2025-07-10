@@ -1,5 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Careers.module.css';
+import { useNavigate } from 'react-router-dom';
+
+const companyStory = [
+  {
+    title: "About QuantaSip - Pioneering Cadastral Mapping and Geospatial Services",
+    text: "QuantaSIP is a pioneer in providing Cadastral Mapping, Survey, and Geospatial Services, and is part of the J&T Group established since 2008. With a team of 50+ professionals, we have worked on some of India's most prestigious and challenging projects. Our strong understanding of mapping technology and expertise ranges from survey to mapping across various industries, including electrical, agriculture, navigation, and infrastructure. Our capacity to scale up the team and quick learning has led us to successfully execute many projects. At QuantaSIP, we are committed to providing innovative GISolutions that meet the unique needs of our clients."
+  },
+  {
+    title: "Our Journey - From Agri Support to Leading GIS Solutions Provider",
+    text: "QuantaSip GIS Pvt Ltd started as an extension of J&T Group, with a focus on Agri Support Business. We quickly established ourselves as a leader in Cadastral Data Systems, providing accurate land records for infrastructure development. Over the years, we have developed the largest web of G-C-P (Ground Control Points) with each 50 Km pan India, and the largest 360-degree photo library of all motorable roads. In just six months, we have captured data for fuel stations, food malls, airports, railway stations, and more. Our journey has been one of continuous growth and innovation, and we are committed to providing the best GIS Solutions for our clients."
+  }
+];
 
 const jobs = [
   {
@@ -104,6 +116,8 @@ function Careers() {
     e.preventDefault();
     alert('Form submitted (placeholder)');
   };
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   return (
     <div className={styles.careersPage}>
@@ -120,98 +134,139 @@ function Careers() {
 
       {/* Job Listings Section */}
       <section className={styles.jobsSection} id="scroll-down">
-        <h2>Careers at QuantaSIP</h2>
-        <h2>We're always on the lookout for talented and passionate individuals to join our team. Here are our current job openings.</h2>
+        <div style={{marginTop: 60, marginBottom: 32}}>
+          <h2 className={styles.sectionTitle}>Careers at QuantaSIP</h2>
+          <h3 className={styles.sectionSubtitle}>We're always on the lookout for talented and passionate individuals to join our team. Here are our current job openings.</h3>
+        </div>
+        <div className={styles.searchBarSection}>
+          <input
+            type="text"
+            className={styles.searchInput}
+            placeholder="Keywords"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          <button className={styles.searchButton} aria-label="Search">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c2185b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
         <div className={styles.jobsList}>
-          {jobs.map(job => (
-            <div key={job.id} className={styles.jobCard}>
-              <div className={styles.jobHeader}>
-                <h4><a href={job.url} target="_blank" rel="noopener noreferrer">{job.title}</a></h4>
-                {job.company && <div className={styles.companyName}>{job.company}</div>}
-                <div className={styles.applyBtns}>
-                  <a href="#" className={styles.btnPrimary}>Apply Now</a>
-                  <a href={job.url} className={styles.btnPrimary} target="_blank" rel="noopener noreferrer">Apply Tommorrow</a>
+          {jobs
+            .filter(job =>
+              search.trim() === "" ||
+              job.title.toLowerCase().includes(search.trim().toLowerCase())
+            )
+            .map(job => {
+              const slug = job.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+              return (
+                <div key={job.id} className={styles.jobCard}>
+                  <div className={styles.jobHeader}>
+                    <h4><a href={job.url} target="_blank" rel="noopener noreferrer">{job.title}</a></h4>
+                    {job.company && <div className={styles.companyName}>{job.company}</div>}
+                    <div className={styles.applyBtns}>
+                      <button className={styles.btnPrimary} onClick={() => navigate(`/jobs/${slug}/`)}>Apply Now</button>
+                    </div>
+                  </div>
+                  <div className={styles.jobMeta}>
+                    <span className={styles.jobDate}>{job.posted}</span>
+                  </div>
+                  <div className={styles.jobDesc}>
+                    {job.about && <p><strong>About Position:</strong> {job.about}</p>}
+                    {job.details.length > 0 && (
+                      <ul>
+                        {job.details.map((d, i) => <li key={i}>{d}</li>)}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className={styles.jobMeta}>
-                <span className={styles.jobDate}>{job.posted}</span>
-              </div>
-              <div className={styles.jobDesc}>
-                {job.about && <p><strong>About Position:</strong> {job.about}</p>}
-                {job.details.length > 0 && (
-                  <ul>
-                    {job.details.map((d, i) => <li key={i}>{d}</li>)}
-                  </ul>
-                )}
-              </div>
-            </div>
-          ))}
+              );
+            })}
         </div>
       </section>
-
-      {/* Company Journey Section */}
-      <section className={styles.journeySection}>
-        <h2>Our Journey - From Agri Support to Leading GIS Solutions Provider</h2>
-        <h2>Building a Strong Foundation for Innovative GIS Solutions</h2>
-        <p>QuantaSip GIS Pvt Ltd started as an extension of J&amp;T Group, with a focus on Agri Support Business. We quickly established ourselves as a leader in Cadastral DATA Systems, providing accurate land records for infrastructure development. Over the years, we have developed the largest web of G-C-P (Ground Control Points) with each 50 Km pan India, and the largest 360-degree photo library of all motorable roads. In just six months, we have captured data for fuel stations, food malls, airports, railway stations, and more. Our journey has been one of continuous growth and innovation, and we are committed to providing the best GIS Solutions for our clients.</p>
-      </section>
-
-      {/* Team Section */}
-      <section className={styles.teamSection}>
-        <h2>Our Core Team &amp; IT Experts – Leaders in Cadastral Mappings, Geospatial Services &amp; Tech Innovations</h2>
-        <h2>Meet the Experts Driving Innovation and Excellence at QuantaSIP</h2>
-        <div className={styles.teamGrid}>
-          {team.map((member, idx) => (
-            <div key={idx} className={styles.teamCard}>
-              <h3>{member.name}</h3>
-              <div className={styles.teamRole}><b>{member.role}</b>{member.exp && <div>{member.exp}</div>}</div>
-              {member.linkedin && (
-                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className={styles.linkedinIcon} aria-label="LinkedIn">
-                  {/* LinkedIn SVG */}
-                  <svg aria-hidden="true" viewBox="0 0 448 512" width="32" height="32"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="#0077b5"/></svg>
-                </a>
-              )}
-            </div>
-          ))}
+      {/* Our Journey Section */}
+      <div className={styles.journeySection}>
+          <h2 className={styles.journeyTitle}>{companyStory[1].title}</h2>
+          <div className={styles.journeySubtitle}>Building a Strong Foundation for Innovative GIS Solutions</div>
+          <div className={styles.journeyText}>{companyStory[1].text}</div>
         </div>
-      </section>
 
-      {/* Contact Section */}
-      <section className={styles.contactSection}>
-        <h3>Get in Touch</h3>
-        <h5>Connect with us today for tailored GIS solutions and expert support for your infrastructure projects.</h5>
-        <div className={styles.contactGrid}>
+        {/* Team Section */}
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Our Core Team & IT Experts – Leaders in Cadastral Mappings, Geospatial Services & Tech Innovations</h2>
+          <h3 className={styles.sectionSubtitle}>Meet the Experts Driving Innovation and Excellence at QuantaSIP</h3>
+          {/* Custom team grid layout */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
+            <div className={styles.teamCard}>
+              <div className={styles.teamImg}>
+                <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+              </div>
+              <div className={styles.teamName}>{team[0].name}</div>
+              <div className={styles.teamTitle}>{team[0].title}</div>
+              {team[0].exp && <div className={styles.teamExp}>{team[0].exp}</div>}
+              {team[0].linkedin && <a href={team[0].linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginBottom: 32 }}>
+            {[team[1], team[2]].map((member, i) => (
+              <div key={i} className={styles.teamCard}>
+                <div className={styles.teamImg}>
+                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                </div>
+                <div className={styles.teamName}>{member.name}</div>
+                <div className={styles.teamTitle}>{member.title}</div>
+                {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
+                {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+              </div>
+            ))}
+          </div>
+          <div className={styles.teamGrid} style={{ marginBottom: 32 }}>
+            {team.slice(3, 7).map((member, i) => (
+              <div key={i} className={styles.teamCard}>
+                <div className={styles.teamImg}>
+                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                </div>
+                <div className={styles.teamName}>{member.name}</div>
+                <div className={styles.teamTitle}>{member.title}</div>
+                {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
+                {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+              </div>
+            ))}
+          </div>
+          <div className={styles.teamGrid}>
+            {team.slice(7, 11).map((member, i) => (
+              <div key={i} className={styles.teamCard}>
+                <div className={styles.teamImg}>
+                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                </div>
+                <div className={styles.teamName}>{member.name}</div>
+                <div className={styles.teamTitle}>{member.title}</div>
+                {member.exp && <div className={styles.teamExp}>{member.exp}</div>}
+                {member.linkedin && <a href={member.linkedin} className={styles.teamLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className={styles.contactSection}>
+          <h3 className={styles.contactTitle}>Get in Touch</h3>
+          <h5 className={styles.contactSubtitle}>
+            Connect with us today for tailored GIS solutions and expert support for your infrastructure projects.
+          </h5>
           <div className={styles.contactInfo}>
-            <h3>Company</h3>
-            <ul>
-              <li><a href="/about-us">About Us</a></li>
-              <li><a href="/contact-us">Contact Us</a></li>
-              <li><a href="/terms-of-service">Terms of Service</a></li>
-              <li><a href="/privacy-policy">Privacy Policy</a></li>
-              <li><a href="/careers">Careers</a></li>
-            </ul>
-            <h3>Contact Us</h3>
-            <ul>
-              <li><a href="mailto:info@quantasip.com">info@quantasip.com</a></li>
-              <li><a href="tel:7517860524">+91 7517860524</a></li>
-              <li>404, Wall Street 24, near McDonald's, Motiram Nagar, Warje, Pune, Maharashtra 411058​</li>
-            </ul>
+            <a href="mailto:info@quantasip.com" className={styles.contactLink}>info@quantasip.com</a>
+            <a href="tel:7517860524" className={styles.contactLink}>+91 7517860524</a>
+            <span className={styles.contactAddress}>404, Wall Street 24, near McDonald's, Motiram Nagar, Warje, Pune, Maharashtra 411058</span>
           </div>
-          <div className={styles.contactFormWrap}>
-            <h3>Write to Us</h3>
-            <form className={styles.contactForm} onSubmit={handleFormSubmit}>
-              <input type="text" name="name" placeholder="Name" required />
-              <input type="tel" name="phone" placeholder="Phone" required pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted." />
-              <input type="email" name="email" placeholder="Email" required />
-              <textarea name="message" placeholder="Message"></textarea>
-              <button type="submit">Send</button>
-            </form>
-          </div>
+          {/* Placeholder for contact form */}
+          <form className={styles.contactForm}>
+            <input type="text" placeholder="Name" className={styles.contactInput} />
+            <input type="tel" placeholder="Phone" className={styles.contactInput} />
+            <input type="email" placeholder="Email" className={styles.contactInput} />
+            <textarea placeholder="Message" rows={2} className={styles.contactTextarea} />
+            <button type="submit" className={styles.contactButton}>Send</button>
+          </form>
         </div>
-        <footer className={styles.footer}>
-          <p>© QuantaSip Pvt. Ltd. 2023</p>
-        </footer>
-      </section>
     </div>
   );
 }

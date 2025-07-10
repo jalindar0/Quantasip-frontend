@@ -1,7 +1,7 @@
 .careersPage {
   font-family: 'Montserrat', Arial, sans-serif;
-  background: linear-gradient(135deg, #f5fafd 0%, #e8f6ef 100%);
-  color: #232a3d;
+  background: #fff;
+  color: #222;
 }
 
 .heroSection {
@@ -118,12 +118,15 @@
   gap: 32px;
 }
 .jobCard {
-  background: #f7f7f7;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 32px 24px;
+  background: #fff;
+  border-radius: 0;
+  border: 1.2px solid #bdbdbd;
+  box-shadow: none;
+  padding: 0;
   text-align: left;
   position: relative;
+  margin-bottom: 32px;
+  overflow: hidden;
 }
 .jobHeader {
   display: flex;
@@ -131,195 +134,309 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+  padding: 28px 32px 24px 32px;
+  background: #fff;
 }
 .jobHeader h4 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0;
-}
-.companyName {
-  font-size: 1rem;
-  color: #0077b5;
-  font-weight: 600;
+  color: #222;
 }
 .applyBtns {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 0;
 }
 .btnPrimary {
-  background: #0077b5;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 18px;
-  font-size: 1rem;
-  font-weight: 600;
+  background: #fff;
+  color: #c2185b;
+  border: 1.5px solid #c2185b;
+  border-radius: 0;
+  padding: 0;
+  width: 160px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s;
+  font-size: 1.15rem;
+  font-weight: 400;
+  transition: background 0.2s, color 0.2s;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  box-shadow: none;
 }
 .btnPrimary:hover {
-  background: #005983;
+  background: #fce4ec;
+  color: #c2185b;
 }
 .jobMeta {
-  margin-top: 10px;
-  color: #888;
-  font-size: 0.98rem;
+  margin-top: 0;
+  color: #444;
+  font-size: 1.05rem;
+  padding: 18px 32px 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #e0e0e0;
 }
 .jobDesc {
-  margin-top: 18px;
-  font-size: 1.05rem;
+  margin-top: 0;
+  font-size: 1.13rem;
+  color: #555;
+  padding: 8px 32px 32px 32px;
+  border-top: none;
 }
 .jobDesc ul {
   margin: 10px 0 0 20px;
   padding: 0;
 }
+.companyName {
+  font-size: 1.05rem;
+  color: #444;
+  font-weight: 500;
+  margin-top: 6px;
+}
 
 .journeySection {
-  max-width: 900px;
-  margin: 60px auto 0 auto;
-  padding: 0 20px;
+  background: #0d2b36;
+  color: #fff;
+  padding: 2.5rem 0 2.5rem 0;
   text-align: center;
 }
-.journeySection h2 {
+.journeyTitle {
   font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #fff;
 }
-.journeySection p {
+.journeySubtitle {
   font-size: 1.1rem;
-  color: #444;
-  margin-top: 18px;
+  color: #b2ebf2;
+  margin-bottom: 1.2rem;
+}
+.journeyText {
+  font-size: 1.08rem;
+  color: #e0f7fa;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
-.teamSection {
-  max-width: 1100px;
-  margin: 60px auto 0 auto;
-  padding: 0 20px;
-  text-align: center;
-}
-.teamSection h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
 .teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
-  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 .teamCard {
-  background: #f7f7f7;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 28px 18px;
+  flex: 1 1 21%;
+  min-width: 200px;
+  max-width: 240px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  padding: 1.3rem 0.7rem 1.1rem 0.7rem;
   text-align: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #e0e0e0;
 }
-.teamCard h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 8px;
+.teamImg {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.teamRole {
-  font-size: 1rem;
-  color: #0077b5;
+.teamName {
   font-weight: 600;
+  color: #1a237e;
+  font-size: 1.13rem;
+  margin-bottom: 2px;
+}
+.teamTitle {
+  color: #555;
+  font-size: 1.01rem;
+  margin-bottom: 4px;
+}
+.teamExp {
+  color: #888;
+  font-size: 0.97rem;
   margin-bottom: 8px;
 }
-.linkedinIcon {
+.teamLinkedIn {
+  color: #0a66c2;
+  font-size: 1.13rem;
+  text-decoration: none;
+  margin-top: 4px;
+  font-weight: 500;
+  border: 1px solid #0a66c2;
+  border-radius: 6px;
+  padding: 2px 10px;
+  transition: background 0.2s, color 0.2s;
   display: inline-block;
-  margin-top: 8px;
+}
+.teamLinkedIn:hover {
+  background: #0a66c2;
+  color: #fff;
 }
 
 .contactSection {
   max-width: 1100px;
-  margin: 60px auto 0 auto;
-  padding: 0 20px 40px 20px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 2rem 1rem;
   text-align: center;
 }
-.contactSection h3 {
-  font-size: 1.3rem;
+.contactTitle {
   font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: #1a237e;
 }
-.contactSection h5 {
+.contactSubtitle {
+  color: #333;
   font-size: 1.1rem;
-  color: #444;
-  margin-bottom: 30px;
-}
-.contactGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
 }
 .contactInfo {
-  flex: 1 1 300px;
-  min-width: 260px;
-  text-align: left;
+  margin-bottom: 16px;
 }
-.contactInfo h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 18px 0 8px 0;
+.contactLink {
+  color: #1a237e;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 24px;
 }
-.contactInfo ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 18px 0;
-}
-.contactInfo li {
-  margin-bottom: 8px;
-  font-size: 1rem;
-}
-.contactFormWrap {
-  flex: 1 1 350px;
-  min-width: 300px;
-  background: #f7f7f7;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 32px 24px;
-  text-align: left;
+.contactAddress {
+  color: #333;
+  font-weight: 500;
 }
 .contactForm {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border: 1.5px solid #e0e0e0;
 }
-.contactForm input,
-.contactForm textarea {
-  border: 1px solid #ccc;
-  border-radius: 6px;
+.contactInput, .contactTextarea {
+  width: 100%;
+  margin-bottom: 12px;
   padding: 10px 12px;
-  font-size: 1rem;
-  font-family: inherit;
-  resize: none;
-}
-.contactForm textarea {
-  min-height: 60px;
-}
-.contactForm button {
-  background: #0077b5;
-  color: #fff;
-  border: none;
   border-radius: 6px;
-  padding: 10px 0;
+  border: 1.5px solid #bdbdbd;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+  background: #f8f9fa;
+  color: #222;
+  transition: border 0.2s;
 }
-.contactForm button:hover {
-  background: #005983;
+.contactInput:focus, .contactTextarea:focus {
+  border: 1.5px solid #1a237e;
+  outline: none;
+}
+.contactButton {
+  background: #1a237e;
+  color: #fff;
+  padding: 0.7rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+.contactButton:hover {
+  background: #ff9800;
+  color: #fff;
 }
 .footer {
   margin-top: 40px;
   text-align: center;
   color: #888;
   font-size: 1rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #09344d;
+  margin-bottom: 1.1rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  padding-left: 32px;
+  padding-right: 32px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sectionSubtitle {
+  font-size: 1.35rem;
+  color: #222;
+  margin-bottom: 2.5rem;
+  margin-top: 0;
+  text-align: center;
+  font-weight: 400;
+  padding-left: 32px;
+  padding-right: 32px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.searchBarSection {
+  background: #f4f4f4;
+  padding: 32px 36px 32px 36px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  max-width: 100%;
+}
+.searchInput {
+  flex: 1 1 0;
+  font-size: 1.25rem;
+  padding: 16px 18px;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 0;
+  background: #fff;
+  outline: none;
+  transition: border 0.2s;
+}
+.searchInput:focus {
+  border: 1.5px solid #c2185b;
+}
+.searchButton {
+  background: #fff;
+  border: 1.5px solid #c2185b;
+  color: #c2185b;
+  border-radius: 0;
+  padding: 0;
+  width: 160px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1.25rem;
+}
+.searchButton:hover {
+  background: #fce4ec;
 }
 
 @media (max-width: 900px) {
