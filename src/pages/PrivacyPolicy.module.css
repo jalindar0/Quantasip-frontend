@@ -1,7 +1,7 @@
 .privacyPage {
   font-family: 'Montserrat', Arial, sans-serif;
-  background: linear-gradient(135deg, #f5fafd 0%, #e8f6ef 100%);
-  color: #232a3d;
+  background: #fff;
+  color: #222;
 }
 
 .heroSection {
@@ -54,15 +54,12 @@
   max-width: 800px;
   margin: 40px auto 0 auto;
   padding: 0 24px 24px 24px;
-  background: rgba(255,255,255,0.88);
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .policySection h2 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #232a3d;
+  color: #0077b5;
 }
 .policySection p {
   font-size: 1.1rem;
@@ -71,17 +68,15 @@
 }
 
 .getInTouchSection {
-  background: rgba(255,255,255,0.88);
+  background: #f7fafd;
   padding: 48px 0 32px 0;
   text-align: center;
   margin-top: 48px;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
 }
 .getInTouchSection h3 {
   font-size: 2rem;
   font-weight: 700;
-  color: #232a3d;
+  color: #0077b5;
   margin-bottom: 8px;
 }
 .getInTouchSection h5 {
@@ -105,9 +100,9 @@
 .contactForm {
   max-width: 500px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.88);
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
   padding: 32px 24px;
   display: flex;
   flex-direction: column;

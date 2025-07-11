@@ -238,8 +238,6 @@ const Services = () => {
             <img src={cleaning2Img} alt="Data Cleaning, Correction - Case 2" style={service3LargeImageStyle} />
           </section>
         </div>
-        {/* Footer Section */}
-        <Footer />
       </div>
     </div>
   );
