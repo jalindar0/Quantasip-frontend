@@ -74,7 +74,7 @@ function TermsOfService() {
         <section className={styles.getInTouchSection} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
           <h3 style={{textAlign: 'center', marginBottom: '60px'}}>Get in Touch</h3>
           {/* Contact Form */}
-          <form className={styles.contactForm} style={{maxWidth: 640, margin: '0 auto', background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px rgba(0,0,0,0.09)', padding: '56px 40px 48px 40px', display: 'flex', flexDirection: 'column', gap: 24, position: 'relative'}} onSubmit={handleFormSubmit}>
+          <form className={styles.contactForm} style={{maxWidth: 640, margin: '0 auto', background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px rgba(0,0,0,0.09)', padding: '56px 40px 48px 40px', display: 'flex', flexDirection: 'column', gap: 24, position: 'relative', width: '100%', boxSizing: 'border-box'}} onSubmit={handleFormSubmit}>
             <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 88, height: 88, borderRadius: '50%', background: '#f4f6fa', border: '2.5px solid #e0e0e0', position: 'absolute', left: '50%', top: '-44px', transform: 'translateX(-50%)', boxShadow: '0 2px 8px rgba(0,0,0,0.06)'}}>
               <svg width="56" height="56" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
             </span>

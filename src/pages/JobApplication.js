@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Careers.module.css';
 
@@ -32,48 +32,104 @@ export default function JobApplication() {
   const navigate = useNavigate();
   const job = jobs.find(j => j.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') === slug);
 
+  const [success, setSuccess] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = useRef();
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setSuccess(true);
+    e.target.reset();
+    setTimeout(() => setSuccess(false), 4000);
+  };
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') setDragActive(true);
+    else if (e.type === 'dragleave') setDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      fileInputRef.current.files = e.dataTransfer.files;
+    }
+  };
+
   return (
-    <div className={styles.careersPage}>
-      <div style={{ maxWidth: 1100, margin: '72px auto 64px auto', padding: '32px 0 0 0' }}>
-        {/* Job Title */}
-        <h2 style={{ fontSize: '3rem', fontWeight: 600, margin: '32px 0 24px 0', color: '#333', fontFamily: 'Montserrat, Arial, sans-serif' }}>{job?.title}</h2>
-        {/* Job Meta */}
-        <div style={{ color: '#444', fontSize: '1.1rem', marginBottom: 32, marginTop: 24, borderTop: '1px solid #ddd', paddingTop: 24 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-            <i className="fas fa-calendar-check" style={{ marginRight: 8 }}></i>{job?.posted}
+    <div className={styles.careersPage} style={{ minHeight: '100vh', background: '#f7fafd' }}>
+      <div style={{ maxWidth: 750, margin: '90px auto 64px auto', padding: '0 0 32px 0' }}>
+        {/* Job Summary Card */}
+        <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 16px rgba(0,0,0,0.08)', padding: '32px 36px 24px 36px', marginBottom: 32, border: '1.5px solid #e0e0e0' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, margin: 0, color: '#183153', fontFamily: 'Montserrat, Arial, sans-serif' }}>{job?.title}</h2>
+            <span style={{ color: '#888', fontSize: '1rem', marginBottom: 8 }}>{job?.posted}</span>
+            {job?.about && <div style={{ color: '#333', fontSize: '1.08rem', margin: '8px 0 0 0', lineHeight: 1.6 }}>{job.about}</div>}
+            {job?.details && job.details.length > 0 && (
+              <ul style={{ fontSize: '1.05rem', margin: '10px 0 0 18px', color: '#222', lineHeight: 1.7 }}>
+                {job.details.map((d, i) => <li key={i}>{d}</li>)}
+              </ul>
+            )}
           </div>
-          {/* About Position */}
-          {job?.about && (
-            <div style={{ marginBottom: 16 }}>
-              <div style={{ fontWeight: 700, fontSize: '1.15rem', marginBottom: 6 }}>About Position:</div>
-              <div style={{ fontSize: '1.13rem', marginBottom: 8, lineHeight: 1.6 }}>{job.about}</div>
-            </div>
-          )}
-          {/* Details List */}
-          {job?.details && job.details.length > 0 && (
-            <ul style={{ fontSize: '1.13rem', margin: 0, paddingLeft: 20, color: '#222', lineHeight: 1.7 }}>
-              {job.details.map((d, i) => <li key={i}>{d}</li>)}
-            </ul>
-          )}
         </div>
-        {/* Application Form */}
-        <form style={{ maxWidth: 900, margin: '0 auto' }}>
-          <h3 style={{ fontWeight: 700, fontSize: '1.25rem', marginBottom: 24 }}>Apply For This Job</h3>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-            <label htmlFor="email" style={{ flex: '0 0 120px', fontWeight: 500 }}>Email<span style={{ color: '#c2185b' }}>*</span></label>
-            <input id="email" name="email" type="email" required style={{ flex: 1, padding: '12px', fontSize: '1.1rem', border: '1.2px solid #bdbdbd', marginLeft: 12 }} />
+        {/* Application Form Card */}
+        <form className={styles.contactForm} style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 16px rgba(0,0,0,0.10)', padding: '40px 36px', border: '1.5px solid #e0e0e0', width: '100%', maxWidth: 750, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 22 }} onSubmit={handleFormSubmit}>
+          <h3 style={{ fontWeight: 700, fontSize: '1.35rem', marginBottom: 18, color: '#183153', textAlign: 'center' }}>Apply For This Job</h3>
+          <div className={styles.formGroup}>
+            <label htmlFor="name">Full Name<span style={{ color: '#c2185b' }}>*</span></label>
+            <input id="name" name="name" type="text" required placeholder="Enter your full name" style={{ fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6 }} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-            <label htmlFor="phone" style={{ flex: '0 0 120px', fontWeight: 500 }}>Phone<span style={{ color: '#c2185b' }}>*</span></label>
-            <input id="phone" name="phone" type="tel" required style={{ flex: 1, padding: '12px', fontSize: '1.1rem', border: '1.2px solid #bdbdbd', marginLeft: 12 }} />
+          <div className={styles.formGroup}>
+            <label htmlFor="email">Email<span style={{ color: '#c2185b' }}>*</span></label>
+            <input id="email" name="email" type="email" required placeholder="Enter your email address" style={{ fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6 }} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 18 }}>
-            <label htmlFor="resume" style={{ flex: '0 0 120px', fontWeight: 500 }}>Attach Resume<span style={{ color: '#c2185b' }}>*</span></label>
-            <input id="resume" name="resume" type="file" required style={{ flex: 1, padding: '8px', fontSize: '1.1rem', border: '1.2px solid #bdbdbd', marginLeft: 12 }} />
+          <div className={styles.formGroup}>
+            <label htmlFor="phone">Phone<span style={{ color: '#c2185b' }}>*</span></label>
+            <input id="phone" name="phone" type="tel" required placeholder="Enter your phone number" style={{ fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6 }} />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 32 }}>
-            <button type="submit" style={{ border: '1.5px solid #c2185b', color: '#c2185b', background: '#fff', fontSize: '1.15rem', padding: '10px 38px', borderRadius: 0, cursor: 'pointer', transition: 'background 0.2s' }}>Submit</button>
+          <div className={styles.formGroup}>
+            <label htmlFor="resume">Attach Resume<span style={{ color: '#c2185b' }}>*</span></label>
+            <div
+              style={{
+                border: dragActive ? '2px dashed #007bff' : '2px dashed #bdbdbd',
+                borderRadius: 8,
+                padding: '24px 12px',
+                background: dragActive ? '#e3f2fd' : '#fafbfc',
+                textAlign: 'center',
+                cursor: 'pointer',
+                marginTop: 6,
+                transition: 'background 0.2s, border 0.2s',
+                color: '#333',
+                fontSize: '1.08rem',
+                position: 'relative',
+              }}
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current.click()}
+            >
+              <input
+                id="resume"
+                name="resume"
+                type="file"
+                required
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                accept=".pdf,.doc,.docx,.rtf,.txt,.odt,.zip"
+              />
+              <span style={{ color: '#007bff', fontWeight: 600 }}>Drag & drop your resume here</span> or click to select file
+            </div>
           </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="cover">Cover Letter / Message</label>
+            <textarea id="cover" name="cover" placeholder="Write a short message or cover letter (optional)" style={{ fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6, minHeight: 80 }}></textarea>
+          </div>
+          <button type="submit" className={styles.submitButton} style={{ fontSize: '1.13rem', borderRadius: 8, padding: '14px 0', background: '#183153', color: '#fff', fontWeight: 600, marginTop: 8, transition: 'background 0.2s' }}>Submit Application</button>
+          {success && <div style={{ color: '#28a745', fontWeight: 600, textAlign: 'center', marginTop: 12 }}>Application submitted! Thank you.</div>}
         </form>
       </div>
     </div>

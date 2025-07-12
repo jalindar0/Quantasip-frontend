@@ -5,8 +5,8 @@
   width: 100%;
   z-index: 1000;
   min-height: 72px;
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(12px) saturate(180%);
   border-bottom: 3px solid #232a3d;
 }
 .headerInner {

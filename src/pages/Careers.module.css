@@ -1,7 +1,7 @@
 .careersPage {
   font-family: 'Montserrat', Arial, sans-serif;
   background: #fff;
-  color: #222;
+  color: #333;
 }
 
 .heroSection {
@@ -63,7 +63,7 @@
   position: relative;
 }
 .navMenu a {
-  color: #222;
+  color: #333;
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1rem;
@@ -71,7 +71,7 @@
   transition: color 0.2s;
 }
 .navMenu a:hover, .navMenu .active a {
-  color: #0077b5;
+  color: #007bff;
 }
 .hasSubmenu:hover .submenu {
   display: block;
@@ -91,13 +91,13 @@
   padding: 0;
 }
 .submenu a {
-  color: #222;
+  color: #333;
   padding: 10px 20px;
   display: block;
   font-size: 1rem;
 }
 .active > a {
-  color: #0077b5 !important;
+  color: #007bff !important;
 }
 
 .jobsSection {
@@ -141,7 +141,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0;
-  color: #222;
+  color: #333;
 }
 .applyBtns {
   display: flex;
@@ -150,8 +150,8 @@
 }
 .btnPrimary {
   background: #fff;
-  color: #c2185b;
-  border: 1.5px solid #c2185b;
+  color: #28a745;
+  border: 1.5px solid #28a745;
   border-radius: 0;
   padding: 0;
   width: 160px;
@@ -170,8 +170,8 @@
   box-shadow: none;
 }
 .btnPrimary:hover {
-  background: #fce4ec;
-  color: #c2185b;
+  background: #e8f5e8;
+  color: #28a745;
 }
 .jobMeta {
   margin-top: 0;
@@ -327,7 +327,6 @@
   margin: 0 auto;
   background: #fff;
   border-radius: 12px;
-  padding: 24px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.07);
   border: 1.5px solid #e0e0e0;
 }
@@ -439,6 +438,108 @@
   background: #fce4ec;
 }
 
+.getInTouchSection {
+  background: #f8f9fa;
+  padding: 48px 0 32px 0;
+  text-align: center;
+  margin-top: 48px;
+}
+.getInTouchSection h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 8px;
+}
+.getInTouchSection h5 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 32px;
+  color: #333;
+}
+.lottiePlaceholder {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 32px auto;
+  background: #e3f2fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #007bff;
+}
+.contactForm {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.formGroup label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9f9f9;
+  color: #333;
+  resize: none;
+  box-sizing: border-box;
+}
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: 2px solid #007bff;
+  border-color: #007bff;
+}
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.recaptchaPlaceholder {
+  width: 100%;
+  height: 48px;
+  background: #e3f2fd;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1rem;
+}
+.submitButton {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.submitButton:hover {
+  background: #218838;
+}
+
 @media (max-width: 900px) {
   .headerDesktop {
     flex-direction: column;
@@ -461,6 +562,12 @@
     font-size: 1.1rem;
   }
   .jobCard, .teamCard, .contactFormWrap {
+    padding: 18px 8px;
+  }
+  .getInTouchSection {
+    padding: 32px 0 24px 0;
+  }
+  .contactForm {
     padding: 18px 8px;
   }
 }
