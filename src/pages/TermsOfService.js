@@ -25,11 +25,11 @@ function TermsOfService() {
 
         {/* Terms Sections */}
         <section className={styles.termsSection}>
-          <h2>Intellectual Property</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Intellectual Property</h2>
           <p>All content and materials on this Website, including text, images, graphics, logos, and software, are protected by intellectual property laws and are the property of QuantaSIP or its licensors. You may not reproduce, distribute, modify, or create derivative works without our prior written consent.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>User Conduct</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>User Conduct</h2>
           <p>When using our Website, you agree to:</p>
           <ul>
             <li>Comply with all applicable laws and regulations.</li>
@@ -38,84 +38,38 @@ function TermsOfService() {
           </ul>
         </section>
         <section className={styles.termsSection}>
-          <h2>Use of Geographic Information</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Use of Geographic Information</h2>
           <p>The GIS-related information and data displayed on this Website are for informational purposes only. While we strive to provide accurate and up-to-date information, we do not warrant the completeness, reliability, or accuracy of any content. Your use of the information is at your own risk.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Third-Party Websites and Services</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Third-Party Websites and Services</h2>
           <p>Our Website may contain links to third-party websites and services that are not owned or controlled by QuantaSIP. We assume no responsibility for the content, privacy policies, or practices of any third-party websites or services. Accessing these websites or using these services is at your own risk.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Disclaimer of Warranties</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Disclaimer of Warranties</h2>
           <p>We provide our Website on an "as is" and "as available" basis without any warranties, whether expressed or implied. We disclaim any warranties, including but not limited to merchantability, fitness for a particular purpose, or non-infringement. Your use of the Website is at your own risk.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Limitation of Liability</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Limitation of Liability</h2>
           <p>In no event shall QuantaSIP or its affiliates, partners, or employees be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use or inability to use our Website. This includes but is not limited to damages for loss of profits, data, or other intangible losses.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Modifications to the Terms of Service</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Modifications to the Terms of Service</h2>
           <p>We reserve the right to modify or update these Terms of Service at any time without prior notice. It is your responsibility to review these Terms of Service periodically. Continued use of our Website after any modifications indicates your acceptance of the updated Terms of Service.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Governing Law and Jurisdiction</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Governing Law and Jurisdiction</h2>
           <p>These Terms of Service shall be governed by and construed in accordance with the laws of Maharashtra. Any disputes arising from these Terms of Service or your use of our Website shall be subject to the exclusive jurisdiction of the courts in Maharashtra.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Severability</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Severability</h2>
           <p>If any provision of these Terms of Service is deemed invalid or unenforceable, the remaining provisions shall remain in effect. The invalid or unenforceable provision will be replaced with a valid, enforceable provision that most closely matches the original intent of the provision.</p>
         </section>
         <section className={styles.termsSection}>
-          <h2>Contact Us</h2>
+          <h2 style={{color: 'rgb(24, 49, 83)'}}>Contact Us</h2>
           <p>If you have any questions or concerns regarding these Terms of Service, please contact us – <a href="/contact-us" style={{color:'#252525', textDecoration:'underline'}}>Contact Page</a></p>
         </section>
 
-        {/* Get in Touch Section */}
-        <section className={styles.getInTouchSection} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-          <h3 style={{textAlign: 'center', marginBottom: '60px'}}>Get in Touch</h3>
-          {/* Contact Form */}
-          <form className={styles.contactForm} style={{maxWidth: 640, margin: '0 auto', background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px rgba(0,0,0,0.09)', padding: '56px 40px 48px 40px', display: 'flex', flexDirection: 'column', gap: 24, position: 'relative', width: '100%', boxSizing: 'border-box'}} onSubmit={handleFormSubmit}>
-            <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 88, height: 88, borderRadius: '50%', background: '#f4f6fa', border: '2.5px solid #e0e0e0', position: 'absolute', left: '50%', top: '-44px', transform: 'translateX(-50%)', boxShadow: '0 2px 8px rgba(0,0,0,0.06)'}}>
-              <svg width="56" height="56" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
-            </span>
-            <div className={styles.formGroup}>
-              <label htmlFor="form-field-name">Full Name</label>
-              <input type="text" id="form-field-name" name="name" placeholder="Enter your full name" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="form-field-email">Email</label>
-              <input type="email" id="form-field-email" name="email" placeholder="Enter your email address" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="form-field-phone">Phone Number</label>
-              <input type="tel" id="form-field-phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted." style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
-            </div>
-            <div className={styles.formGroup}>
-              <label>Services Interested In</label>
-              <div className={styles.checkboxGroup} style={{gap: 8, marginTop: 6}}>
-                <label><input type="checkbox" name="services" value="Cadastral Datasets" /> Cadastral Datasets</label>
-                <label><input type="checkbox" name="services" value="Land Record Verification" /> Land Record Verification</label>
-                <label><input type="checkbox" name="services" value="Data Cleaning" /> Data Cleaning</label>
-                <label><input type="checkbox" name="services" value="Data Correction" /> Data Correction</label>
-                <label><input type="checkbox" name="services" value="Others" /> Others</label>
-              </div>
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="form-field-message">Message</label>
-              <textarea id="form-field-message" name="message" placeholder="Describe your project or any specific requests" style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6, minHeight: 80}}></textarea>
-            </div>
-            {/* Recaptcha placeholder */}
-            <div className={styles.formGroup}>
-              <div className={styles.recaptchaPlaceholder}>[reCAPTCHA]</div>
-            </div>
-            <button type="submit" className={styles.submitButton} style={{fontSize: '1.13rem', borderRadius: 8, padding: '14px 0', background: '#183153', color: '#fff', fontWeight: 600, marginTop: 8, transition: 'background 0.2s'}}>Send</button>
-          </form>
-        </section>
-
-        {/* Footer */}
-        <footer className={styles.footer}>
-          <p>© QuantaSip Pvt. Ltd. 2023</p>
-        </footer>
       </div>
     </div>
   );

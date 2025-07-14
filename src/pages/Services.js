@@ -55,9 +55,27 @@ const service3LargeImageStyle = {
 };
 
 const Services = () => {
-  const [heroFull, setHeroFull] = useState(true);
+  // Collapse hero if hash is present in URL on mount
+  const initialHeroFull = typeof window !== 'undefined' && window.location.hash ? false : true;
+  const [heroFull, setHeroFull] = useState(initialHeroFull);
   const heroRef = useRef(null);
   const belowRef = useRef(null);
+
+  // Smooth scroll to anchor if hash is present in URL
+  useEffect(() => {
+    if (!heroFull) {
+      const hash = window.location.hash;
+      if (hash) {
+        // Timeout ensures DOM is ready and hero is collapsed
+        setTimeout(() => {
+          const el = document.getElementById(hash.replace('#', ''));
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 200);
+      }
+    }
+  }, [heroFull]);
 
   // Handle scroll or arrow click to show rest of page
   useEffect(() => {

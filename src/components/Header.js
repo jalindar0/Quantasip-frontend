@@ -32,10 +32,11 @@ function Header({ active }) {
         {!isHome && <div className={styles.flexSpacer}></div>}
         <nav
           className={styles.navMenu}
-          style={{ marginRight: isHome ? 32 : 0 }}
+          style={{ marginRight: 0 }}
         >
           <ul>
             <li className={active === 'services' ? styles.active : ''}><Link to="/services">Services</Link></li>
+            <li className={active === 'products' ? styles.active : ''}><Link to="/products">Products</Link></li>
             <li
               ref={companyRef}
               className={styles.hasSubmenu + ' ' + (active === 'company' ? styles.active : '')}
@@ -58,18 +59,6 @@ function Header({ active }) {
             <li className={active === 'contact' ? styles.active : ''}><Link to="/contact-us">Contact Us</Link></li>
           </ul>
         </nav>
-        {isHome && <div className={styles.flexSpacer}></div>}
-        {isHome && (
-          <a
-            href="http://bhuquanta.quantasip.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.freeTrialBtn}
-            style={{ marginLeft: 32, background: '#2e7d32' }}
-          >
-            BhuQuanta
-          </a>
-        )}
       </div>
     </header>
   );

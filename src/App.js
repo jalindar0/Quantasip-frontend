@@ -16,6 +16,7 @@ import Solutions from './components/Solutions';
 import Industries from './components/Industries';
 import Sponsors from './components/Sponsors';
 import FAQChatWidget from './components/FAQChatWidget';
+import Products from './pages/Products';
 
 function HomeWithSections() {
   return <Home />;
@@ -69,6 +70,7 @@ function AppContent() {
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
       <Footer />
       <FAQChatWidget />
