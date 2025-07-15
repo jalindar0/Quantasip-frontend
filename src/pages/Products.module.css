@@ -4,30 +4,96 @@
   padding: 0;
 }
 .heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+.heroSlideImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(24,49,83,0.35);
+  z-index: 2;
+}
+.heroContent {
+  position: relative;
+  z-index: 3;
   text-align: center;
-  padding: 64px 0 32px 0;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 220px;
+  height: 100vh;
+}
+.scrollDownIcon {
+  display: block;
+  margin: 32px auto 0 auto;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 4;
+  position: static;
+}
+.scrollDownIcon:hover {
+  opacity: 1;
+}
+.animatedArrow {
+  display: block;
+  color: #fff;
+  fill: #fff;
+  animation: bounceDown 1.2s infinite;
+}
+@keyframes bounceDown {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(12px); }
+  50% { transform: translateY(18px); }
+  70% { transform: translateY(12px); }
+  100% { transform: translateY(0); }
 }
 .heroTitle {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #183153;
+  color: #fff;
   margin-bottom: 12px;
   letter-spacing: 1px;
 }
 .heroSubtitle {
   font-size: 1.2rem;
-  color: #2d3a4d;
+  color: #fff;
   margin-bottom: 0;
 }
 .productsGridSection {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 8px 64px 8px;
+  padding: 32px 16px 64px 16px;
 }
 .productsGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
 }
 .productCard {
   background: #fff;
@@ -39,6 +105,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  aspect-ratio: 1/1;
+  min-width: 0;
+  min-height: 0;
 }
 .productCard:hover {
   box-shadow: 0 6px 32px rgba(24,49,83,0.16);

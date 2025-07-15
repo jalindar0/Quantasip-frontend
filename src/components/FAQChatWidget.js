@@ -202,16 +202,15 @@ function FAQChatWidget() {
           40% { opacity: 1; transform: scale(1.4); }
         }
         @keyframes borderGlow {
-          0% { box-shadow: 0 0 16px 2px #90caf9, 0 0 0 0 #1976d2; }
-          50% { box-shadow: 0 0 32px 8px #1976d2, 0 0 0 0 #90caf9; }
-          100% { box-shadow: 0 0 16px 2px #90caf9, 0 0 0 0 #1976d2; }
+          0% { box-shadow: 0 0 4px 0.5px #90caf9, 0 0 0 0 #1976d2; }
+          50% { box-shadow: 0 0 8px 2px #1976d2, 0 0 0 0 #90caf9; }
+          100% { box-shadow: 0 0 4px 0.5px #90caf9, 0 0 0 0 #1976d2; }
         }
         .faq-glass {
           background: rgba(227, 242, 253, 0.65);
-          box-shadow: 0 8px 32px 0 rgba(30,64,175,0.15);
-          border-radius: 16px;
+          border-radius: 8px;
           backdrop-filter: blur(16px) saturate(1.5);
-          border: 1.5px solid rgba(25, 118, 210, 0.18);
+          /* No border or box-shadow for a fully open look */
           overflow-x: hidden;
         }
         .faq-header {

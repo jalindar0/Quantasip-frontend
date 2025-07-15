@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './PrivacyPolicy.module.css';
 
 function PrivacyPolicy() {
@@ -6,6 +6,16 @@ function PrivacyPolicy() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     alert('Form submitted (placeholder)');
+  };
+
+  const belowRef = useRef(null);
+  const handleScrollDown = (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      if (belowRef.current) {
+        belowRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
   return (
@@ -17,14 +27,14 @@ function PrivacyPolicy() {
           <div className={styles.heroContent}>
             <h1>Privacy &amp; Policy</h1>
             <h6 className={styles.heroSubtitle}>At quantaSip, we respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines our practices and procedures for collecting, using, and disclosing your information. By using our website, you consent to the collection, use, and disclosure of your information in accordance with this Privacy Policy.</h6>
-            <a href="#scroll-down" className={styles.scrollDown}>
+            <a href="#scroll-down" className={styles.scrollDown} onClick={handleScrollDown}>
               <svg aria-hidden="true" viewBox="0 0 512 512" width="40" height="40"><path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-143.6-28.9L288 302.6V120c0-13.3-10.7-24-24-24h-16c-13.3 0-24 10.7-24 24v182.6l-72.4-75.5c-9.3-9.7-24.8-9.9-34.3-.4l-10.9 11c-9.4 9.4-9.4 24.6 0 33.9L239 404.3c9.4 9.4 24.6 9.4 33.9 0l132.7-132.7c9.4-9.4 9.4-24.6 0-33.9l-10.9-11c-9.5-9.5-25-9.3-34.3.4z" fill="#fff"/></svg>
             </a>
           </div>
         </section>
 
         {/* Policy Sections */}
-        <section className={styles.policySection}>
+        <section className={styles.policySection} ref={belowRef}>
           <h2 style={{color: 'rgb(24, 49, 83)'}}>Information Used</h2>
           <p>We may collect personal information from you when you visit our website or subscribe to our services. This may include your name, email address, and phone number.</p>
         </section>

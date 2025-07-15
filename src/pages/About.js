@@ -66,9 +66,11 @@ const About = () => {
   const handleArrowClick = (e) => {
     e.preventDefault();
     setHeroFull(false);
-    if (belowRef.current) {
-      belowRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      if (belowRef.current) {
+        belowRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
   return (

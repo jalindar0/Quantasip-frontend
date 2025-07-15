@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './TermsOfService.module.css';
 
 function TermsOfService() {
@@ -6,6 +6,16 @@ function TermsOfService() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     alert('Form submitted (placeholder)');
+  };
+
+  const belowRef = useRef(null);
+  const handleScrollDown = (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      if (belowRef.current) {
+        belowRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
   return (
@@ -17,14 +27,14 @@ function TermsOfService() {
           <div className={styles.heroContent}>
             <h1>Terms of Service</h1>
             <h5 className={styles.heroSubtitle}>By accessing and using this GIS portfolio website, you agree to comply with and be bound by the following terms and conditions ("Terms of Service"). If you do not agree to these Terms of Service, please refrain from using our Website.</h5>
-            <a href="#scroll-down" className={styles.scrollDown}>
+            <a href="#scroll-down" className={styles.scrollDown} onClick={handleScrollDown}>
               <svg aria-hidden="true" viewBox="0 0 512 512" width="40" height="40"><path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-143.6-28.9L288 302.6V120c0-13.3-10.7-24-24-24h-16c-13.3 0-24 10.7-24 24v182.6l-72.4-75.5c-9.3-9.7-24.8-9.9-34.3-.4l-10.9 11c-9.4 9.4-9.4 24.6 0 33.9L239 404.3c9.4 9.4 24.6 9.4 33.9 0l132.7-132.7c9.4-9.4 9.4-24.6 0-33.9l-10.9-11c-9.5-9.5-25-9.3-34.3.4z" fill="#fff"/></svg>
             </a>
           </div>
         </section>
 
         {/* Terms Sections */}
-        <section className={styles.termsSection}>
+        <section className={styles.termsSection} ref={belowRef}>
           <h2 style={{color: 'rgb(24, 49, 83)'}}>Intellectual Property</h2>
           <p>All content and materials on this Website, including text, images, graphics, logos, and software, are protected by intellectual property laws and are the property of QuantaSIP or its licensors. You may not reproduce, distribute, modify, or create derivative works without our prior written consent.</p>
         </section>

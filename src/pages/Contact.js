@@ -9,6 +9,7 @@ function Contact() {
     services: [],
     message: '',
   });
+  const [status, setStatus] = useState('');
   const [miniForm, setMiniForm] = useState({ name: '', phone: '', email: '', message: '' });
 
   const handleFormChange = e => {
@@ -24,9 +25,25 @@ function Contact() {
       setForm(f => ({ ...f, [name]: value }));
     }
   };
-  const handleFormSubmit = e => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
-    alert('Form submitted (placeholder)');
+    setStatus('Sending...');
+    try {
+      const res = await fetch('http://localhost:5000/api/get-in-touch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('Message sent!');
+        setForm({ name: '', email: '', phone: '', services: [], message: '' });
+      } else {
+        const data = await res.json();
+        setStatus(data.error || 'Error sending message.');
+      }
+    } catch (err) {
+      setStatus('Error sending message.');
+    }
   };
   const handleMiniFormChange = e => {
     const { name, value } = e.target;
@@ -105,6 +122,7 @@ function Contact() {
                 <label><input type="checkbox" name="services" value="Others" checked={form.services.includes('Others')} onChange={handleFormChange} /> Others</label>
               </div>
               <textarea name="message" placeholder="Message" value={form.message} onChange={handleFormChange} />
+              {status && <div style={{ color: status === 'Message sent!' ? '#28a745' : '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>}
               <button type="submit">Send</button>
             </form>
           </div>

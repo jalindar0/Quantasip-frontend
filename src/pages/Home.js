@@ -164,6 +164,43 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // Add state for Get in Touch form
+  const [form, setForm] = useState({ name: '', email: '', phone: '', services: [], message: '' });
+  const [status, setStatus] = useState('');
+
+  const handleFormChange = e => {
+    const { name, value, type, checked } = e.target;
+    if (type === 'checkbox') {
+      setForm(f => ({
+        ...f,
+        services: checked ? [...f.services, value] : f.services.filter(s => s !== value),
+      }));
+    } else {
+      setForm(f => ({ ...f, [name]: value }));
+    }
+  };
+
+  const handleFormSubmit = async e => {
+    e.preventDefault();
+    setStatus('Sending...');
+    try {
+      const res = await fetch('http://localhost:5000/api/get-in-touch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('Message sent!');
+        setForm({ name: '', email: '', phone: '', services: [], message: '' });
+      } else {
+        const data = await res.json();
+        setStatus(data.error || 'Error sending message.');
+      }
+    } catch (err) {
+      setStatus('Error sending message.');
+    }
+  };
+
   const handleArrowClick = (e) => {
     e.preventDefault();
     if (belowRef.current) {
@@ -449,40 +486,41 @@ function Home() {
           <section className={styles.getInTouchSection} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             <h3 style={{textAlign: 'center', marginBottom: '60px', color: 'rgb(24, 49, 83)'}}>Get in Touch</h3>
             {/* Contact Form */}
-            <form className={styles.contactForm} style={{maxWidth: 640, margin: '0 auto', background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px rgba(0,0,0,0.09)', padding: '56px 40px 48px 40px', display: 'flex', flexDirection: 'column', gap: 24, position: 'relative', width: '100%', boxSizing: 'border-box'}}>
+            <form className={styles.contactForm} style={{maxWidth: 640, margin: '0 auto', background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px rgba(0,0,0,0.09)', padding: '56px 40px 48px 40px', display: 'flex', flexDirection: 'column', gap: 24, position: 'relative', width: '100%', boxSizing: 'border-box'}} onSubmit={handleFormSubmit}>
               <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 88, height: 88, borderRadius: '50%', background: '#f4f6fa', border: '2.5px solid #e0e0e0', position: 'absolute', left: '50%', top: '-44px', transform: 'translateX(-50%)', boxShadow: '0 2px 8px rgba(0,0,0,0.06)'}}>
                 <svg width="56" height="56" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
               </span>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-name">Full Name</label>
-                <input type="text" id="form-field-name" name="name" placeholder="Enter your full name" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
+                <input type="text" id="form-field-name" name="name" value={form.name} onChange={handleFormChange} placeholder="Enter your full name" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-email">Email</label>
-                <input type="email" id="form-field-email" name="email" placeholder="Enter your email address" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
+                <input type="email" id="form-field-email" name="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email address" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-phone">Phone Number</label>
-                <input type="tel" id="form-field-phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted." style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
+                <input type="tel" id="form-field-phone" name="phone" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" required pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted." style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
               </div>
               <div className={styles.formGroup}>
                 <label>Services Interested In</label>
                 <div className={styles.checkboxGroup} style={{gap: 8, marginTop: 6}}>
-                  <label><input type="checkbox" name="services" value="Cadastral Datasets" /> Cadastral Datasets</label>
-                  <label><input type="checkbox" name="services" value="Land Record Verification" /> Land Record Verification</label>
-                  <label><input type="checkbox" name="services" value="Data Cleaning" /> Data Cleaning</label>
-                  <label><input type="checkbox" name="services" value="Data Correction" /> Data Correction</label>
-                  <label><input type="checkbox" name="services" value="Others" /> Others</label>
+                  <label><input type="checkbox" name="services" value="Cadastral Datasets" checked={form.services.includes('Cadastral Datasets')} onChange={handleFormChange} /> Cadastral Datasets</label>
+                  <label><input type="checkbox" name="services" value="Land Record Verification" checked={form.services.includes('Land Record Verification')} onChange={handleFormChange} /> Land Record Verification</label>
+                  <label><input type="checkbox" name="services" value="Data Cleaning" checked={form.services.includes('Data Cleaning')} onChange={handleFormChange} /> Data Cleaning</label>
+                  <label><input type="checkbox" name="services" value="Data Correction" checked={form.services.includes('Data Correction')} onChange={handleFormChange} /> Data Correction</label>
+                  <label><input type="checkbox" name="services" value="Others" checked={form.services.includes('Others')} onChange={handleFormChange} /> Others</label>
                 </div>
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-message">Message</label>
-                <textarea id="form-field-message" name="message" placeholder="Describe your project or any specific requests" style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6, minHeight: 80}}></textarea>
+                <textarea id="form-field-message" name="message" value={form.message} onChange={handleFormChange} placeholder="Describe your project or any specific requests" style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6, minHeight: 80}}></textarea>
               </div>
               {/* Recaptcha placeholder */}
               <div className={styles.formGroup}>
                 <div className={styles.recaptchaPlaceholder}>[reCAPTCHA]</div>
               </div>
+              {status && <div style={{ color: status === 'Message sent!' ? '#28a745' : '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>}
               <button type="submit" className={styles.submitButton} style={{fontSize: '1.13rem', borderRadius: 8, padding: '14px 0', background: '#183153', color: '#fff', fontWeight: 600, marginTop: 8, transition: 'background 0.2s'}}>Send</button>
             </form>
           </section>

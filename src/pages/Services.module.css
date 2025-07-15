@@ -88,7 +88,9 @@
     outline: none;
   }
   .scrollDownIcon:focus {
-    outline: 2px solid #fff;
+    outline: none !important;
+    background: none !important;
+    box-shadow: none !important;
   }
 
 .getInTouchSection {
