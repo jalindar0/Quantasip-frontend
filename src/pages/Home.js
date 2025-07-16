@@ -166,6 +166,7 @@ function Home() {
 
   // Add state for Get in Touch form
   const [form, setForm] = useState({ name: '', email: '', phone: '', services: [], message: '' });
+  const [otherService, setOtherService] = useState('');
   const [status, setStatus] = useState('');
 
   const handleFormChange = e => {
@@ -175,6 +176,9 @@ function Home() {
         ...f,
         services: checked ? [...f.services, value] : f.services.filter(s => s !== value),
       }));
+      if (name === 'services' && value === 'Others' && !checked) {
+        setOtherService('');
+      }
     } else {
       setForm(f => ({ ...f, [name]: value }));
     }
@@ -183,15 +187,21 @@ function Home() {
   const handleFormSubmit = async e => {
     e.preventDefault();
     setStatus('Sending...');
+    const payload = { ...form };
+    if (form.services.includes('Others')) {
+      payload.otherService = otherService;
+    }
     try {
       const res = await fetch('http://localhost:5000/api/get-in-touch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
-        setStatus('Message sent!');
+        setStatus('success');
         setForm({ name: '', email: '', phone: '', services: [], message: '' });
+        setOtherService('');
+        setTimeout(() => setStatus(''), 2000);
       } else {
         const data = await res.json();
         setStatus(data.error || 'Error sending message.');
@@ -504,23 +514,49 @@ function Home() {
               </div>
               <div className={styles.formGroup}>
                 <label>Services Interested In</label>
-                <div className={styles.checkboxGroup} style={{gap: 8, marginTop: 6}}>
-                  <label><input type="checkbox" name="services" value="Cadastral Datasets" checked={form.services.includes('Cadastral Datasets')} onChange={handleFormChange} /> Cadastral Datasets</label>
-                  <label><input type="checkbox" name="services" value="Land Record Verification" checked={form.services.includes('Land Record Verification')} onChange={handleFormChange} /> Land Record Verification</label>
-                  <label><input type="checkbox" name="services" value="Data Cleaning" checked={form.services.includes('Data Cleaning')} onChange={handleFormChange} /> Data Cleaning</label>
-                  <label><input type="checkbox" name="services" value="Data Correction" checked={form.services.includes('Data Correction')} onChange={handleFormChange} /> Data Correction</label>
-                  <label><input type="checkbox" name="services" value="Others" checked={form.services.includes('Others')} onChange={handleFormChange} /> Others</label>
+                <div className={styles.checkboxGroup} style={{gap: 8, marginTop: 6, display: 'flex', flexDirection: 'column'}}>
+                  <div style={{display: 'flex', gap: 24}}>
+                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Cadastral Datasets" checked={form.services.includes('Cadastral Datasets')} onChange={handleFormChange} /> Cadastral Datasets</label>
+                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Land Record Verification" checked={form.services.includes('Land Record Verification')} onChange={handleFormChange} /> Land Record Verification</label>
+                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Data Cleaning" checked={form.services.includes('Data Cleaning')} onChange={handleFormChange} /> Data Cleaning</label>
+                  </div>
+                  <div style={{display: 'flex', gap: 24, marginTop: 8}}>
+                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Data Correction" checked={form.services.includes('Data Correction')} onChange={handleFormChange} /> Data Correction</label>
+                    <label style={{flex: 1}}>
+                      <input type="checkbox" name="services" value="Others" checked={form.services.includes('Others')} onChange={handleFormChange} /> Others
+                    </label>
+                    <span style={{flex: 1}}></span>
+                  </div>
                 </div>
+                {form.services.includes('Others') && (
+                  <input
+                    type="text"
+                    placeholder="Specify Others"
+                    value={otherService}
+                    onChange={e => setOtherService(e.target.value)}
+                    style={{ marginTop: 10, width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid #bdbdbd', fontSize: '0.98rem' }}
+                    required
+                  />
+                )}
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-message">Message</label>
                 <textarea id="form-field-message" name="message" value={form.message} onChange={handleFormChange} placeholder="Describe your project or any specific requests" style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6, minHeight: 80}}></textarea>
               </div>
               {/* Recaptcha placeholder */}
-              <div className={styles.formGroup}>
-                <div className={styles.recaptchaPlaceholder}>[reCAPTCHA]</div>
-              </div>
-              {status && <div style={{ color: status === 'Message sent!' ? '#28a745' : '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>}
+              {status === 'success' && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
+                  <svg width="56" height="56" viewBox="0 0 56 56" style={{ display: 'block' }}>
+                    <circle cx="28" cy="28" r="26" fill="#e6f4ea" stroke="#28a745" strokeWidth="3" />
+                    <path d="M16 29l8 8 16-16" fill="none" stroke="#28a745" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                      <animate attributeName="stroke-dasharray" from="0,40" to="40,0" dur="0.5s" fill="freeze" />
+                    </path>
+                  </svg>
+                </div>
+              )}
+              {status && status !== 'success' && (
+                <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>
+              )}
               <button type="submit" className={styles.submitButton} style={{fontSize: '1.13rem', borderRadius: 8, padding: '14px 0', background: '#183153', color: '#fff', fontWeight: 600, marginTop: 8, transition: 'background 0.2s'}}>Send</button>
             </form>
           </section>
