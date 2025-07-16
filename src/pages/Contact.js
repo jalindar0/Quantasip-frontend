@@ -9,6 +9,7 @@ function Contact() {
     services: [],
     message: '',
   });
+  const [otherService, setOtherService] = useState('');
   const [status, setStatus] = useState('');
   const [miniForm, setMiniForm] = useState({ name: '', phone: '', email: '', message: '' });
 
@@ -21,6 +22,9 @@ function Contact() {
           ? [...f.services, value]
           : f.services.filter(s => s !== value),
       }));
+      if (name === 'services' && value === 'Others' && !checked) {
+        setOtherService('');
+      }
     } else {
       setForm(f => ({ ...f, [name]: value }));
     }
@@ -28,15 +32,21 @@ function Contact() {
   const handleFormSubmit = async e => {
     e.preventDefault();
     setStatus('Sending...');
+    const payload = { ...form };
+    if (form.services.includes('Others')) {
+      payload.otherService = otherService;
+    }
     try {
       const res = await fetch('http://localhost:5000/api/get-in-touch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
-        setStatus('Message sent!');
+        setStatus('success');
         setForm({ name: '', email: '', phone: '', services: [], message: '' });
+        setOtherService('');
+        setTimeout(() => setStatus(''), 2000);
       } else {
         const data = await res.json();
         setStatus(data.error || 'Error sending message.');
@@ -120,9 +130,31 @@ function Contact() {
                 <label><input type="checkbox" name="services" value="Data Cleaning" checked={form.services.includes('Data Cleaning')} onChange={handleFormChange} /> Data Cleaning</label>
                 <label><input type="checkbox" name="services" value="Data Correction" checked={form.services.includes('Data Correction')} onChange={handleFormChange} /> Data Correction</label>
                 <label><input type="checkbox" name="services" value="Others" checked={form.services.includes('Others')} onChange={handleFormChange} /> Others</label>
+                {form.services.includes('Others') && (
+                  <input
+                    type="text"
+                    placeholder="Specify Others"
+                    value={otherService}
+                    onChange={e => setOtherService(e.target.value)}
+                    style={{ marginTop: 10, width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid #bdbdbd', fontSize: '0.98rem' }}
+                    required
+                  />
+                )}
               </div>
               <textarea name="message" placeholder="Message" value={form.message} onChange={handleFormChange} />
-              {status && <div style={{ color: status === 'Message sent!' ? '#28a745' : '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>}
+              {status === 'success' && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
+                  <svg width="56" height="56" viewBox="0 0 56 56" style={{ display: 'block' }}>
+                    <circle cx="28" cy="28" r="26" fill="#e6f4ea" stroke="#28a745" strokeWidth="3" />
+                    <path d="M16 29l8 8 16-16" fill="none" stroke="#28a745" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                      <animate attributeName="stroke-dasharray" from="0,40" to="40,0" dur="0.5s" fill="freeze" />
+                    </path>
+                  </svg>
+                </div>
+              )}
+              {status && status !== 'success' && (
+                <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>
+              )}
               <button type="submit">Send</button>
             </form>
           </div>
