@@ -168,6 +168,15 @@ function Home() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', services: [], message: '' });
   const [otherService, setOtherService] = useState('');
   const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    return /^[0-9()#&+*\-=.]{10,}$/.test(phone);
+  };
 
   const handleFormChange = e => {
     const { name, value, type, checked } = e.target;
@@ -186,7 +195,18 @@ function Home() {
 
   const handleFormSubmit = async e => {
     e.preventDefault();
+    setError('');
     setStatus('Sending...');
+    if (!validateEmail(form.email)) {
+      setStatus('');
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (!validatePhone(form.phone)) {
+      setStatus('');
+      setError('Please enter a valid phone number.');
+      return;
+    }
     const payload = { ...form };
     if (form.services.includes('Others')) {
       payload.otherService = otherService;
@@ -556,6 +576,9 @@ function Home() {
               )}
               {status && status !== 'success' && (
                 <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>
+              )}
+              {error && (
+                <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{error}</div>
               )}
               <button type="submit" className={styles.submitButton} style={{fontSize: '1.13rem', borderRadius: 8, padding: '14px 0', background: '#183153', color: '#fff', fontWeight: 600, marginTop: 8, transition: 'background 0.2s'}}>Send</button>
             </form>

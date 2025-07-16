@@ -11,7 +11,16 @@ function Contact() {
   });
   const [otherService, setOtherService] = useState('');
   const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
   const [miniForm, setMiniForm] = useState({ name: '', phone: '', email: '', message: '' });
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    return /^[0-9()#&+*\-=.]{10,}$/.test(phone);
+  };
 
   const handleFormChange = e => {
     const { name, value, type, checked } = e.target;
@@ -31,7 +40,18 @@ function Contact() {
   };
   const handleFormSubmit = async e => {
     e.preventDefault();
+    setError('');
     setStatus('Sending...');
+    if (!validateEmail(form.email)) {
+      setStatus('');
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (!validatePhone(form.phone)) {
+      setStatus('');
+      setError('Please enter a valid phone number.');
+      return;
+    }
     const payload = { ...form };
     if (form.services.includes('Others')) {
       payload.otherService = otherService;
@@ -154,6 +174,9 @@ function Contact() {
               )}
               {status && status !== 'success' && (
                 <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>
+              )}
+              {error && (
+                <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{error}</div>
               )}
               <button type="submit">Send</button>
             </form>

@@ -4,6 +4,15 @@ import styles from '../pages/Home.module.css';
 const Footer = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
   const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    return /^[0-9()#&+*\-=.]{10,}$/.test(phone);
+  };
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -11,7 +20,18 @@ const Footer = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setError('');
     setStatus('Sending...');
+    if (!validateEmail(form.email)) {
+      setStatus('');
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (!validatePhone(form.phone)) {
+      setStatus('');
+      setError('Please enter a valid phone number.');
+      return;
+    }
     console.log(form);
     try {
       const res = await fetch('http://localhost:5000/api/contact', {
@@ -70,6 +90,7 @@ const Footer = () => {
             <textarea name="message" placeholder="Message" value={form.message} onChange={handleChange} required />
             <button type="submit">Send</button>
             {status && <div>{status}</div>}
+            {error && <div style={{ color: 'red' }}>{error}</div>}
           </form>
           <hr className={styles.footerDivider} />
         </div>
