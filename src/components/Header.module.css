@@ -33,9 +33,9 @@
   flex: 1;
 }
 .navMenu {
-  margin-left: 700px;
-  margin-right: 32px;
-  padding-right: 48px;
+  margin-left: 600px;
+  margin-right: 0;
+  padding-right: 0;
 }
 .navMenu ul {
   display: flex;
