@@ -38,7 +38,7 @@ function Header({ active }) {
     <header className={styles.headerDesktop}>
       <div className={styles.headerInner}>
         <Link to="/">
-          <img src="https://quantasip.com/wp-content/uploads/2024/08/logoo.png" alt="QuantaSIP GIS Logo" className={styles.logo} />
+          <img src="/uploads/2024/08/logoo.png" alt="QuantaSIP GIS Logo" className={styles.logo} />
         </Link>
         {!isHome && <div className={styles.flexSpacer}></div>}
         <nav
