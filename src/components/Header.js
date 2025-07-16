@@ -40,7 +40,7 @@ function Header({ active }) {
         <Link to="/">
           <img src="/uploads/2024/08/logoo.png" alt="QuantaSIP GIS Logo" className={styles.logo} />
         </Link>
-        {!isHome && <div className={styles.flexSpacer}></div>}
+        <div className={styles.flexSpacer}></div>
         <nav
           className={styles.navMenu}
           style={{ marginRight: 0 }}
