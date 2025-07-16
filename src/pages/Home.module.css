@@ -1361,6 +1361,11 @@
 .submitButton:hover {
   background: #218838;
 }
+.checkboxGroup input[type="checkbox"]:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 @media (max-width: 600px) {
   .getInTouchSection {
     padding: 32px 0 24px 0;
