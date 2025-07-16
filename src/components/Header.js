@@ -61,8 +61,8 @@ function Header({ active }) {
                 Company
               </span>
               <div className={styles.submenu}>
-                <div className={styles.submenuOption}><Link to="/privacy-policy" onClick={() => window.scrollTo(0, 0)}>Privacy Policy</Link></div>
-                <div className={styles.submenuOption}><Link to="/terms-of-service" onClick={() => window.scrollTo(0, 0)}>Terms of Service</Link></div>
+                <div className={styles.submenuOption}><Link to="/privacy-policy" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Privacy Policy</Link></div>
+                <div className={styles.submenuOption}><Link to="/terms-of-service" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Terms of Service</Link></div>
               </div>
             </li>
             <li className={currentActive === 'about' ? styles.active : ''}><Link to="/about-us" onClick={() => window.scrollTo(0, 0)}>About Us</Link></li>
