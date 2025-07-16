@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './About.module.css';
 
-const heroBg = "https://quantasip.com/wp-content/uploads/2024/08/aerial-view-business-team.jpg";
+const heroBg = "/uploads/2024/08/aerial-view-business-team.jpg";
 
 const companyStory = [
   {
@@ -67,9 +67,9 @@ const About = () => {
     e.preventDefault();
     setHeroFull(false);
     setTimeout(() => {
-      if (belowRef.current) {
-        belowRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
+    if (belowRef.current) {
+      belowRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
     }, 300);
   };
 

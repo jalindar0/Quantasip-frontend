@@ -63,7 +63,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin: 48px 0 36px 0;
-  color: #007bff;
+  color: #333;
 }
 .contactGrid {
   display: flex;
@@ -182,7 +182,7 @@
 }
 .discoverHeading {
   font-size: 1.25rem;
-  color: #007bff;
+  color: #333;
   font-weight: 500;
   margin-bottom: 0;
 }

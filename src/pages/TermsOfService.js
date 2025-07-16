@@ -23,7 +23,7 @@ function TermsOfService() {
       <div className={styles.mainContent}>
         {/* Hero Section with Slideshow */}
         <section className={styles.heroSection}>
-          <div className={styles.heroBg} style={{backgroundImage: 'url(https://quantasip.com/wp-content/uploads/2024/08/isometric-view-3d-rendering-neon-city-scaled.jpg)'}}></div>
+          <div className={styles.heroBg} style={{backgroundImage: 'url(/uploads/2024/08/isometric-view-3d-rendering-neon-city-scaled.jpg)'}}></div>
           <div className={styles.heroContent}>
             <h1>Terms of Service</h1>
             <h5 className={styles.heroSubtitle}>By accessing and using this GIS portfolio website, you agree to comply with and be bound by the following terms and conditions ("Terms of Service"). If you do not agree to these Terms of Service, please refrain from using our Website.</h5>

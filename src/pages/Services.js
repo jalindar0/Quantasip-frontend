@@ -4,16 +4,16 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 // Placeholder images (replace with real images as needed)
-const heroImg = 'https://quantasip.com/wp-content/uploads/2023/05/20230512205803_fpdl.in_gis-product-made-after-processing-aerial-pictures-taken-from-drone-ai_175356-13379_large.webp';
-const cadastralImg = 'https://quantasip.com/wp-content/uploads/2024/08/Screenshot-2024-08-30-112555.png';
-const process1Img = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-5.47.25-PM.webp';
-const process2Img = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-5.47.38-PM.webp';
-const attributesImg = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-5.51.35-PM.webp';
-const landRecordImg = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-6.01.41-PM.webp';
-const landRecordImg2 = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-6.02.58-PM.webp';
-const landRecordImg3 = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-6.02.41-PM.webp';
-const cleaning1Img = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-6.09.05-PM.webp';
-const cleaning2Img = 'https://quantasip.com/wp-content/uploads/2023/05/Screenshot-2023-05-16-at-6.09.12-PM.webp';
+const heroImg = '/uploads/2023/05/20230512205803_fpdl.in_gis-product-made-after-processing-aerial-pictures-taken-from-drone-ai_175356-13379_large.webp';
+const cadastralImg = '/uploads/2024/08/Screenshot-2024-08-30-112555.png';
+const process1Img = '/uploads/2023/05/Screenshot-2023-05-16-at-5.47.25-PM.webp';
+const process2Img = '/uploads/2023/05/Screenshot-2023-05-16-at-5.47.38-PM.webp';
+const attributesImg = '/uploads/2023/05/Screenshot-2023-05-16-at-5.51.35-PM.webp';
+const landRecordImg = '/uploads/2023/05/Screenshot-2023-05-16-at-6.01.41-PM.webp';
+const landRecordImg2 = '/uploads/2023/05/Screenshot-2023-05-16-at-6.02.58-PM.webp';
+const landRecordImg3 = '/uploads/2023/05/Screenshot-2023-05-16-at-6.02.41-PM.webp';
+const cleaning1Img = '/uploads/2023/05/Screenshot-2023-05-16-at-6.09.05-PM.webp';
+const cleaning2Img = '/uploads/2023/05/Screenshot-2023-05-16-at-6.09.12-PM.webp';
 
 const dataPoints = [
   { title: 'Road Network', stat: '2 Million+', desc: 'Km covered', icon: '🛣️' },
@@ -92,9 +92,9 @@ const Services = () => {
     e.preventDefault();
     setHeroFull(false);
     setTimeout(() => {
-      if (belowRef.current) {
-        belowRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
+    if (belowRef.current) {
+      belowRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
     }, 300);
   };
 

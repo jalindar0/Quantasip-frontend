@@ -23,7 +23,7 @@ function PrivacyPolicy() {
       <div className={styles.mainContent}>
         {/* Hero Section with Slideshow */}
         <section className={styles.heroSection}>
-          <div className={styles.heroBg} style={{backgroundImage: 'url(https://quantasip.com/wp-content/uploads/2024/08/security-concept-with-icons-wooden-blocks-turquoise-table-flat-lay.jpg)'}}></div>
+          <div className={styles.heroBg} style={{backgroundImage: 'url(/uploads/2024/08/security-concept-with-icons-wooden-blocks-turquoise-table-flat-lay.jpg)'}}></div>
           <div className={styles.heroContent}>
             <h1>Privacy &amp; Policy</h1>
             <h6 className={styles.heroSubtitle}>At quantaSip, we respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines our practices and procedures for collecting, using, and disclosing your information. By using our website, you consent to the collection, use, and disclosure of your information in accordance with this Privacy Policy.</h6>

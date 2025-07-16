@@ -68,7 +68,7 @@ function Contact() {
     <div className={styles.contactPage}>
       {/* Hero Section */}
       <section className={styles.heroSection} style={{ height: '100vh', minHeight: '100vh', position: 'relative' }}>
-        <div className={styles.heroBg} style={{backgroundImage: 'url(https://quantasip.com/wp-content/uploads/2024/08/hot-line-contact-us-call-center-search-interface.jpg)', height: '100vh'}}></div>
+        <div className={styles.heroBg} style={{backgroundImage: 'url(/uploads/2024/08/hot-line-contact-us-call-center-search-interface.jpg)', height: '100vh'}}></div>
         <div className={styles.heroContent} style={{height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative'}}>
           <h1>Contact Us</h1>
           <a

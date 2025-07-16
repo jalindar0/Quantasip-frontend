@@ -123,7 +123,7 @@ function Careers() {
     <div className={styles.careersPage}>
       {/* Hero Section with Slideshow */}
       <section className={styles.heroSection} style={{ height: '100vh', minHeight: '100vh', position: 'relative' }}>
-        <div className={styles.heroBg} style={{backgroundImage: 'url(https://quantasip.com/wp-content/uploads/2024/08/portrait-professional-business-people-working-together-e1725081714654.jpg)', height: '100vh'}}></div>
+        <div className={styles.heroBg} style={{backgroundImage: 'url(/uploads/2024/08/portrait-professional-business-people-working-together-e1725081714654.jpg)', height: '100vh'}}></div>
         <div className={styles.heroContent} style={{height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative'}}>
           <h1>Careers</h1>
           <a className={styles.scrollDown} href="#scroll-down" aria-label="Scroll Down" style={{marginTop: '2rem'}}>
