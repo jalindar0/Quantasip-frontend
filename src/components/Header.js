@@ -51,18 +51,27 @@ function Header({ active }) {
             <li
               ref={companyRef}
               className={styles.hasSubmenu + ' ' + (currentActive === 'company' ? styles.active : '')}
+              onMouseEnter={() => setSubmenuOpen(true)}
+              onMouseLeave={() => setSubmenuOpen(false)}
+              onFocus={() => setSubmenuOpen(true)}
+              onBlur={() => setSubmenuOpen(false)}
             >
               <span
                 className={styles.companyButton}
                 aria-haspopup="true"
-                aria-expanded={false}
+                aria-expanded={submenuOpen}
                 type="button"
+                onClick={() => setSubmenuOpen((open) => !open)}
+                tabIndex={0}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setSubmenuOpen((open) => !open); }}
               >
                 Company
               </span>
-              <div className={styles.submenu}>
+              <div className={styles.submenu + ' ' + (submenuOpen ? styles.submenuOpen : styles.submenuClosed)}>
                 <div className={styles.submenuOption}><Link to="/privacy-policy" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Privacy Policy</Link></div>
                 <div className={styles.submenuOption}><Link to="/terms-of-service" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Terms of Service</Link></div>
+                <div className={styles.submenuOption}><Link to="/mission" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Mission</Link></div>
+                <div className={styles.submenuOption}><Link to="/vision" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Vision</Link></div>
               </div>
             </li>
             <li className={currentActive === 'about' ? styles.active : ''}><Link to="/about-us" onClick={() => window.scrollTo(0, 0)}>About Us</Link></li>
