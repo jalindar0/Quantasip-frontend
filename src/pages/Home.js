@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Home.module.css';
+import GlobeAnimation from '../components/GlobeAnimation';
 
 // Slideshow images
 const slideshowImages = [
@@ -572,7 +573,7 @@ function Home() {
                       <animate attributeName="stroke-dasharray" from="0,40" to="40,0" dur="0.5s" fill="freeze" />
                     </path>
                   </svg>
-                </div>
+              </div>
               )}
               {status && status !== 'success' && (
                 <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>

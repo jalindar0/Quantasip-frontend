@@ -16,7 +16,7 @@ const cleaning1Img = '/uploads/2023/05/Screenshot-2023-05-16-at-6.09.05-PM.webp'
 const cleaning2Img = '/uploads/2023/05/Screenshot-2023-05-16-at-6.09.12-PM.webp';
 
 const dataPoints = [
-  { title: 'Road Network', stat: '2 Million+', desc: 'Km covered', icon: '🛣️' },
+  { title: 'Road Network', stat: '2 Million+', desc: 'km covered', icon: '🛣️' },
   { title: 'Railway Network', stat: '50,000+', desc: 'km covered', icon: '🚆' },
   { title: 'APMC', stat: '2400+', desc: 'Registered APMC', icon: '🏪' },
   { title: 'National Banks', stat: '1 Lakh+', desc: 'Identified Banks', icon: '🏦' },
@@ -157,7 +157,7 @@ const Services = () => {
           {/* Service 1 Section */}
           <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem', marginBottom: '3rem' }}>
             <h3 id="service1" style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: 16, textAlign: 'center' }}>
-              Service I: Ready Cadastral Datasets for 10 States, In-Progress for 7 More
+              Service I: Ready Cadastral Datasets for 18 States
             </h3>
             <img src={cadastralImg} alt="Cadastral Datasets" style={service1MainImageStyle} />
             <div className={styles.servicePointersRow}>
@@ -185,12 +185,6 @@ const Services = () => {
 
           {/* Technology & Process Section */}
           <section style={{ maxWidth: 900, margin: '0 auto', padding: '2rem 1rem' }}>
-            <h3 style={{ fontWeight: 700, fontSize: '1.2rem', marginBottom: 8 }}>Technology Stack & Process</h3>
-            <p style={{ color: '#333', fontSize: '1.05rem' }}>
-              <strong>Technology Stack:</strong> Open Layer, Geo-server, web-services<br />
-              <strong>Front-end editing tool:</strong> QGIS<br />
-              <strong>Database:</strong> PostgreSQL
-            </p>
             <p style={{ color: '#333', fontSize: '1.05rem' }}><strong>Process of Geo-referencing</strong></p>
             <p style={{ color: '#333', fontSize: '1.05rem' }}>We Bridge the Mismatch in Boundaries Between Govt's Cadastral Data and Open-Source Satellite Imagery</p>
             <p style={{ color: '#333', fontSize: '1.05rem' }}>Process 1: Geo-referencing of raw cadastral data</p>

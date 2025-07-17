@@ -15,17 +15,16 @@ const companyStory = [
 ];
 
 const team = [
-  { name: "Javed Shaikh", title: "Technical Director", exp: "", linkedin: "https://www.linkedin.com/in/javeds" },
-  { name: "Aafreen Shaikh", title: "CFO", exp: "", linkedin: "https://www.linkedin.com/in/aafreen-shaikh-016a47280/" },
-  { name: "Deepak Patil", title: "General Manager", exp: "25+ Yrs Experience", linkedin: "" },
-  { name: "Laxman Punekar", title: "Project Manager", exp: "15+ Yrs Experience", linkedin: "https://www.linkedin.com/in/laxman-punekar-a28b3022/" },
-  { name: "Anjali Karvekar", title: "HR Executive", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/anjali-karvekar-a0a54a211/" },
+  { name: "Javed Shaikh", title: "Technical Director", exp: "", linkedin: "https://www.linkedin.com/in/javeds", photo: "/uploads/Profile/javed-shaikh.png" },
+  { name: "Aafreen Shaikh", title: "CFO", exp: "", linkedin: "https://www.linkedin.com/in/aafreen-shaikh-016a47280/", photo: "/uploads/Profile/aafreen-shaikh.png" },
+  { name: "Deepak Patil", title: "General Manager", exp: "25+ Yrs Experience", linkedin: "https://www.linkedin.com/in/deepak-patil-1a42b5282/", photo: "/uploads/Profile/deepak-patil.png" },
+  { name: "Laxman Punekar", title: "Project Manager", exp: "15+ Yrs Experience", linkedin: "https://www.linkedin.com/in/laxman-punekar-a28b3022/", photo: "/uploads/Profile/laxman-punekar.png" },
+  { name: "Srushti Chavan", title: "HR Executive", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/srushti-chavan-a7074427a/", photo: "/uploads/Profile/srushti-chavan.png" },
   { name: "Jalindar Karande", title: "Team Lead(IT)", exp: "3+ Yrs Experience", linkedin: "https://www.linkedin.com/in/jalindar-karande-464186154/?originalSubdomain=in" },
-  { name: "Onkar Keskar", title: "Techno-Commercial GIS", exp: "9+ Yrs Experience", linkedin: "https://www.linkedin.com/in/onkar-keskar-104768100/" },
-  { name: "Ameer Shaikh", title: "Sr.GIS Executive", exp: "6+ Yrs Experience", linkedin: "https://www.linkedin.com/in/ameer-shaikh-55431a145/" },
+  { name: "Ameer Shaikh", title: "Sr.GIS Executive", exp: "6+ Yrs Experience", linkedin: "https://www.linkedin.com/in/ameer-shaikh-55431a145/", photo: "/uploads/Profile/ameer-shaikh.png" },
   { name: "Bharat Birangal", title: "Sr. GIS Executive", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/bharat-birangal-97089a137/" },
-  { name: "Rohan Sardeshmukh", title: "Team Lead(IT)", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/rohansardeshmukh/" },
-  { name: "Prathmesh Borse", title: "Marketing Executive", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/prathmesh-borse-370b061b2/" },
+  { name: "Rohan Sardeshmukh", title: "Team Lead(IT)", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/rohansardeshmukh/", photo: "/uploads/Profile/rohan-sardeshmukh.png" },
+  { name: "Prathmesh Borse", title: "Marketing Executive", exp: "2+ Yrs Experience", linkedin: "https://www.linkedin.com/in/prathmesh-borse-370b061b2/", photo: "/uploads/Profile/prathmesh-borse.png" },
 ];
 
 const testimonials = [
@@ -177,7 +176,11 @@ const About = () => {
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
             <div className={styles.teamCard}>
               <div className={styles.teamImg}>
-                <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                {team[0].photo ? (
+                  <img src={team[0].photo} alt={team[0].name} style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover" }} />
+                ) : (
+                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                )}
               </div>
               <div className={styles.teamName}>{team[0].name}</div>
               <div className={styles.teamTitle}>{team[0].title}</div>
@@ -189,7 +192,11 @@ const About = () => {
             {[team[1], team[2]].map((member, i) => (
               <div key={i} className={styles.teamCard}>
                 <div className={styles.teamImg}>
-                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                  {member.photo ? (
+                    <img src={member.photo} alt={member.name} style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover" }} />
+                  ) : (
+                    <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                  )}
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
                 <div className={styles.teamTitle}>{member.title}</div>
@@ -199,10 +206,14 @@ const About = () => {
             ))}
           </div>
           <div className={styles.teamGrid} style={{ marginBottom: 32 }}>
-            {team.slice(3, 7).map((member, i) => (
+            {team.slice(3, 6).map((member, i) => (
               <div key={i} className={styles.teamCard}>
                 <div className={styles.teamImg}>
-                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                  {member.photo ? (
+                    <img src={member.photo} alt={member.name} style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover" }} />
+                  ) : (
+                    <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                  )}
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
                 <div className={styles.teamTitle}>{member.title}</div>
@@ -212,10 +223,14 @@ const About = () => {
             ))}
           </div>
           <div className={styles.teamGrid}>
-            {team.slice(7, 11).map((member, i) => (
+            {team.slice(6, 10).map((member, i) => (
               <div key={i} className={styles.teamCard}>
                 <div className={styles.teamImg}>
-                  <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                  {member.photo ? (
+                    <img src={member.photo} alt={member.name} style={{ width: 90, height: 90, borderRadius: "50%", objectFit: "cover" }} />
+                  ) : (
+                    <svg width="48" height="48" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+                  )}
                 </div>
                 <div className={styles.teamName}>{member.name}</div>
                 <div className={styles.teamTitle}>{member.title}</div>
