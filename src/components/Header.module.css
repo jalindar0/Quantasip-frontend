@@ -159,7 +159,7 @@
 }
 .submenuOption:hover a,
 .submenuOption a:hover {
-  background: #232323;
+  background: none;
   color: #1ca14b;
   border-top: none;
 }
