@@ -36,7 +36,7 @@ const products = [
     type: 'web',
   },
   {
-    name: 'QuantaSIP Android App',
+    name: 'BhuQuanta Android App',
     description: 'Download our official Android application (APK) for on-the-go access.',
     url: '/app-debug.apk',
     button: 'Download APK',
