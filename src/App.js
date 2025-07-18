@@ -17,6 +17,9 @@ import Industries from './components/Industries';
 import Sponsors from './components/Sponsors';
 import FAQChatWidget from './components/FAQChatWidget';
 import Products from './pages/Products';
+import Mission from './pages/Mission';
+import Vision from './pages/Vision';
+import Values from './pages/Values';
 
 function HomeWithSections() {
   return <Home />;
@@ -71,6 +74,9 @@ function AppContent() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/vision" element={<Vision />} />
+        <Route path="/values" element={<Values />} />
       </Routes>
       <Footer />
       <FAQChatWidget />
