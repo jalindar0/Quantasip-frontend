@@ -20,6 +20,7 @@ import Products from './pages/Products';
 import Mission from './pages/Mission';
 import Vision from './pages/Vision';
 import Values from './pages/Values';
+import ScrollToTop from './components/ScrollToTop';
 
 function HomeWithSections() {
   return <Home />;
@@ -62,6 +63,7 @@ function AppContent() {
 
   return (
     <>
+      <ScrollToTop />
       <Header active={active} />
       <Routes>
         <Route path="/" element={<HomeWithSections />} />
