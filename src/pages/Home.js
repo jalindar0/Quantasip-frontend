@@ -512,7 +512,6 @@ function Home() {
               </div>
             </div>
           </section>
-
           {/* Get in Touch (Contact Section) */}
           <section className={styles.getInTouchSection} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             <h3 style={{textAlign: 'center', marginBottom: '60px', color: 'rgb(24, 49, 83)'}}>Get in Touch</h3>
@@ -589,5 +588,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home; 
