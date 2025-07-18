@@ -19,6 +19,13 @@ function Header({ active }) {
     ''
   );
 
+  const isCompanyActive =
+    location.pathname.startsWith('/privacy-policy') ||
+    location.pathname.startsWith('/terms-of-service') ||
+    location.pathname.startsWith('/mission') ||
+    location.pathname.startsWith('/vision') ||
+    location.pathname.startsWith('/values');
+
   // Close submenu when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
@@ -50,7 +57,7 @@ function Header({ active }) {
             <li className={currentActive === 'products' ? styles.active : ''}><Link to="/products" onClick={() => window.scrollTo(0, 0)}>Products</Link></li>
             <li
               ref={companyRef}
-              className={styles.hasSubmenu + ' ' + (currentActive === 'company' ? styles.active : '')}
+              className={styles.hasSubmenu + ' ' + (isCompanyActive ? ' ' + styles.active : '')}
               onMouseEnter={() => setSubmenuOpen(true)}
               onMouseLeave={() => setSubmenuOpen(false)}
               onFocus={() => setSubmenuOpen(true)}
@@ -68,10 +75,11 @@ function Header({ active }) {
                 Company
               </span>
               <div className={styles.submenu + ' ' + (submenuOpen ? styles.submenuOpen : styles.submenuClosed)}>
-                <div className={styles.submenuOption}><Link to="/privacy-policy" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Privacy Policy</Link></div>
-                <div className={styles.submenuOption}><Link to="/terms-of-service" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Terms of Service</Link></div>
-                <div className={styles.submenuOption}><Link to="/mission" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Mission</Link></div>
-                <div className={styles.submenuOption}><Link to="/vision" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Vision</Link></div>
+                <div className={styles.submenuOption + (location.pathname === '/privacy-policy' ? ' ' + styles.active : '')}><Link to="/privacy-policy" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Privacy Policy</Link></div>
+                <div className={styles.submenuOption + (location.pathname === '/terms-of-service' ? ' ' + styles.active : '')}><Link to="/terms-of-service" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Terms of Service</Link></div>
+                <div className={styles.submenuOption + (location.pathname === '/mission' ? ' ' + styles.active : '')}><Link to="/mission" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Our Mission</Link></div>
+                <div className={styles.submenuOption + (location.pathname === '/vision' ? ' ' + styles.active : '')}><Link to="/vision" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Our Vision</Link></div>
+                <div className={styles.submenuOption + (location.pathname === '/values' ? ' ' + styles.active : '')}><Link to="/values" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Our Values</Link></div>
               </div>
             </li>
             <li className={currentActive === 'about' ? styles.active : ''}><Link to="/about-us" onClick={() => window.scrollTo(0, 0)}>About Us</Link></li>
