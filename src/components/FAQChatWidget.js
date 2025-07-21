@@ -190,6 +190,33 @@ function FAQChatWidget() {
     setFilteredFaqs(PRESET_FAQS.filter(faq => faq.q.toLowerCase().includes(val.toLowerCase())));
   };
 
+  // Handle user submitting a custom question
+  const handleUserSubmit = async (e) => {
+    e.preventDefault();
+    const question = input.trim();
+    if (!question) return;
+    setMessages((msgs) => [...msgs, { from: 'user', text: question }]);
+    setInput('');
+    setLoading(true);
+    // Try to find a matching FAQ
+    const match = PRESET_FAQS.find(faq => faq.q.toLowerCase() === question.toLowerCase());
+    if (match) {
+      showAnswer(match.a);
+    } else {
+      // Send to backend as unanswered question
+      try {
+        await fetch('http://localhost:5005/api/faq-question', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question }),
+        });
+      } catch (err) {
+        // Optionally handle error
+      }
+      showAnswer("Thank you for your question! Our team will review it and get back to you soon.");
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -334,13 +361,15 @@ function FAQChatWidget() {
               {/* Searchable dropdown for FAQ selection */}
               {!loading && (
                 <>
-                  <input
-                    type="text"
-                    value={input}
-                    onChange={handleInputChange}
-                    placeholder="Search a question..."
-                    className="faq-search"
-                  />
+                  <form onSubmit={handleUserSubmit} style={{ margin: 0 }}>
+                    <input
+                      type="text"
+                      value={input}
+                      onChange={handleInputChange}
+                      placeholder="Search a question..."
+                      className="faq-search"
+                    />
+                  </form>
                   <div className="faq-no-x-scroll" style={{ maxHeight: 120, overflowY: 'auto', marginBottom: 8, overflowX: 'hidden' }}>
                     {filteredFaqs.map((faq, idx) => (
                       <button key={idx} onClick={() => handleFaqSelect(faq)} className="faq-faq-btn">{faq.q}</button>
