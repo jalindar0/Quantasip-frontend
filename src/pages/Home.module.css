@@ -1374,3 +1374,12 @@
     padding: 18px 8px;
   }
 } 
+
+.footerCol a[aria-label="LinkedIn"] svg:hover {
+  fill: #0077b5 !important; /* LinkedIn blue */
+  transition: fill 0.2s;
+}
+.footerCol a[aria-label="Instagram"] svg:hover {
+  fill: #E4405F !important; /* Instagram brand color */
+  transition: fill 0.2s;
+} 

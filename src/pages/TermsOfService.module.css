@@ -1,9 +1,14 @@
-.termsPage {
-  font-family: 'Montserrat', Arial, sans-serif;
+/* Legal document style for Terms of Service */
+.termsOfServicePage {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  background: #f9f9f6;
+  min-height: 100vh;
+  padding: 48px 0;
+}
+.mainContent {
   background: #fff;
   color: #333;
 }
-
 .heroSection {
   position: relative;
   height: 100vh;
@@ -49,7 +54,6 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(10px); }
 }
-
 .termsSection {
   max-width: 800px;
   margin: 40px auto 0 auto;
@@ -71,7 +75,6 @@
   padding: 0;
   list-style: disc;
 }
-
 .getInTouchSection {
   background: #f8f9fa;
   padding: 48px 0 32px 0;
@@ -181,7 +184,6 @@
   font-size: 1rem;
   margin-top: 48px;
 }
-
 @media (max-width: 600px) {
   .heroContent h1 {
     font-size: 2rem;
