@@ -45,6 +45,15 @@ const testimonials = [
   },
 ];
 
+function getOrCreateUserId() {
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
 const About = () => {
   const [heroFull, setHeroFull] = useState(true);
   const heroRef = useRef(null);

@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.css';
 
+function getOrCreateUserId() {
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
 function Contact() {
   const [form, setForm] = useState({
     name: '',
@@ -67,6 +76,21 @@ function Contact() {
         setForm({ name: '', email: '', phone: '', services: [], message: '' });
         setOtherService('');
         setTimeout(() => setStatus(''), 2000);
+        // Award 5 coins only after successful form submission
+        let userId = localStorage.getItem('quanta_user_id');
+        if (!userId) {
+          userId = 'user_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('quanta_user_id', userId);
+        }
+        const coinRes = await fetch('http://localhost:5005/api/award-coins', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_id: userId, coins: 5, source: 'form_submission' }),
+        });
+        const coinData = await coinRes.json();
+        console.log('Award coins response:', coinData);
+        // Dispatch event to update coin balance in header
+        window.dispatchEvent(new Event('quanta-coin-update'));
       } else {
         const data = await res.json();
         setStatus(data.error || 'Error sending message.');

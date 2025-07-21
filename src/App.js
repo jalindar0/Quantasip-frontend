@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -26,8 +26,49 @@ function HomeWithSections() {
   return <Home />;
 }
 
+function getOrCreateUserId() {
+  // If this tab has not yet initialized a user_id, generate a new one
+  if (!sessionStorage.getItem('quanta_user_id_initialized')) {
+    const newUserId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', newUserId);
+    sessionStorage.setItem('quanta_user_id_initialized', 'true');
+    return newUserId;
+  }
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
+function useTrackPageVisit(pathname) {
+  const hasTrackedRef = useRef({});
+
+  useEffect(() => {
+    if (!pathname) return; // Do not track if page is null or empty
+    const userId = getOrCreateUserId();
+    const pageKey = `visited_${pathname}`;
+    if (!sessionStorage.getItem(pageKey) && !hasTrackedRef.current[pageKey]) {
+      hasTrackedRef.current[pageKey] = true; // Prevent double call
+      fetch('http://localhost:5005/api/track-visit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId, page: pathname }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          // Immediately update coin balance in header
+          window.dispatchEvent(new Event('quanta-coin-update'));
+        });
+      sessionStorage.setItem(pageKey, 'true');
+    }
+  }, [pathname]);
+}
+
 function AppContent() {
   const location = useLocation();
+  useTrackPageVisit(location.pathname);
   
   // Update document title based on current route
   useEffect(() => {
@@ -47,6 +88,9 @@ function AppContent() {
       pageTitle = 'Privacy Policy - Quantasip GIS';
     } else if (location.pathname.startsWith('/terms-of-service')) {
       pageTitle = 'Terms of Service - Quantasip GIS';
+    }
+    else if (location.pathname.startsWith('/products')) {
+      pageTitle = 'Products - Quantasip GIS';
     }
     
     document.title = pageTitle;

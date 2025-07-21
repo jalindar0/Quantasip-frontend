@@ -139,6 +139,15 @@ const USER_AVATAR = 'https://www.gravatar.com/avatar/?d=mp&s=48';
 
 const BOT_NAME = 'QuantaBot';
 
+function getOrCreateUserId() {
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
 function FAQChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -148,6 +157,38 @@ function FAQChatWidget() {
   const [loading, setLoading] = useState(false);
   const [filteredFaqs, setFilteredFaqs] = useState(PRESET_FAQS);
   const chatEndRef = useRef(null);
+
+  // Track number of questions asked in this session
+  const [questionCount, setQuestionCount] = useState(() => {
+    return parseInt(sessionStorage.getItem('faq_question_count') || '0', 10);
+  });
+  const [bonusGiven, setBonusGiven] = useState(() => {
+    return sessionStorage.getItem('faq_bonus_given') === 'true';
+  });
+
+  // Award coins for FAQ usage
+  const awardFaqCoin = async (count) => {
+    const userId = getOrCreateUserId();
+    // 1 coin for each question
+    await fetch('http://localhost:5005/api/award-coins', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: userId, coins: count, source: 'faq_question' }),
+    });
+    window.dispatchEvent(new Event('quanta-coin-update'));
+  };
+  // Award bonus coins (10) if more than 10 questions and not already given
+  const awardFaqBonus = async () => {
+    const userId = getOrCreateUserId();
+    await fetch('http://localhost:5005/api/award-coins', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: userId, coins: 10, source: 'faq_bonus' }),
+    });
+    window.dispatchEvent(new Event('quanta-coin-update'));
+    setBonusGiven(true);
+    sessionStorage.setItem('faq_bonus_given', 'true');
+  };
 
   useEffect(() => {
     if (open && chatEndRef.current) {
@@ -177,10 +218,19 @@ function FAQChatWidget() {
   };
 
   // Handle FAQ selection
-  const handleFaqSelect = (faq) => {
+  const handleFaqSelect = async (faq) => {
     setMessages((msgs) => [...msgs, { from: 'user', text: faq.q }]);
     setLoading(true);
     showAnswer(faq.a);
+    // Award 1 coin for this question
+    const newCount = questionCount + 1;
+    setQuestionCount(newCount);
+    sessionStorage.setItem('faq_question_count', newCount);
+    await awardFaqCoin(1);
+    // Award bonus if more than 10 questions and not already given
+    if (newCount > 10 && !bonusGiven) {
+      await awardFaqBonus();
+    }
   };
 
   // Handle search input for autocomplete
@@ -214,6 +264,15 @@ function FAQChatWidget() {
         // Optionally handle error
       }
       showAnswer("Thank you for your question! Our team will review it and get back to you soon.");
+    }
+    // Award 1 coin for this question
+    const newCount = questionCount + 1;
+    setQuestionCount(newCount);
+    sessionStorage.setItem('faq_question_count', newCount);
+    await awardFaqCoin(1);
+    // Award bonus if more than 10 questions and not already given
+    if (newCount > 10 && !bonusGiven) {
+      await awardFaqBonus();
     }
   };
 

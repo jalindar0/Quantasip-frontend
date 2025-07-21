@@ -54,6 +54,15 @@ const service3LargeImageStyle = {
   display: 'block',
 };
 
+function getOrCreateUserId() {
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
 const Services = () => {
   // Collapse hero if hash is present in URL on mount
   const initialHeroFull = typeof window !== 'undefined' && window.location.hash ? false : true;

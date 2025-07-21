@@ -110,6 +110,15 @@ const team = [
   },
 ];
 
+function getOrCreateUserId() {
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
 function Careers() {
   // Placeholder for form submission
   const handleFormSubmit = (e) => {

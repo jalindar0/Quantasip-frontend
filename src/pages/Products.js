@@ -49,6 +49,15 @@ const products = [
 const DESKTOP_WIDTH = 1200;
 const DESKTOP_HEIGHT = 800;
 
+function getOrCreateUserId() {
+  let userId = localStorage.getItem('quanta_user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('quanta_user_id', userId);
+  }
+  return userId;
+}
+
 const Products = () => {
   const [carouselIdx, setCarouselIdx] = useState(0);
   const productsRef = useRef(null);
