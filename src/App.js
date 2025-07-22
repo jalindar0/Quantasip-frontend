@@ -10,11 +10,7 @@ import Careers from './pages/Careers';
 import JobApplication from './pages/JobApplication';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
-import Testimonials from './components/Testimonials';
-import Awards from './components/Awards';
-import Solutions from './components/Solutions';
-import Industries from './components/Industries';
-import Sponsors from './components/Sponsors';
+import CookieConsent from './components/CookieConsent';
 import FAQChatWidget from './components/FAQChatWidget';
 import Products from './pages/Products';
 import Mission from './pages/Mission';
@@ -125,6 +121,7 @@ function AppContent() {
         <Route path="/values" element={<Values />} />
       </Routes>
       <Footer />
+      <CookieConsent />
       <FAQChatWidget />
     </>
   );

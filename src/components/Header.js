@@ -22,6 +22,11 @@ function Header({ active }) {
   const [showFlyCoin, setShowFlyCoin] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const [breakdown, setBreakdown] = useState(null);
+  const coinBalanceRef = useRef(coinBalance);
+
+  useEffect(() => {
+    coinBalanceRef.current = coinBalance;
+  }, [coinBalance]);
 
   // Determine active tab based on location if not provided
   const currentActive = active || (
@@ -56,15 +61,26 @@ function Header({ active }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [submenuOpen]);
 
+  // Store the last known coin balance across renders
+  let lastKnownCoinBalance = null;
   // Fetch coin balance (refactored for reuse)
   const fetchCoinBalance = () => {
     const userId = getOrCreateUserId();
     fetch(`http://localhost:5005/api/coin-balance/${userId}`)
       .then(res => res.json())
       .then(data => {
-        setPrevCoinBalance(coinBalance);
+        // Only animate if the balance actually increased (using module-level variable)
+        if (
+          lastKnownCoinBalance !== null &&
+          (data.coins || 0) > lastKnownCoinBalance
+        ) {
+          setShowFlyCoin(true);
+          setTimeout(() => setShowFlyCoin(false), 1200);
+        }
+        setPrevCoinBalance(lastKnownCoinBalance);
         setCoinBalance(data.coins || 0);
         setBreakdown(data.breakdown || null);
+        lastKnownCoinBalance = data.coins || 0;
       });
   };
 
@@ -82,15 +98,6 @@ function Header({ active }) {
     fetchCoinBalance();
     // eslint-disable-next-line
   }, [location.pathname]);
-
-  // Animate coin when balance increases
-  useEffect(() => {
-    if (coinBalance > prevCoinBalance) {
-      setShowFlyCoin(true);
-      const timer = setTimeout(() => setShowFlyCoin(false), 1200);
-      return () => clearTimeout(timer);
-    }
-  }, [coinBalance, prevCoinBalance]);
 
   // Click outside to close popover
   useEffect(() => {
@@ -117,80 +124,37 @@ function Header({ active }) {
           <img src="/uploads/2024/08/logoo.png" alt="QuantaSIP GIS Logo" className={styles.logo} />
         </Link>
         <div className={styles.flexSpacer}></div>
-        {/* Single animated gold coin with popover on click */}
-        <div style={{ marginRight: 24, display: 'flex', alignItems: 'center', position: 'relative', minWidth: 48 }}>
-          <div
-            className="quanta-coin-single"
-            style={{ cursor: 'pointer', position: 'relative', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            onClick={() => setShowPopover((v) => !v)}
-            title="View your Quanta Coins"
-          >
-            {/* Custom SVG gold coin with Q */}
-            <svg width="40" height="40" viewBox="0 0 40 40" style={{ display: 'block' }}>
-              <defs>
-                <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#fffbe7" />
-                  <stop offset="60%" stopColor="#ffe066" />
-                  <stop offset="100%" stopColor="#d4af37" />
-                </radialGradient>
-              </defs>
-              <circle cx="20" cy="20" r="18" fill="url(#goldGradient)" stroke="#bfa12c" strokeWidth="2" />
-              <text x="50%" y="56%" textAnchor="middle" fontSize="18" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif">Q</text>
-            </svg>
-            {showFlyCoin && (
-              <svg width="40" height="40" viewBox="0 0 40 40" className="quanta-coin-fly" style={{ left: 0, top: -30, width: 40, height: 40 }}>
-                <defs>
-                  <radialGradient id="goldGradient2" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#fffbe7" />
-                    <stop offset="60%" stopColor="#ffe066" />
-                    <stop offset="100%" stopColor="#d4af37" />
-                  </radialGradient>
-                </defs>
-                <circle cx="20" cy="20" r="18" fill="url(#goldGradient2)" stroke="#bfa12c" strokeWidth="2" />
-                <text x="50%" y="56%" textAnchor="middle" fontSize="18" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif">Q</text>
-              </svg>
-            )}
-          </div>
-          {showPopover && (
-            <div className="quanta-coin-popover" style={{ position: 'absolute', top: 48, right: 0, background: '#fff', border: '1.5px solid #90caf9', borderRadius: 12, boxShadow: '0 4px 24px rgba(25,118,210,0.13)', minWidth: 220, zIndex: 9999, padding: 18 }}>
-              <div style={{ fontWeight: 700, fontSize: 18, color: '#1976d2', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <svg width="28" height="28" viewBox="0 0 40 40" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                  <defs>
-                    <radialGradient id="goldGradient3" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#fffbe7" />
-                      <stop offset="60%" stopColor="#ffe066" />
-                      <stop offset="100%" stopColor="#d4af37" />
-                    </radialGradient>
-                  </defs>
-                  <circle cx="20" cy="20" r="18" fill="url(#goldGradient3)" stroke="#bfa12c" strokeWidth="2" />
-                  <text x="50%" y="56%" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif">Q</text>
-                </svg>
-                {coinBalance} Quanta Coins
-              </div>
-              <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 6, color: '#183153' }}>Breakdown:</div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {Object.entries(breakdown || defaultBreakdown).map(([key, value], i) => (
-                  <li key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, marginBottom: 2 }}>
-                    <span>
-                      {key === 'page_visits' ? 'Pages Visited' : key === 'form_submissions' ? 'Form Submissions' : key}
-                    </span>
-                    <span style={{ fontWeight: 700 }}>{value}</span>
-                  </li>
-                ))}
-              </ul>
-              <div style={{ fontSize: 13, color: '#888', marginTop: 10 }}>
-                Earn coins by visiting new pages and submitting forms!
-              </div>
-            </div>
-          )}
-        </div>
         <nav
           className={styles.navMenu}
           style={{ marginRight: 0 }}
         >
           <ul>
-            <li className={currentActive === 'services' ? styles.active : ''}><Link to="/services" onClick={() => window.scrollTo(0, 0)}>Services</Link></li>
-            <li className={currentActive === 'products' ? styles.active : ''}><Link to="/products" onClick={() => window.scrollTo(0, 0)}>Products</Link></li>
+            <li className={currentActive === 'services' ? styles.active : ''}>
+              <Link
+                to="/services"
+                onClick={e => {
+                  if (window.location.pathname.replace(/\/+$/, '') === '/services') {
+                    e.preventDefault();
+                    window.scrollTo(0, 0);
+                  }
+                }}
+              >
+                Services
+              </Link>
+            </li>
+            <li className={currentActive === 'products' ? styles.active : ''}>
+              <Link
+                to="/products"
+                onClick={e => {
+                  if (window.location.pathname.replace(/\/+$/, '') === '/products') {
+                    e.preventDefault();
+                    window.scrollTo(0, 0);
+                  }
+                }}
+              >
+                Products
+              </Link>
+            </li>
             <li
               ref={companyRef}
               className={styles.hasSubmenu + ' ' + (isCompanyActive ? ' ' + styles.active : '')}
@@ -218,11 +182,233 @@ function Header({ active }) {
                 <div className={styles.submenuOption + (location.pathname === '/values' ? ' ' + styles.active : '')}><Link to="/values" onClick={() => { setSubmenuOpen(false); window.scrollTo(0, 0); }}>Our Values</Link></div>
               </div>
             </li>
-            <li className={currentActive === 'about' ? styles.active : ''}><Link to="/about-us" onClick={() => window.scrollTo(0, 0)}>About Us</Link></li>
-            <li className={currentActive === 'careers' ? styles.active : ''}><Link to="/careers" onClick={() => window.scrollTo(0, 0)}>Careers</Link></li>
-            <li className={currentActive === 'contact' ? styles.active : ''}><Link to="/contact-us" onClick={() => window.scrollTo(0, 0)}>Contact Us</Link></li>
+            <li className={currentActive === 'about' ? styles.active : ''}>
+              <Link
+                to="/about-us"
+                onClick={e => {
+                  if (window.location.pathname.replace(/\/+$/, '') === '/about-us') {
+                    e.preventDefault();
+                    window.scrollTo(0, 0);
+                  }
+                }}
+              >
+                About Us
+              </Link>
+            </li>
+            <li className={currentActive === 'careers' ? styles.active : ''}>
+              <Link
+                to="/careers"
+                onClick={e => {
+                  if (window.location.pathname.replace(/\/+$/, '') === '/careers') {
+                    e.preventDefault();
+                    window.scrollTo(0, 0);
+                  }
+                }}
+              >
+                Careers
+              </Link>
+            </li>
+            <li className={currentActive === 'contact' ? styles.active : ''}>
+              <Link
+                to="/contact-us"
+                onClick={e => {
+                  if (window.location.pathname.replace(/\/+$/, '') === '/contact-us') {
+                    e.preventDefault();
+                    window.scrollTo(0, 0);
+                  }
+                }}
+              >
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </nav>
+        {/* Move coin display here, after nav menu */}
+        <div style={{ marginRight: 32, display: 'flex', alignItems: 'center', position: 'relative', minWidth: 48 }}>
+          <div
+            className="quanta-coin-single"
+            style={{ cursor: 'pointer', position: 'relative', width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            onClick={() => setShowPopover((v) => !v)}
+            title="View your Quanta Coins"
+          >
+            {/* Custom premium SVG coin asset */}
+            <svg width="48" height="48" viewBox="0 0 48 48" style={{ display: 'block' }}>
+              <defs>
+                <radialGradient id="coinGoldBody" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stopColor="#fffbe7" />
+                  <stop offset="40%" stopColor="#ffe066" />
+                  <stop offset="80%" stopColor="#ffd700" />
+                  <stop offset="100%" stopColor="#bfa12c" />
+                </radialGradient>
+                <linearGradient id="coinRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fffbe7" />
+                  <stop offset="50%" stopColor="#ffd700" />
+                  <stop offset="100%" stopColor="#bfa12c" />
+                </linearGradient>
+                <radialGradient id="coinHighlight" cx="30%" cy="25%" r="60%">
+                  <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+                </radialGradient>
+                <filter id="coinInnerShadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feOffset dx="0" dy="2" />
+                  <feGaussianBlur stdDeviation="2.5" result="offset-blur" />
+                  <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+                  <feFlood floodColor="#bfa12c" floodOpacity="0.25" result="color" />
+                  <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+                  <feComposite operator="over" in="shadow" in2="SourceGraphic" />
+                </filter>
+              </defs>
+              {/* Outer rim */}
+              <circle cx="24" cy="24" r="22" fill="url(#coinRim)" stroke="#bfa12c" strokeWidth="2.5" />
+              {/* Main gold body */}
+              <circle cx="24" cy="24" r="18" fill="url(#coinGoldBody)" filter="url(#coinInnerShadow)" />
+              {/* Top highlight */}
+              <ellipse cx="20" cy="16" rx="8" ry="3" fill="url(#coinHighlight)" />
+              {/* Sparkle/star */}
+              <polygon points="30,12 32,18 38,18 33,22 35,28 30,24 25,28 27,22 22,18 28,18"
+                fill="#fffbe7" opacity="0.7" style={{ filter: 'blur(0.5px)' }} />
+              {/* Glossy overlay */}
+              <path d="M12,24 a12,8 0 1,1 24,0" fill="#fff" opacity="0.18" />
+              {/* Q letter */}
+              <text x="50%" y="60%" textAnchor="middle" fontSize="22" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif" style={{ letterSpacing: 2, textShadow: '0 2px 8px #fffbe7' }}>Q</text>
+            </svg>
+            {showFlyCoin && (
+              <svg width="48" height="48" viewBox="0 0 48 48" className="quanta-coin-fly" style={{ left: 0, top: -30, width: 48, height: 48 }}>
+                <defs>
+                  <radialGradient id="coinGoldBodyFly" cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stopColor="#fffbe7" />
+                    <stop offset="40%" stopColor="#ffe066" />
+                    <stop offset="80%" stopColor="#ffd700" />
+                    <stop offset="100%" stopColor="#bfa12c" />
+                  </radialGradient>
+                  <linearGradient id="coinRimFly" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fffbe7" />
+                    <stop offset="50%" stopColor="#ffd700" />
+                    <stop offset="100%" stopColor="#bfa12c" />
+                  </linearGradient>
+                  <radialGradient id="coinHighlightFly" cx="30%" cy="25%" r="60%">
+                    <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+                  </radialGradient>
+                  <filter id="coinInnerShadowFly" x="-20%" y="-20%" width="140%" height="140%">
+                    <feOffset dx="0" dy="2" />
+                    <feGaussianBlur stdDeviation="2.5" result="offset-blur" />
+                    <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+                    <feFlood floodColor="#bfa12c" floodOpacity="0.25" result="color" />
+                    <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+                    <feComposite operator="over" in="shadow" in2="SourceGraphic" />
+                  </filter>
+                </defs>
+                {/* Outer rim */}
+                <circle cx="24" cy="24" r="22" fill="url(#coinRimFly)" stroke="#bfa12c" strokeWidth="2.5" />
+                {/* Main gold body */}
+                <circle cx="24" cy="24" r="18" fill="url(#coinGoldBodyFly)" filter="url(#coinInnerShadowFly)" />
+                {/* Top highlight */}
+                <ellipse cx="20" cy="16" rx="8" ry="3" fill="url(#coinHighlightFly)" />
+                {/* Sparkle/star */}
+                <polygon points="30,12 32,18 38,18 33,22 35,28 30,24 25,28 27,22 22,18 28,18"
+                  fill="#fffbe7" opacity="0.7" style={{ filter: 'blur(0.5px)' }} />
+                {/* Glossy overlay */}
+                <path d="M12,24 a12,8 0 1,1 24,0" fill="#fff" opacity="0.18" />
+                {/* Q letter */}
+                <text x="50%" y="60%" textAnchor="middle" fontSize="22" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif" style={{ letterSpacing: 2, textShadow: '0 2px 8px #fffbe7' }}>Q</text>
+              </svg>
+            )}
+          </div>
+          {showPopover && (
+            <div
+              className="quanta-coin-drawer"
+              style={{
+                position: 'fixed',
+                top: 72, // header height in px
+                right: 0,
+                height: 'calc(100vh - 72px)',
+                width: 340,
+                maxWidth: '90vw',
+                background: 'rgba(255,255,255,0.88)',
+                backdropFilter: 'blur(18px) saturate(1.5)',
+                borderLeft: '2.5px solid #90caf9',
+                boxShadow: '-8px 0 32px 0 rgba(30,64,175,0.13)',
+                zIndex: 99999,
+                padding: '36px 32px 28px 32px',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'background 0.2s',
+              }}
+            >
+              <style>{`
+                @keyframes slideInRight {
+                  from { transform: translateX(100%); opacity: 0.2; }
+                  to { transform: translateX(0); opacity: 1; }
+                }
+              `}</style>
+              <button
+                onClick={() => setShowPopover(false)}
+                style={{
+                  position: 'absolute',
+                  top: 18,
+                  right: 18,
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#1976d2',
+                  fontSize: 28,
+                  cursor: 'pointer',
+                  fontWeight: 700,
+                  zIndex: 100000,
+                  transition: 'color 0.2s',
+                }}
+                aria-label="Close"
+              >
+                &times;
+              </button>
+              <div style={{ fontWeight: 700, fontSize: 20, color: '#1976d2', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10, letterSpacing: 0.5 }}>
+                <svg width="32" height="32" viewBox="0 0 48 48" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <defs>
+                    <radialGradient id="goldGradient3" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#fffbe7" />
+                      <stop offset="60%" stopColor="#ffe066" />
+                      <stop offset="100%" stopColor="#d4af37" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="24" cy="24" r="22" fill="url(#goldGradient3)" stroke="#bfa12c" strokeWidth="2.5" />
+                  <circle cx="24" cy="24" r="18" fill="url(#goldGradient3)" />
+                  <text x="50%" y="60%" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif">Q</text>
+                </svg>
+                {coinBalance} Quanta Coins Earned
+              </div>
+              <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 8, color: '#183153', letterSpacing: 0.2 }}>Breakdown:</div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 8 }}>
+                {Object.entries(breakdown || defaultBreakdown).map(([key, value], i) => (
+                  <li key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, marginBottom: 2 }}>
+                    <span>
+                      {key === 'page_visits' ? 'Pages Visited' : key === 'form_submissions' ? 'Form Submissions' : key === 'faq_questions' ? 'Quantabot Questions' : key === 'faq_bonus' ? 'Quantabot Bonus' : key}
+                    </span>
+                    <span style={{ fontWeight: 700 }}>{value}</span>
+                  </li>
+                ))}
+              </ul>
+              <div style={{ fontSize: 13.5, color: '#1976d2', marginTop: 10, fontWeight: 500, textAlign: 'center', letterSpacing: 0.1 }}>
+                Earn coins by visiting new pages, submitting forms, and using Quantabot.
+              </div>
+            </div>
+          )}
+          {/* Overlay to close drawer when clicking outside */}
+          {showPopover && (
+            <div
+              onClick={() => setShowPopover(false)}
+              style={{
+                position: 'fixed',
+                top: 72, // header height in px
+                left: 0,
+                width: '100vw',
+                height: 'calc(100vh - 72px)',
+                background: 'rgba(0,0,0,0.08)',
+                zIndex: 99998,
+                cursor: 'pointer',
+              }}
+            />
+          )}
+        </div>
       </div>
     </header>
   );
