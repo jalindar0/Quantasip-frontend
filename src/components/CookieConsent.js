@@ -9,8 +9,6 @@ export default function CookieConsent() {
   const [animateOut, setAnimateOut] = useState(false);
 
   useEffect(() => {
-    // show after short delay for natural effect
-    setVisible(true);
     if (localStorage.getItem(COOKIE_KEY) !== "true") {
       setTimeout(() => setVisible(true), 300);
     }
@@ -18,6 +16,27 @@ export default function CookieConsent() {
 
   function acceptCookies() {
     setAnimateOut(true);
+
+    // Get or generate user_id
+    let userId = localStorage.getItem("quanta_user_id");
+    if (!userId) {
+      userId = "user_" + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem("quanta_user_id", userId);
+    }
+
+    // Send cookie accept log to backend
+    fetch("http://localhost:5005/api/cookie-accept", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: userId,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    // Complete animation and store consent locally
     setTimeout(() => {
       localStorage.setItem(COOKIE_KEY, "true");
       setVisible(false);
@@ -29,7 +48,9 @@ export default function CookieConsent() {
 
   return (
     <div
-      className={`${styles.cookieConsentBanner} ${visible && !animateOut ? styles.show : ""} ${animateOut ? styles.hide : ""}`}
+      className={`${styles.cookieConsentBanner} ${
+        visible && !animateOut ? styles.show : ""
+      } ${animateOut ? styles.hide : ""}`}
       role="dialog"
       aria-live="polite"
     >
