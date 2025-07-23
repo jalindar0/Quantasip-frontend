@@ -378,27 +378,15 @@ function Header({ active }) {
               </div>
               <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 8, color: '#183153', letterSpacing: 0.2 }}>Breakdown:</div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 8 }}>
-  {(Array.isArray(breakdown ? breakdown : defaultBreakdown)
-    ? (breakdown || defaultBreakdown)
-    : Object.entries(breakdown || {})).map((item, i) => {
-    
-    const label = Array.isArray(item) ? item[0] : item.label;
-    const value = Array.isArray(item) ? item[1] : item.value;
-
-    return (
-      <li key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, marginBottom: 2 }}>
-        <span>
-          {label === 'page_visits' ? 'Pages Visited' :
-           label === 'form_submissions' ? 'Form Submissions' :
-           label === 'faq_questions' ? 'Quantabot Questions' :
-           label === 'faq_bonus' ? 'Quantabot Bonus' :
-           label}
-        </span>
-        <span style={{ fontWeight: 700 }}>{value}</span>
-      </li>
-    );
-  })}
-</ul>
+                {Object.entries(breakdown || defaultBreakdown).map(([key, value], i) => (
+                  <li key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, marginBottom: 2 }}>
+                    <span>
+                      {key === 'page_visits' ? 'Pages Visited' : key === 'form_submissions' ? 'Form Submissions' : key === 'faq_questions' ? 'Quantabot Questions' : key === 'faq_bonus' ? 'Quantabot Bonus' : key}
+                    </span>
+                    <span style={{ fontWeight: 700 }}>{value}</span>
+                  </li>
+                ))}
+              </ul>
               <div style={{ fontSize: 13.5, color: '#1976d2', marginTop: 10, fontWeight: 500, textAlign: 'center', letterSpacing: 0.1 }}>
                 Earn coins by visiting new pages, submitting forms, and using Quantabot.
               </div>

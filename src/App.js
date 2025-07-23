@@ -10,13 +10,13 @@ import Careers from './pages/Careers';
 import JobApplication from './pages/JobApplication';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
-import CookieConsent from './components/CookieConsent';
 import FAQChatWidget from './components/FAQChatWidget';
 import Products from './pages/Products';
 import Mission from './pages/Mission';
 import Vision from './pages/Vision';
 import Values from './pages/Values';
 import ScrollToTop from './components/ScrollToTop';
+import CookieConsent from './components/CookieConsent';
 
 function HomeWithSections() {
   return <Home />;
@@ -121,8 +121,9 @@ function AppContent() {
         <Route path="/values" element={<Values />} />
       </Routes>
       <Footer />
-      <CookieConsent />
       <FAQChatWidget />
+      <CookieConsent />
+      
     </>
   );
 }

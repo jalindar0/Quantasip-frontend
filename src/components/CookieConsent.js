@@ -10,6 +10,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
     // show after short delay for natural effect
+    setVisible(true);
     if (localStorage.getItem(COOKIE_KEY) !== "true") {
       setTimeout(() => setVisible(true), 300);
     }

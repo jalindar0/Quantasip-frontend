@@ -421,13 +421,13 @@ function FAQChatWidget() {
               {!loading && (
                 <>
                   <form onSubmit={handleUserSubmit} style={{ margin: 0 }}>
-                    <input
-                      type="text"
-                      value={input}
-                      onChange={handleInputChange}
-                      placeholder="Search a question..."
-                      className="faq-search"
-                    />
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={handleInputChange}
+                    placeholder="Search a question..."
+                    className="faq-search"
+                  />
                   </form>
                   <div className="faq-no-x-scroll" style={{ maxHeight: 120, overflowY: 'auto', marginBottom: 8, overflowX: 'hidden' }}>
                     {filteredFaqs.map((faq, idx) => (
