@@ -123,7 +123,6 @@ function AppContent() {
       <Footer />
       <FAQChatWidget />
       <CookieConsent />
-      
     </>
   );
 }
