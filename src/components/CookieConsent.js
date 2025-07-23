@@ -9,6 +9,7 @@ export default function CookieConsent() {
   const [animateOut, setAnimateOut] = useState(false);
 
   useEffect(() => {
+    setVisible(true);
     if (localStorage.getItem(COOKIE_KEY) !== "true") {
       setTimeout(() => setVisible(true), 300);
     }
@@ -16,33 +17,54 @@ export default function CookieConsent() {
 
   function acceptCookies() {
     setAnimateOut(true);
-
-    // Get or generate user_id
+  
     let userId = localStorage.getItem("quanta_user_id");
     if (!userId) {
       userId = "user_" + Math.random().toString(36).substr(2, 9);
       localStorage.setItem("quanta_user_id", userId);
     }
-
-    // Send cookie accept log to backend
+  
+    const timestamp = new Date().toISOString();
+  
+    // Try to get geolocation (HTML5 API)
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          sendConsentData(userId, timestamp, latitude, longitude);
+        },
+        (error) => {
+          // If user denies permission or error occurs
+          console.warn("Geolocation error:", error.message);
+          sendConsentData(userId, timestamp, null, null);
+        },
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    } else {
+      sendConsentData(userId, timestamp, null, null);
+    }
+  
+    setTimeout(() => {
+      localStorage.setItem(COOKIE_KEY, "true");
+      setVisible(false);
+      setAnimateOut(false);
+    }, 400);
+  }
+  
+  function sendConsentData(user_id, timestamp, latitude, longitude) {
     fetch("http://localhost:5005/api/cookie-accept", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: userId,
-        timestamp: new Date().toISOString(),
+        user_id,
+        timestamp,
+        latitude,
+        longitude,
       }),
     });
-
-    // Complete animation and store consent locally
-    setTimeout(() => {
-      localStorage.setItem(COOKIE_KEY, "true");
-      setVisible(false);
-      setAnimateOut(false);
-    }, 400); // match transition duration
-  }
+  }  
 
   if (!visible && !animateOut) return null;
 
