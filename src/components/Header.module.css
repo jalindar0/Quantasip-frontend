@@ -7,7 +7,7 @@
   min-height: 72px;
   background: rgba(255,255,255,0.35);
   backdrop-filter: blur(12px) saturate(180%);
-  border-bottom: 3px solid #232a3d;
+  border-bottom: 3px solid #183153;
 }
 .headerInner {
   margin: 0 auto;
@@ -51,7 +51,7 @@
   align-items: center;
 }
 .navMenu a, .companyButton {
-  color: #111;
+  color: #183153;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;

@@ -23,6 +23,7 @@ function Header({ active }) {
   const [showPopover, setShowPopover] = useState(false);
   const [breakdown, setBreakdown] = useState(null);
   const coinBalanceRef = useRef(coinBalance);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     coinBalanceRef.current = coinBalance;
@@ -303,8 +304,7 @@ function Header({ active }) {
                 <circle cx="24" cy="24" r="22" fill="url(#coinRimFly)" stroke="#bfa12c" strokeWidth="2.5" />
                 {/* Main gold body */}
                 <circle cx="24" cy="24" r="18" fill="url(#coinGoldBodyFly)" filter="url(#coinInnerShadowFly)" />
-                {/* Top highlight */}
-                <ellipse cx="20" cy="16" rx="8" ry="3" fill="url(#coinHighlightFly)" />
+
                 {/* Sparkle/star */}
                 <polygon points="30,12 32,18 38,18 33,22 35,28 30,24 25,28 27,22 22,18 28,18"
                   fill="#fffbe7" opacity="0.7" style={{ filter: 'blur(0.5px)' }} />
@@ -316,41 +316,54 @@ function Header({ active }) {
             )}
           </div>
           {showPopover && (
-            <div
-              className="quanta-coin-drawer"
-              style={{
-                position: 'fixed',
-                top: 72, // header height in px
-                right: 0,
-                height: 'calc(100vh - 72px)',
-                width: 340,
-                maxWidth: '90vw',
-                background: 'rgba(255,255,255,0.88)',
-                backdropFilter: 'blur(18px) saturate(1.5)',
-                borderLeft: '2.5px solid #90caf9',
-                boxShadow: '-8px 0 32px 0 rgba(30,64,175,0.13)',
-                zIndex: 99999,
-                padding: '36px 32px 28px 32px',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'background 0.2s',
-              }}
-            >
-              <style>{`
-                @keyframes slideInRight {
-                  from { transform: translateX(100%); opacity: 0.2; }
-                  to { transform: translateX(0); opacity: 1; }
-                }
-              `}</style>
+  <div
+    className="quanta-coin-drawer"
+    style={{
+      position: 'fixed',
+      top: 72, // header height
+      right: 0,
+      height: 'calc(100vh - 50px)', // ⬅️ slightly reduced from 72px to 80px
+      width: 340,
+      maxWidth: '90vw',
+      background: 'linear-gradient(135deg, #e3ecf7 0%, #b7c7d7 100%)',
+      backdropFilter: 'blur(18px) saturate(1.5)',
+      borderLeft: '2.5px solid #183153',
+      boxShadow: '-8px 0 32px 0 rgba(30,64,175,0.13)',
+      zIndex: 99999,
+      padding: '70px 24px 24px 24px', // ⬅️ increased top padding to 40px
+      display: 'flex',
+      flexDirection: 'column',
+      boxSizing: 'border-box', // ⬅️ ensures height respects padding
+      animation: `${isClosing ? 'drawerSlideOut' : 'drawerSlideIn'} 0.3s ease-out forwards`,
+    }}
+  >
+    <style>{`
+      @keyframes drawerSlideIn {
+        0% { transform: translateX(100%); opacity: 0.2; }
+        100% { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes drawerSlideOut {
+        0% { transform: translateX(0); opacity: 1; }
+        100% { transform: translateX(100%); opacity: 0; }
+      }
+    `}</style>
+
+    {/* Close Button, Header, etc. stay the same */}
               <button
-                onClick={() => setShowPopover(false)}
+                onClick={() => {
+                  setIsClosing(true);
+                  setTimeout(() => {
+                    setShowPopover(false);
+                    setIsClosing(false);
+                  }, 300);
+                }}
                 style={{
                   position: 'absolute',
                   top: 18,
                   right: 18,
                   background: 'transparent',
                   border: 'none',
-                  color: '#1976d2',
+                  color: '#183153',
                   fontSize: 28,
                   cursor: 'pointer',
                   fontWeight: 700,
@@ -361,52 +374,79 @@ function Header({ active }) {
               >
                 &times;
               </button>
-              <div style={{ fontWeight: 700, fontSize: 20, color: '#1976d2', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10, letterSpacing: 0.5 }}>
-                <svg width="32" height="32" viewBox="0 0 48 48" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                  <defs>
-                    <radialGradient id="goldGradient3" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#fffbe7" />
-                      <stop offset="60%" stopColor="#ffe066" />
-                      <stop offset="100%" stopColor="#d4af37" />
-                    </radialGradient>
-                  </defs>
-                  <circle cx="24" cy="24" r="22" fill="url(#goldGradient3)" stroke="#bfa12c" strokeWidth="2.5" />
-                  <circle cx="24" cy="24" r="18" fill="url(#goldGradient3)" />
-                  <text x="50%" y="60%" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif">Q</text>
-                </svg>
-                {coinBalance} Quanta Coins Earned
-              </div>
-              <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 8, color: '#183153', letterSpacing: 0.2 }}>Breakdown:</div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 8 }}>
-                {Object.entries(breakdown || defaultBreakdown).map(([key, value], i) => (
-                  <li key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 15, marginBottom: 2 }}>
-                    <span>
-                      {key === 'page_visits' ? 'Pages Visited' : key === 'form_submissions' ? 'Form Submissions' : key === 'faq_questions' ? 'Quantabot Questions' : key === 'faq_bonus' ? 'Quantabot Bonus' : key}
-                    </span>
-                    <span style={{ fontWeight: 700 }}>{value}</span>
-                  </li>
-                ))}
-              </ul>
-              <div style={{ fontSize: 13.5, color: '#1976d2', marginTop: 10, fontWeight: 500, textAlign: 'center', letterSpacing: 0.1 }}>
-                Earn coins by visiting new pages, submitting forms, and using Quantabot.
-              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+  {/* Header: Coin Balance */}
+  <div style={{
+    fontWeight: 700,
+    fontSize: 20,
+    color: '#183153',
+    marginBottom: 12,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    letterSpacing: 0.5
+  }}>
+    <svg width="32" height="32" viewBox="0 0 48 48" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+      <defs>
+        <radialGradient id="goldGradient3" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#fffbe7" />
+          <stop offset="60%" stopColor="#ffe066" />
+          <stop offset="100%" stopColor="#d4af37" />
+        </radialGradient>
+      </defs>
+      <circle cx="24" cy="24" r="22" fill="url(#goldGradient3)" stroke="#bfa12c" strokeWidth="2.5" />
+      <circle cx="24" cy="24" r="18" fill="url(#goldGradient3)" />
+      <text x="50%" y="60%" textAnchor="middle" fontSize="16" fontWeight="bold" fill="#bfa12c" fontFamily="Arial, sans-serif">Q</text>
+    </svg>
+    {coinBalance} Quanta Coins Earned
+  </div>
+
+  {/* Breakdown Section */}
+  <div style={{ flex: 1, overflowY: 'auto', paddingRight: 4 }}>
+    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+    {(Object.entries(breakdown || defaultBreakdown)).map(([key, value], i) => (
+  <li
+    key={i}
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      fontSize: 15,
+      marginBottom: 6,
+      paddingBottom: 2,
+      borderBottom: '1px solid rgba(24, 49, 83, 0.1)',
+    }}
+  >
+    <span style={{ color: '#183153' }}>
+      {key === 'page_visits' ? 'Pages Visited'
+        : key === 'form_submissions' ? 'Form Submissions'
+        : key === 'faq_questions' ? 'Quantabot Questions'
+        : key === 'faq_bonus' ? 'Quantabot Bonus'
+        : key}
+    </span>
+    <span style={{ fontWeight: 700, color: '#1976d2' }}>
+      {typeof value === 'object' && value !== null ? value.value : value}
+    </span>
+  </li>
+))}
+
+    </ul>
+  </div>
+
+  {/* Footer line: Stuck to bottom */}
+  <div style={{
+    fontSize: 13.5,
+    color: '#1976d2',
+    fontWeight: 500,
+    letterSpacing: 0.1,
+    textAlign: 'center',
+    paddingTop: 16,
+    marginTop: 'auto',
+    borderTop: '1px solid rgba(24, 49, 83, 0.1)'
+  }}>
+    Earn coins by visiting new pages, submitting forms, and using Quantabot.
+  </div>
+</div>
             </div>
-          )}
-          {/* Overlay to close drawer when clicking outside */}
-          {showPopover && (
-            <div
-              onClick={() => setShowPopover(false)}
-              style={{
-                position: 'fixed',
-                top: 72, // header height in px
-                left: 0,
-                width: '100vw',
-                height: 'calc(100vh - 72px)',
-                background: 'rgba(0,0,0,0.08)',
-                zIndex: 99998,
-                cursor: 'pointer',
-              }}
-            />
           )}
         </div>
       </div>
