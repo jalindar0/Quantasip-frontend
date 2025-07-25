@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styles from './Products.module.css';
+import { getDIGIPINFromLatLon, getLatLonFromDIGIPIN } from 'digipin';
+
 
 const carouselImages = [
   'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', // puzzle 1
@@ -63,6 +65,31 @@ const Products = () => {
   const productsRef = useRef(null);
   const cardRefs = useRef([]);
   const [scales, setScales] = useState([]);
+  const [digipinInput, setDigipinInput] = useState('');
+  const [latlonInput, setLatlonInput] = useState({ lat: '', lon: '' });
+  const [convertedCoords, setConvertedCoords] = useState('');
+  const [convertedDigipin, setConvertedDigipin] = useState('');
+  const [mode, setMode] = useState(null); // toggle state
+
+
+
+  const handleConvertToCoords = () => {
+    try {
+      const { latitude, longitude } = getLatLonFromDIGIPIN(digipinInput.replace(/-/g, ''));
+      setConvertedCoords(`${latitude}, ${longitude}`);
+    } catch (err) {
+      setConvertedCoords('Invalid DIGIPIN');
+    }
+  };
+  
+  const handleConvertToDigipin = () => {
+    try {
+      const code = getDIGIPINFromLatLon(parseFloat(latlonInput.lat), parseFloat(latlonInput.lon));
+      setConvertedDigipin(code);
+    } catch (err) {
+      setConvertedDigipin('Invalid coordinates');
+    }
+  };  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -189,6 +216,68 @@ const Products = () => {
           ))}
         </div>
       </section>
+      <section className={styles.conversionSection}>
+  <h2 style={{ textAlign: 'center' }}>DIGIPIN Converter</h2>
+
+  {/* Mode Toggle Buttons */}
+<div style={{ textAlign: 'center', marginBottom: 20 }}>
+  <button
+    onClick={() => setMode('pinToCoord')}
+    className={`${styles.toggleBtn} ${mode === 'pinToCoord' ? styles.activeToggle : ''}`}
+  >
+    DIGIPIN ➝ Coordinates
+  </button>
+  <button
+    onClick={() => setMode('coordToPin')}
+    className={`${styles.toggleBtn} ${mode === 'coordToPin' ? styles.activeToggle : ''}`}
+  >
+    Coordinates ➝ DIGIPIN
+  </button>
+</div>
+
+{/* Conditional Input Fields */}
+{mode && (
+  <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', padding: 20 }}>
+    {mode === 'pinToCoord' && (
+      <div style={{ minWidth: 280, textAlign: 'center' }}>
+        <input
+          type="text"
+          placeholder="Enter DIGIPIN"
+          value={digipinInput}
+          onChange={(e) => setDigipinInput(e.target.value)}
+          className={styles.inputField}
+        />
+        <button onClick={handleConvertToCoords} className={styles.convertBtn}>Convert</button>
+        {convertedCoords && <p><strong>Coordinates:</strong> {convertedCoords}</p>}
+      </div>
+    )}
+    {mode === 'coordToPin' && (
+      <div style={{ minWidth: 280, textAlign: 'center' }}>
+        <input
+          type="number"
+          step="any"
+          placeholder="Latitude"
+          value={latlonInput.lat}
+          onChange={(e) => setLatlonInput({ ...latlonInput, lat: e.target.value })}
+          className={styles.inputField}
+        />
+        <input
+          type="number"
+          step="any"
+          placeholder="Longitude"
+          value={latlonInput.lon}
+          onChange={(e) => setLatlonInput({ ...latlonInput, lon: e.target.value })}
+          className={styles.inputField}
+          style={{ marginTop: 8 }}
+        />
+        <button onClick={handleConvertToDigipin} className={styles.convertBtn}>Convert</button>
+        {convertedDigipin && <p><strong>DIGIPIN:</strong> {convertedDigipin}</p>}
+      </div>
+    )}
+  </div>
+)}
+</section>
+
     </div>
   );
 };

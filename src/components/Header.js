@@ -24,6 +24,7 @@ function Header({ active }) {
   const [breakdown, setBreakdown] = useState(null);
   const coinBalanceRef = useRef(coinBalance);
   const [isClosing, setIsClosing] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     coinBalanceRef.current = coinBalance;
@@ -99,12 +100,23 @@ function Header({ active }) {
     fetchCoinBalance();
     // eslint-disable-next-line
   }, [location.pathname]);
-
-  // Click outside to close popover
+  useEffect(() => {
+    if (showPopover) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showPopover]);
   useEffect(() => {
     if (!showPopover) return;
     function handleClick(e) {
-      if (!e.target.closest('.quanta-coin-popover') && !e.target.closest('.quanta-coin-single')) {
+      if (
+        !e.target.closest('.quanta-coin-drawer') &&
+        !e.target.closest('.quanta-coin-drawer')
+      ) {
         setShowPopover(false);
       }
     }
@@ -374,6 +386,78 @@ function Header({ active }) {
               >
                 &times;
               </button>
+              <button
+  onClick={() => setShowInfo(prev => !prev)}
+  title={showInfo ? 'Hide Info' : 'Show Info'}
+  style={{
+    position: 'absolute',
+    top: 18,
+    left: 18,
+    background: '#ffffffcc',
+    border: '1px solid #183153',
+    borderRadius: '50%',
+    color: '#183153',
+    width: 32,
+    height: 32,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 16,
+    fontWeight: 600,
+    cursor: 'pointer',
+    zIndex: 100000,
+    transition: 'background 0.2s ease'
+  }}
+  onMouseEnter={e => e.currentTarget.style.background = '#f0f7ff'}
+    onMouseLeave={e => e.currentTarget.style.background = '#ffffffcc'}
+>
+  i
+</button>
+{showInfo && (
+    <div
+      className="info-popup-content"
+      style={{
+        position: 'absolute',
+        top: 60,
+        left: 10,
+        maxWidth: 260,
+        background: '#e9f4ff',
+        border: '1.5px solid #1976d2',
+        borderRadius: 12,
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+        padding: '12px 16px',
+        color: '#183153',
+        fontSize: 14,
+        fontWeight: 500,
+        lineHeight: 1.5,
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: 8,
+      }}
+    >
+      <span>
+        Earn coins by visiting new pages, submitting forms, and using Quantabot.
+      </span>
+      <button
+          onClick={() => setShowInfo(false)}
+          title="Close"
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: '#183153',
+            fontSize: 18,
+            fontWeight: 700,
+            cursor: 'pointer',
+            padding: 0,
+            marginLeft: 8,
+            lineHeight: 1,
+          }}
+        >
+          &times;
+        </button>
+    </div>
+  )}
+
               <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
   {/* Header: Coin Balance */}
   <div style={{
@@ -401,8 +485,8 @@ function Header({ active }) {
     {coinBalance} Quanta Coins Earned
   </div>
 
-  {/* Breakdown Section */}
-  <div style={{ flex: 1, overflowY: 'auto', paddingRight: 4 }}>
+ {/* Breakdown Section */}
+ <div style={{ flex: 1, overflowY: 'auto', paddingRight: 4 }}>
     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
     {(Object.entries(breakdown || defaultBreakdown)).map(([key, value], i) => (
   <li
@@ -432,19 +516,7 @@ function Header({ active }) {
     </ul>
   </div>
 
-  {/* Footer line: Stuck to bottom */}
-  <div style={{
-    fontSize: 13.5,
-    color: '#1976d2',
-    fontWeight: 500,
-    letterSpacing: 0.1,
-    textAlign: 'center',
-    paddingTop: 16,
-    marginTop: 'auto',
-    borderTop: '1px solid rgba(24, 49, 83, 0.1)'
-  }}>
-    Earn coins by visiting new pages, submitting forms, and using Quantabot.
-  </div>
+
 </div>
             </div>
           )}

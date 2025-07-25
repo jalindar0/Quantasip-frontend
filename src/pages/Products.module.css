@@ -14,6 +14,69 @@
   overflow: hidden;
   padding: 0;
 }
+.conversionSection {
+  background: linear-gradient(135deg, #e3ecf7 0%, #183153 100%);
+  padding: 40px 20px;
+  margin-top: 40px;
+  border-radius: 12px;
+}
+.toggleBtn {
+  background: #ffffff;
+  color: #183153;
+  font-weight: 600;
+  border: 2px solid #183153;
+  padding: 10px 24px;
+  margin: 0 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.toggleBtn:hover {
+  background: #183153;
+  color: #fff;
+}
+
+.activeToggle {
+  background: #183153;
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid #183153;
+  padding: 10px 24px;
+  margin: 0 10px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.inputField {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.inputField:focus {
+  border-color: #007bff;
+}
+
+.convertBtn {
+  margin-top: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.convertBtn:hover {
+  background-color: #218838;
+}
+
 .heroSlideImg {
   position: absolute;
   top: 0;
