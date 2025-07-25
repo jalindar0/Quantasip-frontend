@@ -9,6 +9,7 @@ export default function CookieConsent() {
   const [animateOut, setAnimateOut] = useState(false);
 
   useEffect(() => {
+    setVisible(true)
     if (localStorage.getItem(COOKIE_KEY) !== "true") {
       setTimeout(() => setVisible(true), 300);
     }
