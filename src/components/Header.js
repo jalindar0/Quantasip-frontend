@@ -397,12 +397,12 @@ function Header({ active }) {
     border: '1px solid #183153',
     borderRadius: '50%',
     color: '#183153',
-    width: 32,
-    height: 32,
+    width: 24,
+    height: 24,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 600,
     cursor: 'pointer',
     zIndex: 100000,
@@ -458,7 +458,7 @@ function Header({ active }) {
     </div>
   )}
 
-              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%', marginTop: '5px' }}>
   {/* Header: Coin Balance */}
   <div style={{
     fontWeight: 700,
