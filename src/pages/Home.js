@@ -86,13 +86,8 @@ const testimonials = [
     text: 'QuantaSIP has been an invaluable partner in our infrastructure development projects. Their expertise in Cadastral Mapping and Geospatial Services has allowed us to accurately plan and execute our projects, and their quick learning and ability to scale up the team has been impressive. We highly recommend QuantaSIP for any project that requires innovative GISolutions',
   },
   {
-    name: 'Genesys International Ltd',
-    title: 'Mr Sagar',
-    text: 'We have worked with QuantaSIP on several projects, and their professionalism and attention to detail have been outstanding. Their team of experts has a strong understanding of mapping technology, and their capacity to quickly adapt to our project needs has been impressive. We look forward to continuing our partnership with QuantaSIP for future projects.',
-  },
-  {
     name: 'Satsure',
-    title: 'Ms Rashmi',
+    title: 'Mr. Hiren',
     text: 'QuantaSIP has been an integral part of our agriculture projects, providing accurate survey and mapping services that have allowed us to optimize our operations. Their team of professionals has a deep understanding of the industry, and their expertise in geospatial services has been invaluable. We highly recommend QuantaSIP for any project that requires reliable and innovative GISolutions.',
   },
 ];
@@ -339,17 +334,29 @@ function Home() {
                     <a href="https://www.reliancegeneral.co.in/" target="_blank" rel="noopener noreferrer">
                       <img src="/uploads/2024/08/images-1.png" alt="Reliance General Insurance Logo" />
                     </a>
+                    <a href="https://www.bajajallianz.com/" target="_blank" rel="noopener noreferrer">
+                      <img src="/uploads/2024/09/bajaj_allianz.png" alt="Bajaj Allianz Logo" />
+                    </a>
+                    <a href="https://www.libertyinsurance.in/" target="_blank" rel="noopener noreferrer">
+                      <img src="/uploads/2024/09/liberty_insurance.png" alt="Bajaj Allianz Logo" />
+                    </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
                 <div className={styles.industryGroup}>
-                  <h5>Agri-Innovator Solutions</h5>
+                  <h5>Agri-Tech / Innovator Solutions</h5>
                   <div className={styles.industryLogos}>
                     <a href="https://agrevolution.in/" target="_blank" rel="noopener noreferrer">
                       <img src="/uploads/2024/09/DeHaat.png" alt="DeHaat Logo" />
                     </a>
                     <a href="https://farmonaut.com/" target="_blank" rel="noopener noreferrer">
                       <img src="/uploads/2024/08/Farmonaut_Logo_Black.png" alt="Farmonaut Logo" />
+                    </a>
+                    <a href="https://www.satsure.co/" target="_blank" rel="noopener noreferrer">
+                      <img src="/uploads/2024/08/Satsure_Logo-scaled-e1725512096298.jpg" alt="Satsure Logo" />
+                    </a>
+                    <a href="https://www.skymetweather.com/" target="_blank" rel="noopener noreferrer">
+                      <img src="/uploads/2024/08/afaqs_2023-04_892fde07-f530-4653-a60e-acf92fd98e7c_Skymet_New_Logo__Beyond_Weather.webp" alt="Skymet Logo" />
                     </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
@@ -363,27 +370,6 @@ function Home() {
                     <a href="https://www.igenesys.com/" target="_blank" rel="noopener noreferrer">
                       <img src="/uploads/2024/08/images-2.png" alt="Genesys Logo" />
                     </a>
-                  </div>
-                  <div className={styles.industryMore}>…and many more</div>
-                </div>
-              </div>
-              <div className={styles.industriesGridRow + ' ' + styles.industriesGridRowBottom}>
-                {/* Second row: 2 columns, centered under the first row */}
-                <div className={styles.industryGroup}>
-                  <h5>Agri-Tech Innovations</h5>
-                  <div className={styles.industryLogos}>
-                    <a href="https://www.satsure.co/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/Satsure_Logo-scaled-e1725512096298.jpg" alt="Satsure Logo" />
-                    </a>
-                    <a href="https://www.skymetweather.com/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/afaqs_2023-04_892fde07-f530-4653-a60e-acf92fd98e7c_Skymet_New_Logo__Beyond_Weather.webp" alt="Skymet Logo" />
-                    </a>
-                  </div>
-                  <div className={styles.industryMore}>…and many more</div>
-                </div>
-                <div className={styles.industryGroup}>
-                  <h5>Surveying Services</h5>
-                  <div className={styles.industryLogos}>
                     <a href="https://www.mahametro.org/" target="_blank" rel="noopener noreferrer">
                       <img src="/uploads/2024/09/logo-2-e1725512065302.png" alt="Maha Metro Logo" />
                     </a>
@@ -393,6 +379,9 @@ function Home() {
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
+              </div>
+              <div className={styles.industriesGridRow + ' ' + styles.industriesGridRowBottom}>
+          
               </div>
             </div>
           </section>

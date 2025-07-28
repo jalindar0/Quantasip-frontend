@@ -5,19 +5,15 @@ const Footer = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
-
   const validateEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
   const validatePhone = (phone) => {
     return /^[0-9()#&+*\-=.]{10,}$/.test(phone);
   };
-
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async e => {
     e.preventDefault();
     setError('');
@@ -116,5 +112,4 @@ const Footer = () => {
   </footer>
 );
 };
-
 export default Footer; 

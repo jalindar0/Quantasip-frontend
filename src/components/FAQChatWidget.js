@@ -352,7 +352,7 @@ function FAQChatWidget() {
           width: 100%;
           text-align: left;
           background: rgba(227,242,253,0.7);
-          color: #1976d2;
+          color: #183153;
           border: 1px solid #90caf9;
           border-radius: 6px;
           padding: 7px 12px;
@@ -367,7 +367,7 @@ function FAQChatWidget() {
           transform: translateY(-2px) scale(1.03);
         }
         .faq-fab {
-          background: linear-gradient(135deg, #1976d2 60%, #90caf9 100%);
+          background: linear-gradient(135deg, #183153 60%, #90caf9 100%);
           color: #fff;
           border: none;
           border-radius: 16px;
