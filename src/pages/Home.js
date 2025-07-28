@@ -520,7 +520,7 @@ function Home() {
                 <p>Our team brings years of experience in cadastral mapping, land records, and geospatial solutions for diverse industries.</p>
               </div>
               <div className={styles.whyCard}>
-                <svg width="48" height="48" fill="none" stroke="#1565c0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="8" width="32" height="32" rx="8"/><path d="M16 24h16M24 16v16"/></svg>
+                <svg width="48" height="48" fill="none" stroke="#183153" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="8" width="32" height="32" rx="8"/><path d="M16 24h16M24 16v16"/></svg>
                 <h3>Cutting-Edge Technology</h3>
                 <p>We leverage the latest GIS software, satellite imagery, and data analytics to deliver accurate, actionable insights.</p>
               </div>
