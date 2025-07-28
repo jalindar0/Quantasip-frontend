@@ -423,9 +423,10 @@ function Home() {
                   style={{ display: testimonialIdx === i ? 'block' : 'none' }}
                 >
                   <cite>
-                    <span>{t.name}</span>
-                    <span>{t.title}</span>
-                  </cite>
+  <span className={styles.testimonialName}>{t.name}</span>
+  <span className={styles.testimonialTitle}>{t.title}</span>
+</cite>
+
                   <div className={styles.testimonialText}>{t.text}</div>
                 </div>
               ))}

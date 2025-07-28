@@ -321,7 +321,7 @@ const Products = () => {
     <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ height: '400px', width: '60%' }}>
       <TileLayer
         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-        attribution='&copy; <a href="https://www.esri.com/">Esri</a> — Satellite imagery'
+        attribution='&copy; <a>QuantaSIP Pvt. Ltd.</a> — Satellite imagery'
       />
       {mode === 'coordToPin' && <MapClickHandler onMapClick={handleMapClick} />}
       {mapCoords && (
