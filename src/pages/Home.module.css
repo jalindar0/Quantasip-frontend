@@ -547,7 +547,7 @@
 }
 
 .mainContent {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 120px;
 }
@@ -965,10 +965,11 @@
 /* Industries/Partners Section */
 .industriesSection {
   padding: 48px 0 24px 0;
-  background: rgba(255,255,255,0.85);
+  background: linear-gradient(135deg, #e3ecf7 0%, #b7c7d7 100%);
   text-align: center;
   margin-bottom: 32px;
   border-radius: 18px;
+  max-width: 1440px;
   box-shadow: 0 2px 16px rgba(44, 62, 80, 0.04);
   margin-top: 64px;
 }
@@ -976,7 +977,7 @@
   font-size: 2.8rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: #333;
+  color: #183153;
   margin-bottom: 32px;
   display: flex;
   flex-wrap: wrap;
@@ -985,7 +986,7 @@
   gap: 8px;
 }
 .industriesHeadline .animated {
-  color: #b2c7c2;
+  color: #183153;
   font-weight: 700;
   margin: 0 8px;
   min-width: 160px;
@@ -1028,18 +1029,18 @@
   margin: 0 auto;
 }
 .industryGroup h5 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 18px;
-  color: #333;
+  color: #183153;
 }
 .industryLogos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 20px; /* Adjust spacing between logos */
+  justify-items: center; /* Optional: center logos horizontally */
+  align-items: center;   /* Optional: center logos vertically */
+  margin-top: 15px;
 }
 .industryLogos img {
   height: 40px;
@@ -1056,11 +1057,27 @@
   transform: translateY(-4px) scale(1.04);
 }
 .industryMore {
-  color: #777;
+  color: #183153;
   font-family: Arial, sans-serif;
   font-size: 1rem;
   margin-top: 4px;
 }
+.industryGroup {
+  flex: 1;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.industriesGridRow {
+  display: flex;
+  border-top: 1px solid #183153; /* Optional */
+  border-bottom: 1px solid #183153; /* Optional */
+}
+
+.industriesGridRow .industryGroup:not(:last-child) {
+  border-right: 1px solid #183153;
+}
+
 
 .companyIntroSection {
   width: 100%;

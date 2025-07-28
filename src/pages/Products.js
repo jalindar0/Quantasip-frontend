@@ -1,6 +1,37 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 import styles from './Products.module.css';
 import { getDIGIPINFromLatLon, getLatLonFromDIGIPIN } from 'digipin';
+import { useMapEvent } from 'react-leaflet';
+import { useMapEvents, CircleMarker } from 'react-leaflet';
+
+
+const MapClickHandler = ({ onMapClick }) => {
+  useMapEvent('click', onMapClick);
+  return null;
+};
+
+// Fix default icon issue in Leaflet with Webpack
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
+const ChangeMapView = ({ coords }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (coords && coords.lat && coords.lon) {
+      map.setView([coords.lat, coords.lon], 14);
+    }
+  }, [coords]);
+  return null;
+};
+// Handle map click to convert to DIGIPIN
+
+
 
 
 const carouselImages = [
@@ -70,6 +101,16 @@ const Products = () => {
   const [convertedCoords, setConvertedCoords] = useState('');
   const [convertedDigipin, setConvertedDigipin] = useState('');
   const [mode, setMode] = useState(null); // toggle state
+  const [mapCoords, setMapCoords] = useState(null);
+
+  const handleMapClick = (e) => {
+    if (mode !== 'coordToPin') return; // Only respond in correct mode
+    const { lat, lng } = e.latlng;
+    const code = getDIGIPINFromLatLon(lat, lng);
+    setLatlonInput({ lat, lon: lng });
+    setConvertedDigipin(code);
+    setMapCoords({ lat, lon: lng });
+  };
 
 
 
@@ -77,8 +118,10 @@ const Products = () => {
     try {
       const { latitude, longitude } = getLatLonFromDIGIPIN(digipinInput.replace(/-/g, ''));
       setConvertedCoords(`${latitude}, ${longitude}`);
+      setMapCoords({ lat: latitude, lon: longitude });
     } catch (err) {
       setConvertedCoords('Invalid DIGIPIN');
+      setMapCoords(null);
     }
   };
   
@@ -86,10 +129,13 @@ const Products = () => {
     try {
       const code = getDIGIPINFromLatLon(parseFloat(latlonInput.lat), parseFloat(latlonInput.lon));
       setConvertedDigipin(code);
+      setMapCoords({ lat: parseFloat(latlonInput.lat), lon: parseFloat(latlonInput.lon) });
     } catch (err) {
       setConvertedDigipin('Invalid coordinates');
+      setMapCoords(null);
     }
-  };  
+  };
+    
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -117,6 +163,7 @@ const Products = () => {
       productsRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  
 
   return (
     <div className={styles.productsPage}>
@@ -219,64 +266,90 @@ const Products = () => {
       <section className={styles.conversionSection}>
   <h2 style={{ textAlign: 'center' }}>DIGIPIN Converter</h2>
 
-  {/* Mode Toggle Buttons */}
-<div style={{ textAlign: 'center', marginBottom: 20 }}>
-  <button
-    onClick={() => setMode('pinToCoord')}
-    className={`${styles.toggleBtn} ${mode === 'pinToCoord' ? styles.activeToggle : ''}`}
-  >
-    DIGIPIN ➝ Coordinates
-  </button>
-  <button
-    onClick={() => setMode('coordToPin')}
-    className={`${styles.toggleBtn} ${mode === 'coordToPin' ? styles.activeToggle : ''}`}
-  >
-    Coordinates ➝ DIGIPIN
-  </button>
-</div>
+  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 20, padding: 20 }}>
+    {/* Left Column: Inputs */}
+    <div style={{ flex: '1 1 45%', maxWidth: '40%' }}>
+      {/* Toggle Buttons */}
+      <div style={{ textAlign: 'center', marginBottom: 20 }}>
+        <button
+          onClick={() => setMode('pinToCoord')}
+          className={`${styles.toggleBtn} ${mode === 'pinToCoord' ? styles.activeToggle : ''}`}
+        >
+          DIGIPIN ➝ Coordinates
+        </button>
+        <button
+          onClick={() => setMode('coordToPin')}
+          className={`${styles.toggleBtn} ${mode === 'coordToPin' ? styles.activeToggle : ''}`}
+        >
+          Coordinates ➝ DIGIPIN
+        </button>
+      </div>
 
-{/* Conditional Input Fields */}
-{mode && (
-  <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', padding: 20 }}>
-    {mode === 'pinToCoord' && (
-      <div style={{ minWidth: 280, textAlign: 'center' }}>
-        <input
-          type="text"
-          placeholder="Enter DIGIPIN"
-          value={digipinInput}
-          onChange={(e) => setDigipinInput(e.target.value)}
-          className={styles.inputField}
-        />
-        <button onClick={handleConvertToCoords} className={styles.convertBtn}>Convert</button>
-        {convertedCoords && <p><strong>Coordinates:</strong> {convertedCoords}</p>}
-      </div>
-    )}
-    {mode === 'coordToPin' && (
-      <div style={{ minWidth: 280, textAlign: 'center' }}>
-        <input
-          type="number"
-          step="any"
-          placeholder="Latitude"
-          value={latlonInput.lat}
-          onChange={(e) => setLatlonInput({ ...latlonInput, lat: e.target.value })}
-          className={styles.inputField}
-        />
-        <input
-          type="number"
-          step="any"
-          placeholder="Longitude"
-          value={latlonInput.lon}
-          onChange={(e) => setLatlonInput({ ...latlonInput, lon: e.target.value })}
-          className={styles.inputField}
-          style={{ marginTop: 8 }}
-        />
-        <button onClick={handleConvertToDigipin} className={styles.convertBtn}>Convert</button>
-        {convertedDigipin && <p><strong>DIGIPIN:</strong> {convertedDigipin}</p>}
-      </div>
-    )}
+      {/* Conditional Inputs */}
+      {mode && (
+        <div style={{ textAlign: 'center' }}>
+          {mode === 'pinToCoord' && (
+            <div style={{ minWidth: 280 }}>
+              <input
+                type="text"
+                placeholder="Enter DIGIPIN"
+                value={digipinInput}
+                onChange={(e) => setDigipinInput(e.target.value)}
+                className={styles.inputField}
+              />
+              <button onClick={handleConvertToCoords} className={styles.convertBtn}>Convert</button>
+              {convertedCoords && <p><strong>Coordinates:</strong> {convertedCoords}</p>}
+            </div>
+          )}
+          {mode === 'coordToPin' && (
+            <div style={{ minWidth: 280 }}>
+              <p>Click on the map to select coordinates.</p>
+              {latlonInput.lat && latlonInput.lon && (
+                <>
+                  <p><strong>Latitude:</strong> {latlonInput.lat.toFixed(6)}</p>
+                  <p><strong>Longitude:</strong> {latlonInput.lon.toFixed(6)}</p>
+                </>
+              )}
+              {convertedDigipin && <p><strong>DIGIPIN:</strong> {convertedDigipin}</p>}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+
+    {/* Right Column: Map */}
+    <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ height: '400px', width: '60%' }}>
+      <TileLayer
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        attribution='&copy; <a href="https://www.esri.com/">Esri</a> — Satellite imagery'
+      />
+      {mode === 'coordToPin' && <MapClickHandler onMapClick={handleMapClick} />}
+      {mapCoords && (
+        <CircleMarker
+        center={[mapCoords.lat, mapCoords.lon]}
+        radius={8}
+        pathOptions={{
+          color: 'red',
+          fillColor: 'transparent',
+          fillOpacity: 0,
+          weight: 2,
+        }}
+      >
+        <Tooltip
+          direction="top"
+          offset={[0, -8]}
+          permanent
+          opacity={1}
+          className="custom-tooltip"
+        >
+        <b>{convertedDigipin}</b>
+        </Tooltip>
+      </CircleMarker>
+      )}
+    </MapContainer>
   </div>
-)}
 </section>
+
 
     </div>
   );

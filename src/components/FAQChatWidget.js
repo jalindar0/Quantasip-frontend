@@ -288,9 +288,9 @@ function FAQChatWidget() {
           40% { opacity: 1; transform: scale(1.4); }
         }
         @keyframes borderGlow {
-          0% { box-shadow: 0 0 4px 0.5px #90caf9, 0 0 0 0 #1976d2; }
-          50% { box-shadow: 0 0 8px 2px #1976d2, 0 0 0 0 #90caf9; }
-          100% { box-shadow: 0 0 4px 0.5px #90caf9, 0 0 0 0 #1976d2; }
+          0% { box-shadow: 0 0 4px 0.5px #90caf9, 0 0 0 0 #183153; }
+          50% { box-shadow: 0 0 8px 2px #183153, 0 0 0 0 #90caf9; }
+          100% { box-shadow: 0 0 4px 0.5px #90caf9, 0 0 0 0 #183153; }
         }
         .faq-glass {
           background: rgba(227, 242, 253, 0.65);
@@ -300,7 +300,7 @@ function FAQChatWidget() {
           overflow-x: hidden;
         }
         .faq-header {
-          background: linear-gradient(90deg, #1976d2 60%, #90caf9 100%);
+          background: linear-gradient(90deg, #183153 60%, #90caf9 100%);
           color: #fff;
           padding: 16px 20px;
           font-weight: 700;
@@ -339,12 +339,12 @@ function FAQChatWidget() {
           font-size: 14px;
           margin: 10px 0;
           width: 100%;
-          color: #1976d2;
+          color: #183153;
           outline: none;
           transition: border 0.2s, box-shadow 0.2s;
         }
         .faq-search:focus {
-          border: 1.5px solid #1976d2;
+          border: 1.5px solid #183153;
           box-shadow: 0 0 0 2px #90caf9;
         }
         .faq-faq-btn {
