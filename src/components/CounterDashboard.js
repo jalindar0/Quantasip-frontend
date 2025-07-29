@@ -3,10 +3,9 @@ import CountUp from 'react-countup';
 import styles from './CounterDashboard.module.css';
 
 const counters = [
-  { label: 'Happy Users', value: 5000 },
-  { label: 'Trusted Clients', value: 200 },
-  { label: 'Projects Completed', value: 300 },
-  { label: 'Cities Covered', value: 150 },
+  { label: 'Total GeoKYC Processed', value: 1561427 },
+  { label: 'Area Covered (Sq.km.)', value: 2198965.5678 },
+  { label: 'LGD Covered (%)', value: 90 },
 ];
 
 const CounterDashboard = () => {

@@ -218,7 +218,7 @@ function Home() {
       payload.otherService = otherService;
     }
     try {
-      const res = await fetch('http://localhost:5005/api/get-in-touch', {
+      const res = await fetch('https://qb.quantasip.com/api/get-in-touch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -234,7 +234,7 @@ function Home() {
           userId = 'user_' + Math.random().toString(36).substr(2, 9);
           localStorage.setItem('quanta_user_id', userId);
         }
-        const coinRes = await fetch('http://localhost:5005/api/award-coins', {
+        const coinRes = await fetch('https://qb.quantasip.com/api/award-coins', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id: userId, coins: 5, source: 'form_submission' }),
@@ -262,7 +262,7 @@ function Home() {
   useEffect(() => {
     // Track visit and award coin
     const userId = getOrCreateUserId();
-    fetch('http://localhost:5005/api/track-visit', {
+    fetch('https://qb.quantasip.com/api/track-visit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId }),
@@ -312,6 +312,9 @@ function Home() {
               />
             </svg>
           </a>
+          <div className={styles.counterWrapper}>
+    <CounterDashboard />
+  </div>
         </div>
       </section>
 
@@ -390,7 +393,6 @@ function Home() {
 
           {/* Company Intro Section - aligned right */}
           <section className={styles.companyIntroSection}>
-          <CounterDashboard />
             <div className={styles.companyIntroContent}>
               <h2>Building a Better Tomorrow with Innovative GIS Solutions</h2>
               <p>QuantaSip GIS Pvt Ltd is your go-to EPC contractor for Railway, Highway, Powerline, and Irrigation Projects. Our team of 80+ staff, including Geo Spatial Analysts, developers, data analysts, and SMEs, have completed Google Map Data development, Pan India Highway data collection, and Geo Positioned Data Collection for all power towers of MSETCL. We have been recognized as one of the top 10 GIS companies in India by Business Outlook. Our partnership with NHAI for a GIS-enabled toll system makes us a pan-India vendor. Trust us to deliver quality services that exceed your expectations.</p>

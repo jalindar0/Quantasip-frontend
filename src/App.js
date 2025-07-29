@@ -47,7 +47,7 @@ function useTrackPageVisit(pathname) {
     const pageKey = `visited_${pathname}`;
     if (!sessionStorage.getItem(pageKey) && !hasTrackedRef.current[pageKey]) {
       hasTrackedRef.current[pageKey] = true; // Prevent double call
-      fetch('http://localhost:5005/api/track-visit', {
+      fetch('https://qb.quantasip.com/api/track-visit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: userId, page: pathname }),
@@ -123,6 +123,21 @@ function AppContent() {
       <Footer />
       <FAQChatWidget />
       <CookieConsent />
+      <a
+  style={{
+    position: 'fixed',
+    bottom: 0,
+    left: '10px',
+    opacity: 0,
+    transition: 'opacity 0.3s',
+    fontSize: '12px',
+    zIndex: 10,
+  }}
+  onMouseEnter={e => e.currentTarget.style.opacity = 1}
+  onMouseLeave={e => e.currentTarget.style.opacity = 0}
+>
+  👨‍💻 Created By Arpit Singh
+</a>
     </>
   );
 }

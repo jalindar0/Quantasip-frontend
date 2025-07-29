@@ -66,7 +66,7 @@ function Contact() {
       payload.otherService = otherService;
     }
     try {
-      const res = await fetch('http://localhost:5005/api/get-in-touch', {
+      const res = await fetch('https://qb.quantasip.com/api/get-in-touch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -82,7 +82,7 @@ function Contact() {
           userId = 'user_' + Math.random().toString(36).substr(2, 9);
           localStorage.setItem('quanta_user_id', userId);
         }
-        const coinRes = await fetch('http://localhost:5005/api/award-coins', {
+        const coinRes = await fetch('https://qb.quantasip.com/api/award-coins', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id: userId, coins: 5, source: 'form_submission' }),

@@ -51,7 +51,7 @@ export default function CookieConsent() {
   }
   
   function sendConsentData(user_id, timestamp, latitude, longitude) {
-    fetch("http://localhost:5005/api/cookie-accept", {
+    fetch("https://qb.quantasip.com/api/cookie-accept", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

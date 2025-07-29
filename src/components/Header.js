@@ -68,7 +68,7 @@ function Header({ active }) {
   // Fetch coin balance (refactored for reuse)
   const fetchCoinBalance = () => {
     const userId = getOrCreateUserId();
-    fetch(`http://localhost:5005/api/coin-balance/${userId}`)
+    fetch(`https://qb.quantasip.com/api/coin-balance/${userId}`)
       .then(res => res.json())
       .then(data => {
         // Only animate if the balance actually increased (using module-level variable)
