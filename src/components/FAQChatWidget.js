@@ -170,7 +170,7 @@ function FAQChatWidget() {
   const awardFaqCoin = async (count) => {
     const userId = getOrCreateUserId();
     // 1 coin for each question
-    await fetch('http://localhost:5005/api/award-coins', {
+    await fetch('https://qb.quantasip.com/api/award-coins', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId, coins: count, source: 'faq_question' }),
@@ -180,7 +180,7 @@ function FAQChatWidget() {
   // Award bonus coins (10) if more than 10 questions and not already given
   const awardFaqBonus = async () => {
     const userId = getOrCreateUserId();
-    await fetch('http://localhost:5005/api/award-coins', {
+    await fetch('https://qb.quantasip.com/api/award-coins', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId, coins: 10, source: 'faq_bonus' }),
@@ -255,7 +255,7 @@ function FAQChatWidget() {
     } else {
       // Send to backend as unanswered question
       try {
-        await fetch('http://localhost:5005/api/faq-question', {
+        await fetch('https://qb.quantasip.com/api/faq-question', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question }),
