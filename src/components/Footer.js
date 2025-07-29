@@ -30,7 +30,7 @@ const Footer = () => {
     }
     console.log(form);
     try {
-      const res = await fetch('http://localhost:5005/api/contact', {
+      const res = await fetch('https://qb.quantasip.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -44,7 +44,7 @@ const Footer = () => {
           userId = 'user_' + Math.random().toString(36).substr(2, 9);
           localStorage.setItem('quanta_user_id', userId);
         }
-        const coinRes = await fetch('http://localhost:5005/api/award-coins', {
+        const coinRes = await fetch('https://qb.quantasip.com/api/award-coins', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id: userId, coins: 5, source: 'form_submission' }),
