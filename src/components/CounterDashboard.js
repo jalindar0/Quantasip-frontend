@@ -15,6 +15,7 @@ const CounterDashboard = () => {
         <div key={index} className={styles.counterCard}>
           <div className={styles.counterValue}>
             <CountUp start={0} end={counter.value} duration={2} separator="," />
+            <a>+</a>
           </div>
           <div className={styles.counterLabel}>{counter.label}</div>
         </div>
