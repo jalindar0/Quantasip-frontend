@@ -106,6 +106,15 @@
 .scrollDownIcon:hover {
   opacity: 1;
 }
+.companyIntroContainer {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
 
 .partnersSection {
   padding: 48px 0 24px 0;

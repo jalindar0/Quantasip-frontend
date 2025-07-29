@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Home.module.css';
-import GlobeAnimation from '../components/GlobeAnimation';
+import CounterDashboard from '../components/CounterDashboard';
+
 
 // Slideshow images
 const slideshowImages = [
@@ -386,8 +387,10 @@ function Home() {
             </div>
           </section>
 
+
           {/* Company Intro Section - aligned right */}
           <section className={styles.companyIntroSection}>
+          <CounterDashboard />
             <div className={styles.companyIntroContent}>
               <h2>Building a Better Tomorrow with Innovative GIS Solutions</h2>
               <p>QuantaSip GIS Pvt Ltd is your go-to EPC contractor for Railway, Highway, Powerline, and Irrigation Projects. Our team of 80+ staff, including Geo Spatial Analysts, developers, data analysts, and SMEs, have completed Google Map Data development, Pan India Highway data collection, and Geo Positioned Data Collection for all power towers of MSETCL. We have been recognized as one of the top 10 GIS companies in India by Business Outlook. Our partnership with NHAI for a GIS-enabled toll system makes us a pan-India vendor. Trust us to deliver quality services that exceed your expectations.</p>
