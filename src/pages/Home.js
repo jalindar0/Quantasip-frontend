@@ -275,7 +275,7 @@ function Home() {
       <section
         className={styles.heroSection}
         ref={heroRef}
-        style={{ height: '100vh', minHeight: '100vh', overflow: 'hidden' }}
+        style={{ height: "100vh", minHeight: "100vh", overflow: "hidden" }}
       >
         {slideshowImages.map((img, i) => (
           <img
@@ -283,7 +283,7 @@ function Home() {
             src={img}
             alt="slideshow"
             className={styles.heroSlideImg}
-            style={{ opacity: slide === i ? 1 : 0, transition: 'opacity 0.5s' }}
+            style={{ opacity: slide === i ? 1 : 0, transition: "opacity 0.5s" }}
             draggable={false}
           />
         ))}
@@ -313,8 +313,8 @@ function Home() {
             </svg>
           </a>
           <div className={styles.counterWrapper}>
-    <CounterDashboard />
-  </div>
+            <CounterDashboard />
+          </div>
         </div>
       </section>
 
@@ -324,7 +324,11 @@ function Home() {
           {/* Partner Logos - Industries We Serve (Styled Grid) */}
           <section className={styles.industriesSection}>
             <div className={styles.industriesHeadline}>
-              Our <span className={styles.animated}>{industriesWords[industriesWordIdx]}</span> Across Industries
+              Our{" "}
+              <span className={styles.animated}>
+                {industriesWords[industriesWordIdx]}
+              </span>{" "}
+              Across Industries
             </div>
             <div className={styles.industriesGridRows}>
               <div className={styles.industriesGridRow}>
@@ -332,17 +336,45 @@ function Home() {
                 <div className={styles.industryGroup}>
                   <h5>BFSI Solutions</h5>
                   <div className={styles.industryLogos}>
-                    <a href="https://www.npci.org.in/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/NPCI_logo.svg.png" alt="NPCI Logo" />
+                    <a
+                      href="https://www.npci.org.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/NPCI_logo.svg.png"
+                        alt="NPCI Logo"
+                      />
                     </a>
-                    <a href="https://www.reliancegeneral.co.in/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/images-1.png" alt="Reliance General Insurance Logo" />
+                    <a
+                      href="https://www.reliancegeneral.co.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/images-1.png"
+                        alt="Reliance General Insurance Logo"
+                      />
                     </a>
-                    <a href="https://www.bajajallianz.com/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/09/bajaj_allianz.png" alt="Bajaj Allianz Logo" />
+                    <a
+                      href="https://www.bajajallianz.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/09/bajaj_allianz.png"
+                        alt="Bajaj Allianz Logo"
+                      />
                     </a>
-                    <a href="https://www.libertyinsurance.in/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/09/liberty_insurance.png" alt="Bajaj Allianz Logo" />
+                    <a
+                      href="https://www.libertyinsurance.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/09/liberty_insurance.png"
+                        alt="Bajaj Allianz Logo"
+                      />
                     </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
@@ -350,17 +382,45 @@ function Home() {
                 <div className={styles.industryGroup}>
                   <h5>Agri-Tech / Innovator Solutions</h5>
                   <div className={styles.industryLogos}>
-                    <a href="https://agrevolution.in/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/09/DeHaat.png" alt="DeHaat Logo" />
+                    <a
+                      href="https://ayekart.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/09/ayekart.png"
+                        alt="DeHaat Logo"
+                      />
                     </a>
-                    <a href="https://farmonaut.com/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/Farmonaut_Logo_Black.png" alt="Farmonaut Logo" />
+                    <a
+                      href="https://farmonaut.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/Farmonaut_Logo_Black.png"
+                        alt="Farmonaut Logo"
+                      />
                     </a>
-                    <a href="https://www.satsure.co/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/Satsure_Logo-scaled-e1725512096298.jpg" alt="Satsure Logo" />
+                    <a
+                      href="https://www.satsure.co/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/Satsure_Logo-scaled-e1725512096298.jpg"
+                        alt="Satsure Logo"
+                      />
                     </a>
-                    <a href="https://www.skymetweather.com/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/afaqs_2023-04_892fde07-f530-4653-a60e-acf92fd98e7c_Skymet_New_Logo__Beyond_Weather.webp" alt="Skymet Logo" />
+                    <a
+                      href="https://www.skymetweather.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/afaqs_2023-04_892fde07-f530-4653-a60e-acf92fd98e7c_Skymet_New_Logo__Beyond_Weather.webp"
+                        alt="Skymet Logo"
+                      />
                     </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
@@ -368,34 +428,76 @@ function Home() {
                 <div className={styles.industryGroup}>
                   <h5>Geospatial and GIS Services</h5>
                   <div className={styles.industryLogos}>
-                    <a href="https://www.mahatransco.in/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/images.png" alt="MahaTransco Logo" />
+                    <a
+                      href="https://www.mahatransco.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/images.png"
+                        alt="MahaTransco Logo"
+                      />
                     </a>
-                    <a href="https://www.igenesys.com/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/images-2.png" alt="Genesys Logo" />
+                    <a
+                      href="https://www.igenesys.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/images-2.png"
+                        alt="Genesys Logo"
+                      />
                     </a>
-                    <a href="https://www.mahametro.org/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/09/logo-2-e1725512065302.png" alt="Maha Metro Logo" />
+                    <a
+                      href="https://www.mahametro.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/09/logo-2-e1725512065302.png"
+                        alt="Maha Metro Logo"
+                      />
                     </a>
-                    <a href="https://www.npci.org.in/" target="_blank" rel="noopener noreferrer">
-                      <img src="/uploads/2024/08/NPCI_logo.svg.png" alt="NPCI Logo" />
+                    <a
+                      href="https://www.npci.org.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/uploads/2024/08/NPCI_logo.svg.png"
+                        alt="NPCI Logo"
+                      />
                     </a>
                   </div>
                   <div className={styles.industryMore}>…and many more</div>
                 </div>
               </div>
-              <div className={styles.industriesGridRow + ' ' + styles.industriesGridRowBottom}>
-          
-              </div>
+              <div
+                className={
+                  styles.industriesGridRow +
+                  " " +
+                  styles.industriesGridRowBottom
+                }
+              ></div>
             </div>
           </section>
-
 
           {/* Company Intro Section - aligned right */}
           <section className={styles.companyIntroSection}>
             <div className={styles.companyIntroContent}>
               <h2>Building a Better Tomorrow with Innovative GIS Solutions</h2>
-              <p>QuantaSip GIS Pvt Ltd is your go-to EPC contractor for Railway, Highway, Powerline, and Irrigation Projects. Our team of 80+ staff, including Geo Spatial Analysts, developers, data analysts, and SMEs, have completed Google Map Data development, Pan India Highway data collection, and Geo Positioned Data Collection for all power towers of MSETCL. We have been recognized as one of the top 10 GIS companies in India by Business Outlook. Our partnership with NHAI for a GIS-enabled toll system makes us a pan-India vendor. Trust us to deliver quality services that exceed your expectations.</p>
+              <p>
+                QuantaSip GIS Pvt Ltd is your go-to EPC contractor for Railway,
+                Highway, Powerline, and Irrigation Projects. Our team of 80+
+                staff, including Geo Spatial Analysts, developers, data
+                analysts, and SMEs, have completed Google Map Data development,
+                Pan India Highway data collection, and Geo Positioned Data
+                Collection for all power towers of MSETCL. We have been
+                recognized as one of the top 10 GIS companies in India by
+                Business Outlook. Our partnership with NHAI for a GIS-enabled
+                toll system makes us a pan-India vendor. Trust us to deliver
+                quality services that exceed your expectations.
+              </p>
             </div>
           </section>
 
@@ -424,13 +526,17 @@ function Home() {
               {testimonials.map((t, i) => (
                 <div
                   key={i}
-                  className={styles.testimonial + ' ' + (testimonialIdx === i ? styles.active : '')}
-                  style={{ display: testimonialIdx === i ? 'block' : 'none' }}
+                  className={
+                    styles.testimonial +
+                    " " +
+                    (testimonialIdx === i ? styles.active : "")
+                  }
+                  style={{ display: testimonialIdx === i ? "block" : "none" }}
                 >
                   <cite>
-  <span className={styles.testimonialName}>{t.name}</span>
-  <span className={styles.testimonialTitle}>{t.title}</span>
-</cite>
+                    <span className={styles.testimonialName}>{t.name}</span>
+                    <span className={styles.testimonialTitle}>{t.title}</span>
+                  </cite>
 
                   <div className={styles.testimonialText}>{t.text}</div>
                 </div>
@@ -439,7 +545,7 @@ function Home() {
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
-                    className={testimonialIdx === i ? styles.active : ''}
+                    className={testimonialIdx === i ? styles.active : ""}
                     onClick={() => setTestimonialIdx(i)}
                     aria-label={`Go to testimonial ${i + 1}`}
                   />
@@ -451,67 +557,136 @@ function Home() {
           {/* Our Services - Elementor style section */}
           <section className={styles.servicesElementorSection}>
             <h3 className={styles.servicesElementorHeading}>Our Services</h3>
-            <h4 className={styles.servicesElementorSubheading}>Comprehensive GIS Solutions for Infrastructure Development</h4>
+            <h4 className={styles.servicesElementorSubheading}>
+              Comprehensive GIS Solutions for Infrastructure Development
+            </h4>
             <div className={styles.servicesElementorGrid}>
               {/* Card 1 */}
               <div className={styles.servicesElementorCard}>
-                <div className={styles.servicesElementorBg} style={{backgroundImage: 'url(/uploads/2024/08/istockphoto-1452888582-612x612-1.jpg)'}}></div>
+                <div
+                  className={styles.servicesElementorBg}
+                  style={{
+                    backgroundImage:
+                      "url(/uploads/2024/08/istockphoto-1452888582-612x612-1.jpg)",
+                  }}
+                ></div>
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>Cadastral Data Sets</h3>
-                  <a className={styles.servicesElementorButton} href="/services#service1">Know More</a>
+                  <a
+                    className={styles.servicesElementorButton}
+                    href="/services#service1"
+                  >
+                    Know More
+                  </a>
                 </div>
               </div>
               {/* Card 2 */}
               <div className={styles.servicesElementorCard}>
-                <div className={styles.servicesElementorBg} style={{backgroundImage: 'url(/uploads/2024/08/view-land-plot-real-estate-business-development.jpg)'}}></div>
+                <div
+                  className={styles.servicesElementorBg}
+                  style={{
+                    backgroundImage:
+                      "url(/uploads/2024/08/view-land-plot-real-estate-business-development.jpg)",
+                  }}
+                ></div>
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>Land Record Verification</h3>
-                  <a className={styles.servicesElementorButton} href="/services#service2">Know More</a>
+                  <a
+                    className={styles.servicesElementorButton}
+                    href="/services#service2"
+                  >
+                    Know More
+                  </a>
                 </div>
               </div>
               {/* Card 3 */}
               <div className={styles.servicesElementorCard}>
-                <div className={styles.servicesElementorBg} style={{backgroundImage: 'url(/uploads/2024/08/it-expert-updating-ai-systems-scaled.jpg)'}}></div>
+                <div
+                  className={styles.servicesElementorBg}
+                  style={{
+                    backgroundImage:
+                      "url(/uploads/2024/08/it-expert-updating-ai-systems-scaled.jpg)",
+                  }}
+                ></div>
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>API Services</h3>
-                  <a className={styles.servicesElementorButton} href="/services#service2">Know More</a>
+                  <a
+                    className={styles.servicesElementorButton}
+                    href="/services#service2"
+                  >
+                    Know More
+                  </a>
                 </div>
               </div>
               {/* Card 4 */}
               <div className={styles.servicesElementorCard}>
-                <div className={styles.servicesElementorBg} style={{backgroundImage: 'url(/uploads/2023/05/3.webp)'}}></div>
+                <div
+                  className={styles.servicesElementorBg}
+                  style={{ backgroundImage: "url(/uploads/2023/05/3.webp)" }}
+                ></div>
                 <div className={styles.servicesElementorOverlay}></div>
                 <div className={styles.servicesElementorContent}>
                   <h3>Data Cleaning, Correction</h3>
-                  <a className={styles.servicesElementorButton} href="/services#service3">Know More</a>
+                  <a
+                    className={styles.servicesElementorButton}
+                    href="/services#service3"
+                  >
+                    Know More
+                  </a>
                 </div>
               </div>
             </div>
           </section>
           {/* Awards & Recognition */}
           <section className={styles.awardsSection}>
-            <h2>"Our organization is thrilled to receive the Geospatia Startup of the Year Award for GeoSpatia-24."</h2>
+            <h2>
+              "Our organization is thrilled to receive the Geospatia Startup of
+              the Year Award for GeoSpatia-24."
+            </h2>
             <div className={styles.awardImages}>
-              <img src="/uploads/2024/08/WhatsApp-Image-2024-04-03-at-15.50-1.png" alt="Award 1" />
-              <img src="/uploads/2024/08/WhatsApp-Image-2024-04-03-at-15.50-2.png" alt="Award 2" />
+              <img
+                src="/uploads/2024/08/WhatsApp-Image-2024-04-03-at-15.50-1.png"
+                alt="Award 1"
+              />
+              <img
+                src="/uploads/2024/08/WhatsApp-Image-2024-04-03-at-15.50-2.png"
+                alt="Award 2"
+              />
             </div>
             <h2>Lokmat Achievers Award</h2>
             <div className={styles.awardImages}>
-              <img src="/uploads/2024/09/WhatsApp-Image-2024-09-10-at-11.41.26-1024x837.jpeg" alt="Lokmat 1" />
+              <img
+                src="/uploads/2024/09/WhatsApp-Image-2024-09-10-at-11.41.26-1024x837.jpeg"
+                alt="Lokmat 1"
+              />
               <img src="/uploads/2024/09/lokmat_1-2.jpeg" alt="Lokmat 2" />
             </div>
-            <h2>"Our Technical Director Javed Sheikh, featured in Geospatial Artha Magazine Volume 2. Honored to be positioned alongside the Industry Leaders!!"</h2>
-            <a href="https://issuu.com/geospatialworld/docs/geospatial_artha_sept-oct_2023_digital_edition" target="_blank" rel="noopener noreferrer">
-              <img src="/uploads/2024/09/Screenshot-2024-09-11-at-11.57.23%E2%80%AFAM.png" alt="Magazine" />
+            <h2>
+              "Our Technical Director Javed Sheikh, featured in Geospatial Artha
+              Magazine Volume 2. Honored to be positioned alongside the Industry
+              Leaders!!"
+            </h2>
+            <a
+              href="https://issuu.com/geospatialworld/docs/geospatial_artha_sept-oct_2023_digital_edition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/uploads/2024/09/Screenshot-2024-09-11-at-11.57.23%E2%80%AFAM.png"
+                alt="Magazine"
+              />
             </a>
             <h2>We've Sponsored</h2>
             <div className={styles.sponsorImages}>
               <img src="/uploads/2024/09/images.jpeg" alt="Sponsor 1" />
               <img src="/uploads/2024/09/images-2.png" alt="Sponsor 2" />
-              <img src="/uploads/2024/09/logo-2-1-1024x468.png" alt="Sponsor 3" />
+              <img
+                src="/uploads/2024/09/logo-2-1-1024x468.png"
+                alt="Sponsor 3"
+              />
             </div>
           </section>
 
@@ -520,96 +695,388 @@ function Home() {
             <h2>Why Choose QuantaSIP GIS?</h2>
             <div className={styles.whyChooseUsGrid}>
               <div className={styles.whyCard}>
-                <svg width="48" height="48" fill="none" stroke="#2e7d32" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="24" cy="24" r="20"/><path d="M16 24l6 6 10-10"/></svg>
+                <svg
+                  width="48"
+                  height="48"
+                  fill="none"
+                  stroke="#2e7d32"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="24" cy="24" r="20" />
+                  <path d="M16 24l6 6 10-10" />
+                </svg>
                 <h3>Proven GIS Expertise</h3>
-                <p>Our team brings years of experience in cadastral mapping, land records, and geospatial solutions for diverse industries.</p>
+                <p>
+                  Our team brings years of experience in cadastral mapping, land
+                  records, and geospatial solutions for diverse industries.
+                </p>
               </div>
               <div className={styles.whyCard}>
-                <svg width="48" height="48" fill="none" stroke="#183153" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="8" width="32" height="32" rx="8"/><path d="M16 24h16M24 16v16"/></svg>
+                <svg
+                  width="48"
+                  height="48"
+                  fill="none"
+                  stroke="#183153"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="8" y="8" width="32" height="32" rx="8" />
+                  <path d="M16 24h16M24 16v16" />
+                </svg>
                 <h3>Cutting-Edge Technology</h3>
-                <p>We leverage the latest GIS software, satellite imagery, and data analytics to deliver accurate, actionable insights.</p>
+                <p>
+                  We leverage the latest GIS software, satellite imagery, and
+                  data analytics to deliver accurate, actionable insights.
+                </p>
               </div>
               <div className={styles.whyCard}>
-                <svg width="48" height="48" fill="none" stroke="#ef6c00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="24" cy="24" rx="20" ry="12"/><path d="M4 24c0 11 9 20 20 20s20-9 20-20"/></svg>
+                <svg
+                  width="48"
+                  height="48"
+                  fill="none"
+                  stroke="#ef6c00"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <ellipse cx="24" cy="24" rx="20" ry="12" />
+                  <path d="M4 24c0 11 9 20 20 20s20-9 20-20" />
+                </svg>
                 <h3>Trusted by Industry Leaders</h3>
-                <p>Our solutions are trusted by top organizations in infrastructure, agriculture, banking, and government sectors.</p>
+                <p>
+                  Our solutions are trusted by top organizations in
+                  infrastructure, agriculture, banking, and government sectors.
+                </p>
               </div>
               <div className={styles.whyCard}>
-                <svg width="48" height="48" fill="none" stroke="#00897b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M24 4v40M4 24h40"/></svg>
+                <svg
+                  width="48"
+                  height="48"
+                  fill="none"
+                  stroke="#00897b"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M24 4v40M4 24h40" />
+                </svg>
                 <h3>Comprehensive Support</h3>
-                <p>From data collection to analysis and visualization, we provide end-to-end GIS support for your projects.</p>
+                <p>
+                  From data collection to analysis and visualization, we provide
+                  end-to-end GIS support for your projects.
+                </p>
               </div>
             </div>
           </section>
           {/* Get in Touch (Contact Section) */}
-          <section className={styles.getInTouchSection} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            <h3 style={{textAlign: 'center', marginBottom: '60px', color: 'rgb(24, 49, 83)'}}>Get in Touch</h3>
+          <section
+            className={styles.getInTouchSection}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <h3
+              style={{
+                textAlign: "center",
+                marginBottom: "60px",
+                color: "rgb(24, 49, 83)",
+              }}
+            >
+              Get in Touch
+            </h3>
             {/* Contact Form */}
-            <form className={styles.contactForm} style={{maxWidth: 640, margin: '0 auto', background: '#fff', borderRadius: 18, boxShadow: '0 2px 16px rgba(0,0,0,0.09)', padding: '56px 40px 48px 40px', display: 'flex', flexDirection: 'column', gap: 24, position: 'relative', width: '100%', boxSizing: 'border-box'}} onSubmit={handleFormSubmit}>
-              <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 88, height: 88, borderRadius: '50%', background: '#f4f6fa', border: '2.5px solid #e0e0e0', position: 'absolute', left: '50%', top: '-44px', transform: 'translateX(-50%)', boxShadow: '0 2px 8px rgba(0,0,0,0.06)'}}>
-                <svg width="56" height="56" fill="#bdbdbd" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+            <form
+              className={styles.contactForm}
+              style={{
+                maxWidth: 640,
+                margin: "0 auto",
+                background: "#fff",
+                borderRadius: 18,
+                boxShadow: "0 2px 16px rgba(0,0,0,0.09)",
+                padding: "56px 40px 48px 40px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
+                position: "relative",
+                width: "100%",
+                boxSizing: "border-box",
+              }}
+              onSubmit={handleFormSubmit}
+            >
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 88,
+                  height: 88,
+                  borderRadius: "50%",
+                  background: "#f4f6fa",
+                  border: "2.5px solid #e0e0e0",
+                  position: "absolute",
+                  left: "50%",
+                  top: "-44px",
+                  transform: "translateX(-50%)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                }}
+              >
+                <svg width="56" height="56" fill="#bdbdbd" viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z" />
+                </svg>
               </span>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-name">Full Name</label>
-                <input type="text" id="form-field-name" name="name" value={form.name} onChange={handleFormChange} placeholder="Enter your full name" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
+                <input
+                  type="text"
+                  id="form-field-name"
+                  name="name"
+                  value={form.name}
+                  onChange={handleFormChange}
+                  placeholder="Enter your full name"
+                  required
+                  style={{
+                    fontSize: "1.08rem",
+                    borderRadius: 8,
+                    padding: "12px 14px",
+                    border: "1.5px solid #bdbdbd",
+                    marginTop: 6,
+                  }}
+                />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-email">Email</label>
-                <input type="email" id="form-field-email" name="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email address" required style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
+                <input
+                  type="email"
+                  id="form-field-email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleFormChange}
+                  placeholder="Enter your email address"
+                  required
+                  style={{
+                    fontSize: "1.08rem",
+                    borderRadius: 8,
+                    padding: "12px 14px",
+                    border: "1.5px solid #bdbdbd",
+                    marginTop: 6,
+                  }}
+                />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-phone">Phone Number</label>
-                <input type="tel" id="form-field-phone" name="phone" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" required pattern="[0-9()#&+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted." style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6}} />
+                <input
+                  type="tel"
+                  id="form-field-phone"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleFormChange}
+                  placeholder="Enter your phone number"
+                  required
+                  pattern="[0-9()#&+*-=.]+"
+                  title="Only numbers and phone characters (#, -, *, etc) are accepted."
+                  style={{
+                    fontSize: "1.08rem",
+                    borderRadius: 8,
+                    padding: "12px 14px",
+                    border: "1.5px solid #bdbdbd",
+                    marginTop: 6,
+                  }}
+                />
               </div>
               <div className={styles.formGroup}>
                 <label>Services Interested In</label>
-                <div className={styles.checkboxGroup} style={{gap: 8, marginTop: 6, display: 'flex', flexDirection: 'column'}}>
-                  <div style={{display: 'flex', gap: 24}}>
-                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Cadastral Datasets" checked={form.services.includes('Cadastral Datasets')} onChange={handleFormChange} /> Cadastral Datasets</label>
-                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Land Record Verification" checked={form.services.includes('Land Record Verification')} onChange={handleFormChange} /> Land Record Verification</label>
-                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Data Cleaning" checked={form.services.includes('Data Cleaning')} onChange={handleFormChange} /> Data Cleaning</label>
-                  </div>
-                  <div style={{display: 'flex', gap: 24, marginTop: 8}}>
-                    <label style={{flex: 1}}><input type="checkbox" name="services" value="Data Correction" checked={form.services.includes('Data Correction')} onChange={handleFormChange} /> Data Correction</label>
-                    <label style={{flex: 1}}>
-                      <input type="checkbox" name="services" value="Others" checked={form.services.includes('Others')} onChange={handleFormChange} /> Others
+                <div
+                  className={styles.checkboxGroup}
+                  style={{
+                    gap: 8,
+                    marginTop: 6,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <div style={{ display: "flex", gap: 24 }}>
+                    <label style={{ flex: 1 }}>
+                      <input
+                        type="checkbox"
+                        name="services"
+                        value="Cadastral Datasets"
+                        checked={form.services.includes("Cadastral Datasets")}
+                        onChange={handleFormChange}
+                      />{" "}
+                      Cadastral Datasets
                     </label>
-                    <span style={{flex: 1}}></span>
+                    <label style={{ flex: 1 }}>
+                      <input
+                        type="checkbox"
+                        name="services"
+                        value="Land Record Verification"
+                        checked={form.services.includes(
+                          "Land Record Verification"
+                        )}
+                        onChange={handleFormChange}
+                      />{" "}
+                      Land Record Verification
+                    </label>
+                    <label style={{ flex: 1 }}>
+                      <input
+                        type="checkbox"
+                        name="services"
+                        value="Data Cleaning"
+                        checked={form.services.includes("Data Cleaning")}
+                        onChange={handleFormChange}
+                      />{" "}
+                      Data Cleaning
+                    </label>
+                  </div>
+                  <div style={{ display: "flex", gap: 24, marginTop: 8 }}>
+                    <label style={{ flex: 1 }}>
+                      <input
+                        type="checkbox"
+                        name="services"
+                        value="Data Correction"
+                        checked={form.services.includes("Data Correction")}
+                        onChange={handleFormChange}
+                      />{" "}
+                      Data Correction
+                    </label>
+                    <label style={{ flex: 1 }}>
+                      <input
+                        type="checkbox"
+                        name="services"
+                        value="Others"
+                        checked={form.services.includes("Others")}
+                        onChange={handleFormChange}
+                      />{" "}
+                      Others
+                    </label>
+                    <span style={{ flex: 1 }}></span>
                   </div>
                 </div>
-                {form.services.includes('Others') && (
+                {form.services.includes("Others") && (
                   <input
                     type="text"
                     placeholder="Specify Others"
                     value={otherService}
-                    onChange={e => setOtherService(e.target.value)}
-                    style={{ marginTop: 10, width: '100%', padding: '8px 10px', borderRadius: 6, border: '1px solid #bdbdbd', fontSize: '0.98rem' }}
+                    onChange={(e) => setOtherService(e.target.value)}
+                    style={{
+                      marginTop: 10,
+                      width: "100%",
+                      padding: "8px 10px",
+                      borderRadius: 6,
+                      border: "1px solid #bdbdbd",
+                      fontSize: "0.98rem",
+                    }}
                     required
                   />
                 )}
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="form-field-message">Message</label>
-                <textarea id="form-field-message" name="message" value={form.message} onChange={handleFormChange} placeholder="Describe your project or any specific requests" style={{fontSize: '1.08rem', borderRadius: 8, padding: '12px 14px', border: '1.5px solid #bdbdbd', marginTop: 6, minHeight: 80}}></textarea>
+                <textarea
+                  id="form-field-message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleFormChange}
+                  placeholder="Describe your project or any specific requests"
+                  style={{
+                    fontSize: "1.08rem",
+                    borderRadius: 8,
+                    padding: "12px 14px",
+                    border: "1.5px solid #bdbdbd",
+                    marginTop: 6,
+                    minHeight: 80,
+                  }}
+                ></textarea>
               </div>
               {/* Recaptcha placeholder */}
-              {status === 'success' && (
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
-                  <svg width="56" height="56" viewBox="0 0 56 56" style={{ display: 'block' }}>
-                    <circle cx="28" cy="28" r="26" fill="#e6f4ea" stroke="#28a745" strokeWidth="3" />
-                    <path d="M16 29l8 8 16-16" fill="none" stroke="#28a745" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                      <animate attributeName="stroke-dasharray" from="0,40" to="40,0" dur="0.5s" fill="freeze" />
+              {status === "success" && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  <svg
+                    width="56"
+                    height="56"
+                    viewBox="0 0 56 56"
+                    style={{ display: "block" }}
+                  >
+                    <circle
+                      cx="28"
+                      cy="28"
+                      r="26"
+                      fill="#e6f4ea"
+                      stroke="#28a745"
+                      strokeWidth="3"
+                    />
+                    <path
+                      d="M16 29l8 8 16-16"
+                      fill="none"
+                      stroke="#28a745"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <animate
+                        attributeName="stroke-dasharray"
+                        from="0,40"
+                        to="40,0"
+                        dur="0.5s"
+                        fill="freeze"
+                      />
                     </path>
                   </svg>
-              </div>
+                </div>
               )}
-              {status && status !== 'success' && (
-                <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{status}</div>
+              {status && status !== "success" && (
+                <div
+                  style={{
+                    color: "#c2185b",
+                    fontWeight: 600,
+                    textAlign: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  {status}
+                </div>
               )}
               {error && (
-                <div style={{ color: '#c2185b', fontWeight: 600, textAlign: 'center', marginTop: 8 }}>{error}</div>
+                <div
+                  style={{
+                    color: "#c2185b",
+                    fontWeight: 600,
+                    textAlign: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  {error}
+                </div>
               )}
-              <button type="submit" className={styles.submitButton} style={{fontSize: '1.13rem', borderRadius: 8, padding: '14px 0', background: '#183153', color: '#fff', fontWeight: 600, marginTop: 8, transition: 'background 0.2s'}}>Send</button>
+              <button
+                type="submit"
+                className={styles.submitButton}
+                style={{
+                  fontSize: "1.13rem",
+                  borderRadius: 8,
+                  padding: "14px 0",
+                  background: "#183153",
+                  color: "#fff",
+                  fontWeight: 600,
+                  marginTop: 8,
+                  transition: "background 0.2s",
+                }}
+              >
+                Send
+              </button>
             </form>
           </section>
         </div>
