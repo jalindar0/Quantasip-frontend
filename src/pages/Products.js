@@ -44,10 +44,10 @@ const products = [
   {
     name: 'Way',
     description: 'A powerful geospatial platform for advanced mapping and analytics.',
-    url: 'http://waytest.quantasip.com/way',
+    url: 'http://quantasip.com/way',
     button: 'Open Way',
     external: true,
-    preview: 'http://waytest.quantasip.com/way',
+    preview: 'http://quantasip.com/way',
     type: 'web',
   },
   {
@@ -62,10 +62,10 @@ const products = [
   {
     name: 'AgriInsights',
     description: 'Agricultural insights and analytics for smarter farming decisions.',
-    url: 'https://agriinsights.quantasip.com/',
+    url: 'https://quantasip.com/',
     button: 'Open AgriInsights',
     external: true,
-    preview: 'https://agriinsights.quantasip.com/',
+    preview: 'https://quantasip.com/',
     type: 'web',
   },
   {
